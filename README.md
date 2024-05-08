@@ -207,6 +207,23 @@ For a monocular input from topic `/camera/image_raw` and an inertial input from 
 
   ```
   rosrun ORB_SLAM3 Mono PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE [EQUALIZATION]	
+  参数说明：
+
+PATH_TO_VOCABULARY：这是指向ORB词汇表的路径。ORB_SLAM3使用这个词汇表来进行视觉词汇的匹配。
+通常，这个词汇表文件名为ORBvoc.txt，并且应该位于ORB_SLAM3的根目录或指定的路径下。
+
+PATH_TO_SETTINGS_FILE：这是指向设置文件的路径。设置文件（例如ORB_SLAM3/Examples/Monocular/TUM1.yaml）
+包含了运行ORB_SLAM3所需的所有配置参数，如相机参数、路径设置等。
+
+[EQUALIZATION]：这是一个可选参数，用于指定是否启用图像均衡化。如果提供此参数并且设置为true，
+则图像将进行均衡化处理。如果不提供此参数或设置为false，则不会进行均衡化。
+
+下面是一个具体的例子，展示了如何运行ORB_SLAM3的单目模式：
+
+bash
+rosrun ORB_SLAM3 Mono /path/to/ORB_SLAM3/Vocabulary/ORBvoc.txt /path/to/ORB_SLAM3/Examples/Monocular/TUM1.yaml false
+
+rosrun ORB_SLAM3 Mono_Inertial Vocabulary/ORBvoc.txt Examples/Monocular-Inertial/EuRoC.yaml false
   ```
 
 ### Running Stereo Node
