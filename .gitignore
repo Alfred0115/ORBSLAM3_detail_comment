@@ -75,3 +75,6 @@ cmake-build-debug/
 *.pyc
 *.osa
 .vscode/settings.json
+build/
+CMakeFiles/
+
