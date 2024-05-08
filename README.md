@@ -119,6 +119,17 @@ Directory `Examples` contains several demo programs and calibration files to run
 4. Run ORB-SLAM3. For example, for our D435i camera, we would execute:
 
 ```
+
+
+
+
+
+
+*****************************************************
+
+
+
+
 ./Examples/Stereo-Inertial/stereo_inertial_realsense_D435i Vocabulary/ORBvoc.txt ./Examples/Stereo-Inertial/RealSense_D435i.yaml
 ```
 
