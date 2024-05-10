@@ -128,7 +128,7 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     for(GeometricCamera* pCam : vpCams)
     {
         std::cout << "Camera " << pCam->GetId();
-        if(pCam->GetType() == GeometricCamera::CAM_PINHOLE)
+        if(pCam->GetType() == GeometricCamera::CAM_PINHOLE)//针孔
         {
             std::cout << " is pinhole" << std::endl;
         }
