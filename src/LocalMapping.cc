@@ -95,7 +95,8 @@ void LocalMapping::Run()
 {
     // 标记状态，表示当前run函数正在运行，尚未结束
     mbFinished = false;
-
+    uint32_t time_1,time_2;
+    int print_count = 0;
     // 主循环
     while(1)
     {
@@ -103,36 +104,38 @@ void LocalMapping::Run()
         // Step 1 告诉Tracking，LocalMapping正处于繁忙状态，请不要给我发送关键帧打扰我
         // LocalMapping线程处理的关键帧都是Tracking线程发过来的
         SetAcceptKeyFrames(false);
-
+        struct timeval time_;
+        gettimeofday(&time_, NULL);
+        time_1 = time_.tv_sec*1000 + time_.tv_usec/1000;
         // Check if there are keyframes in the queue
         // 等待处理的关键帧列表不为空 并且imu正常
         if(CheckNewKeyFrames() && !mbBadImu)
         {
-#ifdef REGISTER_TIMES
-            double timeLBA_ms = 0;
-            double timeKFCulling_ms = 0;
+            #ifdef REGISTER_TIMES
+                        double timeLBA_ms = 0;
+                        double timeKFCulling_ms = 0;
 
-            std::chrono::steady_clock::time_point time_StartProcessKF = std::chrono::steady_clock::now();
-#endif
+                        std::chrono::steady_clock::time_point time_StartProcessKF = std::chrono::steady_clock::now();
+            #endif
             // BoW conversion and insertion in Map
             // Step 2 处理列表中的关键帧，包括计算BoW、更新观测、描述子、共视图，插入到地图等
             ProcessNewKeyFrame();
-#ifdef REGISTER_TIMES
-            std::chrono::steady_clock::time_point time_EndProcessKF = std::chrono::steady_clock::now();
+            #ifdef REGISTER_TIMES
+                        std::chrono::steady_clock::time_point time_EndProcessKF = std::chrono::steady_clock::now();
 
-            double timeProcessKF = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndProcessKF - time_StartProcessKF).count();
-            vdKFInsert_ms.push_back(timeProcessKF);
-#endif
+                        double timeProcessKF = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndProcessKF - time_StartProcessKF).count();
+                        vdKFInsert_ms.push_back(timeProcessKF);
+            #endif
 
             // Check recent MapPoints
             // Step 3 根据地图点的观测情况剔除质量不好的地图点
             MapPointCulling();
-#ifdef REGISTER_TIMES
-            std::chrono::steady_clock::time_point time_EndMPCulling = std::chrono::steady_clock::now();
+            #ifdef REGISTER_TIMES
+                        std::chrono::steady_clock::time_point time_EndMPCulling = std::chrono::steady_clock::now();
 
-            double timeMPCulling = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndMPCulling - time_EndProcessKF).count();
-            vdMPCulling_ms.push_back(timeMPCulling);
-#endif
+                        double timeMPCulling = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndMPCulling - time_EndProcessKF).count();
+                        vdMPCulling_ms.push_back(timeMPCulling);
+            #endif
 
             // Triangulate new MapPoints
             // Step 4 当前关键帧与相邻关键帧通过三角化产生新的地图点，使得跟踪更稳
@@ -151,12 +154,12 @@ void LocalMapping::Run()
                 SearchInNeighbors();
             }
 
-#ifdef REGISTER_TIMES
-            std::chrono::steady_clock::time_point time_EndMPCreation = std::chrono::steady_clock::now();
+            #ifdef REGISTER_TIMES
+                        std::chrono::steady_clock::time_point time_EndMPCreation = std::chrono::steady_clock::now();
 
-            double timeMPCreation = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndMPCreation - time_EndMPCulling).count();
-            vdMPCreation_ms.push_back(timeMPCreation);
-#endif
+                        double timeMPCreation = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndMPCreation - time_EndMPCulling).count();
+                        vdMPCreation_ms.push_back(timeMPCreation);
+            #endif
 
             bool b_doneLBA = false;
             int num_FixedKF_BA = 0;
@@ -185,7 +188,7 @@ void LocalMapping::Run()
                             // 如果累计时间差小于10s 并且 距离小于2厘米，认为运动幅度太小，不足以初始化IMU，将mbBadImu设置为true
                             if((mTinit<10.f) && (dist<0.02))
                             {
-                                cout << "Not enough motion for initializing. Reseting..." << endl;
+                                cout <<"LocalMapping-->> "<< "Not enough motion for initializing. Reseting..." << endl;
                                 unique_lock<mutex> lock(mMutexReset);
                                 mbResetRequestedActiveMap = true;
                                 mpMapToReset = mpCurrentKeyFrame->GetMap();
@@ -208,28 +211,31 @@ void LocalMapping::Run()
                         Optimizer::LocalBundleAdjustment(mpCurrentKeyFrame,&mbAbortBA, mpCurrentKeyFrame->GetMap(),num_FixedKF_BA,num_OptKF_BA,num_MPs_BA,num_edges_BA);
                         b_doneLBA = true;
                     }
-
+                    cout <<"LocalMapping-->> "<< " mpAtlas->KeyFramesInMap()"<<mpAtlas->KeyFramesInMap() 
+                                                <<" imu "<<mpCurrentKeyFrame->GetMap()->isImuInitialized()
+                                                 <<" mbMonocular "<<mbMonocular
+                                                <<" mbInertial "<<mbInertial<< endl;
                 }
-#ifdef REGISTER_TIMES
-                std::chrono::steady_clock::time_point time_EndLBA = std::chrono::steady_clock::now();
+                #ifdef REGISTER_TIMES
+                                std::chrono::steady_clock::time_point time_EndLBA = std::chrono::steady_clock::now();
 
-                if(b_doneLBA)
-                {
-                    timeLBA_ms = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndLBA - time_EndMPCreation).count();
-                    vdLBA_ms.push_back(timeLBA_ms);
+                                if(b_doneLBA)
+                                {
+                                    timeLBA_ms = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndLBA - time_EndMPCreation).count();
+                                    vdLBA_ms.push_back(timeLBA_ms);
 
-                    nLBA_exec += 1;
-                    if(mbAbortBA)
-                    {
-                        nLBA_abort += 1;
-                    }
-                    vnLBA_edges.push_back(num_edges_BA);
-                    vnLBA_KFopt.push_back(num_OptKF_BA);
-                    vnLBA_KFfixed.push_back(num_FixedKF_BA);
-                    vnLBA_MPs.push_back(num_MPs_BA);
-                }
+                                    nLBA_exec += 1;
+                                    if(mbAbortBA)
+                                    {
+                                        nLBA_abort += 1;
+                                    }
+                                    vnLBA_edges.push_back(num_edges_BA);
+                                    vnLBA_KFopt.push_back(num_OptKF_BA);
+                                    vnLBA_KFfixed.push_back(num_FixedKF_BA);
+                                    vnLBA_MPs.push_back(num_MPs_BA);
+                                }
 
-#endif
+                #endif
 
                 // Initialize IMU here
                 // Step 7 当前关键帧所在地图未完成IMU初始化（第一阶段）
@@ -250,12 +256,12 @@ void LocalMapping::Run()
                 // 冗余的判定：该关键帧的90%的地图点可以被其它关键帧观测到
                 KeyFrameCulling();
 
-#ifdef REGISTER_TIMES
-                std::chrono::steady_clock::time_point time_EndKFCulling = std::chrono::steady_clock::now();
+                #ifdef REGISTER_TIMES
+                                std::chrono::steady_clock::time_point time_EndKFCulling = std::chrono::steady_clock::now();
 
-                timeKFCulling_ms = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndKFCulling - time_EndLBA).count();
-                vdKFCulling_ms.push_back(timeKFCulling_ms);
-#endif
+                                timeKFCulling_ms = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndKFCulling - time_EndLBA).count();
+                                vdKFCulling_ms.push_back(timeKFCulling_ms);
+                #endif
                 // Step 9 如果距离IMU第一阶段初始化成功累计时间差小于100s，进行VIBA
                 if ((mTinit<50.0f) && mbInertial)
                 {
@@ -268,28 +274,28 @@ void LocalMapping::Run()
                             // 如果累计时间差大于5s，开始VIBA1（IMU第二阶段初始化）
                             if (mTinit>5.0f)
                             {
-                                cout << "start VIBA 1" << endl;
+                                cout <<"LocalMapping-->> "<< "start VIBA 1" << endl;
                                 mpCurrentKeyFrame->GetMap()->SetIniertialBA1();
                                 if (mbMonocular)
                                     InitializeIMU(1.f, 1e5, true);
                                 else
                                     InitializeIMU(1.f, 1e5, true);
 
-                                cout << "end VIBA 1" << endl;
+                                cout <<"LocalMapping-->> "<< "end VIBA 1" << endl;
                             }
                         }
                         // Step 9.2 根据条件判断是否进行VIBA2（IMU第三次初始化）
                         // 当前关键帧所在的地图还未完成VIBA 2
                         else if(!mpCurrentKeyFrame->GetMap()->GetIniertialBA2()){
                             if (mTinit>15.0f){
-                                cout << "start VIBA 2" << endl;
+                                cout <<"LocalMapping-->> "<< "start VIBA 2" << endl;
                                 mpCurrentKeyFrame->GetMap()->SetIniertialBA2();
                                 if (mbMonocular)
                                     InitializeIMU(0.f, 0.f, true);
                                 else
                                     InitializeIMU(0.f, 0.f, true);
 
-                                cout << "end VIBA 2" << endl;
+                                cout <<"LocalMapping-->> "<< "end VIBA 2" << endl;
                             }
                         }
 
@@ -303,26 +309,28 @@ void LocalMapping::Run()
                                 (mTinit>65.0f && mTinit<65.5f)||
                                 (mTinit>75.0f && mTinit<75.5f))){
                             if (mbMonocular)
-                                // 使用了所有关键帧，但只优化尺度和重力方向以及速度和偏执（其实就是一切跟惯性相关的量）
+                            {   // 使用了所有关键帧，但只优化尺度和重力方向以及速度和偏执（其实就是一切跟惯性相关的量）
                                 ScaleRefinement();
+                                cout <<"LocalMapping-->> "<< "ScaleRefinement" << endl;
+                            }
                         }
                     }
                 }
             }
 
-#ifdef REGISTER_TIMES
-            vdLBASync_ms.push_back(timeKFCulling_ms);
-            vdKFCullingSync_ms.push_back(timeKFCulling_ms);
-#endif
+            #ifdef REGISTER_TIMES
+                        vdLBASync_ms.push_back(timeKFCulling_ms);
+                        vdKFCullingSync_ms.push_back(timeKFCulling_ms);
+            #endif
             // Step 10 将当前帧加入到闭环检测队列中
             mpLoopCloser->InsertKeyFrame(mpCurrentKeyFrame);
 
-#ifdef REGISTER_TIMES
-            std::chrono::steady_clock::time_point time_EndLocalMap = std::chrono::steady_clock::now();
+            #ifdef REGISTER_TIMES
+                        std::chrono::steady_clock::time_point time_EndLocalMap = std::chrono::steady_clock::now();
 
-            double timeLocalMap = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndLocalMap - time_StartProcessKF).count();
-            vdLMTotal_ms.push_back(timeLocalMap);
-#endif
+                        double timeLocalMap = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndLocalMap - time_StartProcessKF).count();
+                        vdLMTotal_ms.push_back(timeLocalMap);
+            #endif
         }
         else if(Stop() && !mbBadImu) // 当要终止当前线程的时候
         {
@@ -342,7 +350,11 @@ void LocalMapping::Run()
         // Tracking will see that Local Mapping is busy
         // 开始接收关键帧
         SetAcceptKeyFrames(true);
-
+        gettimeofday(&time_, NULL);
+        time_2 = time_.tv_sec*1000 + time_.tv_usec/1000;
+        print_count++;
+        if(time_2 - time_1 > 1) 
+            cout <<" LocalMapping-->> "<<print_count<<"LocalMapping::Run cost time "<<time_2 - time_1<<std::endl;
         // 如果当前线程已经结束了就跳出主循环
         if(CheckFinish())
             break;
@@ -1086,7 +1098,7 @@ bool LocalMapping::Stop()
     if(mbStopRequested && !mbNotStop)
     {
         mbStopped = true;
-        cout << "Local Mapping STOP" << endl;
+        cout <<"LocalMapping-->> "<< "Local Mapping STOP" << endl;
         return true;
     }
 
@@ -1126,7 +1138,7 @@ void LocalMapping::Release()
         delete *lit;
     mlNewKeyFrames.clear();
 
-    cout << "Local Mapping RELEASE" << endl;
+    cout <<"LocalMapping-->> "<< "Local Mapping RELEASE" << endl;
 }
 
 /**
@@ -1373,10 +1385,10 @@ void LocalMapping::RequestReset()
 {
     {
         unique_lock<mutex> lock(mMutexReset);
-        cout << "LM: Map reset recieved" << endl;
+        cout <<"LocalMapping-->> "<< "LM: Map reset recieved" << endl;
         mbResetRequested = true;
     }
-    cout << "LM: Map reset, waiting..." << endl;
+    cout <<"LocalMapping-->> "<< "LM: Map reset, waiting..." << endl;
 
     // 一直等到局部建图线程响应之后才可以退出
     while(1)
@@ -1388,7 +1400,7 @@ void LocalMapping::RequestReset()
         }
         usleep(3000);
     }
-    cout << "LM: Map reset, Done!!!" << endl;
+    cout <<"LocalMapping-->> "<< "LM: Map reset, Done!!!" << endl;
 }
 
 /**
@@ -1398,11 +1410,11 @@ void LocalMapping::RequestResetActiveMap(Map* pMap)
 {
     {
         unique_lock<mutex> lock(mMutexReset);
-        cout << "LM: Active map reset recieved" << endl;
+        cout <<"LocalMapping-->> "<< "LM: Active map reset recieved" << endl;
         mbResetRequestedActiveMap = true;
         mpMapToReset = pMap;
     }
-    cout << "LM: Active map reset, waiting..." << endl;
+    cout <<"LocalMapping-->> "<< "LM: Active map reset, waiting..." << endl;
 
     while(1)
     {
@@ -1413,7 +1425,7 @@ void LocalMapping::RequestResetActiveMap(Map* pMap)
         }
         usleep(3000);
     }
-    cout << "LM: Active map reset, Done!!!" << endl;
+    cout <<"LocalMapping-->> "<< "LM: Active map reset, Done!!!" << endl;
 }
 
 /**
@@ -1429,7 +1441,7 @@ void LocalMapping::ResetIfRequested()
         {
             executed_reset = true;
 
-            cout << "LM: Reseting Atlas in Local Mapping..." << endl;
+            cout <<"LocalMapping-->> "<< "LM: Reseting Atlas in Local Mapping..." << endl;
             mlNewKeyFrames.clear();
             mlpRecentAddedMapPoints.clear();
             // 恢复为false表示复位过程完成
@@ -1444,12 +1456,12 @@ void LocalMapping::ResetIfRequested()
 
             mIdxInit=0;
 
-            cout << "LM: End reseting Local Mapping..." << endl;
+            cout <<"LocalMapping-->> "<< "LM: End reseting Local Mapping..." << endl;
         }
 
         if(mbResetRequestedActiveMap) {
             executed_reset = true;
-            cout << "LM: Reseting current map in Local Mapping..." << endl;
+            cout <<"LocalMapping-->> "<< "LM: Reseting current map in Local Mapping..." << endl;
             mlNewKeyFrames.clear();
             mlpRecentAddedMapPoints.clear();
 
@@ -1461,11 +1473,11 @@ void LocalMapping::ResetIfRequested()
 
             mbResetRequested = false;
             mbResetRequestedActiveMap = false;
-            cout << "LM: End reseting Local Mapping..." << endl;
+            cout <<"LocalMapping-->> "<< "LM: End reseting Local Mapping..." << endl;
         }
     }
     if(executed_reset)
-        cout << "LM: Reset free the mutex" << endl;
+        cout <<"LocalMapping-->> "<< "LM: Reset free the mutex" << endl;
 
 }
 
@@ -1598,7 +1610,7 @@ void LocalMapping::InitializeIMU(float priorG, float priorA, bool bFIBA)
 
         if (have_imu_num < 6)
         {
-            cout << "imu初始化失败, 由于带有imu预积分信息的关键帧数量太少" << endl;
+            cout <<"LocalMapping-->> "<< "imu初始化失败, 由于带有imu预积分信息的关键帧数量太少" << endl;
             bInitializing=false;
             mbBadImu = true;
             return;
@@ -1643,7 +1655,7 @@ void LocalMapping::InitializeIMU(float priorG, float priorA, bool bFIBA)
     // 尺度太小的话初始化认为失败
     if (mScale<1e-1)
     {
-        cout << "scale too small" << endl;
+        cout <<"LocalMapping-->> "<< "scale too small" << endl;
         bInitializing=false;
         return;
     }
@@ -1776,7 +1788,7 @@ void LocalMapping::InitializeIMU(float priorG, float priorA, bool bFIBA)
             pKF->SetVelocity(pKF->mVwbGBA);
             pKF->SetNewBias(pKF->mBiasGBA);
         } else {
-            cout << "KF " << pKF->mnId << " not set to inertial!! \n";
+            cout <<"LocalMapping-->> "<< "KF " << pKF->mnId << " not set to inertial!! \n";
         }
 
         // pop
@@ -1885,7 +1897,7 @@ void LocalMapping::ScaleRefinement()
 
     if (mScale<1e-1) // 1e-1
     {
-        cout << "scale too small" << endl;
+        cout <<"LocalMapping-->> "<< "scale too small" << endl;
         bInitializing=false;
         return;
     }

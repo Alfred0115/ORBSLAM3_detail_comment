@@ -1557,6 +1557,10 @@ bool System::LoadAtlas(int type)
         cout << "End to load the save binary file" << endl;
         isRead = true;
     }
+    else
+    {
+        cout <<"noooooooooooooo map"  << endl;
+    }
 
     // 2. 如果加载成功
     if(isRead)
