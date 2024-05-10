@@ -82,14 +82,14 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
         bool b_parse_cam = ParseCamParamFile(fSettings);
         if(!b_parse_cam)
         {
-            std::cout << "*Error with the camera parameters in the config file*" << std::endl;
+            std::cout <<"Tracking-->> "<< "*Error with the camera parameters in the config file*" << std::endl;
         }
 
         // Load ORB parameters
         bool b_parse_orb = ParseORBParamFile(fSettings);
         if(!b_parse_orb)
         {
-            std::cout << "*Error with the ORB parameters in the config file*" << std::endl;
+            std::cout <<"Tracking-->> "<< "*Error with the ORB parameters in the config file*" << std::endl;
         }
 
         bool b_parse_imu = true;
@@ -98,7 +98,7 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
             b_parse_imu = ParseIMUParamFile(fSettings);
             if(!b_parse_imu)
             {
-                std::cout << "*Error with the IMU parameters in the config file*" << std::endl;
+                std::cout <<"Tracking-->> "<< "*Error with the IMU parameters in the config file*" << std::endl;
             }
 
             mnFramesToResetIMU = mMaxFrames;
@@ -106,7 +106,7 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
 
         if(!b_parse_cam || !b_parse_orb || !b_parse_imu)
         {
-            std::cerr << "**ERROR in the config file, the format is not correct**" << std::endl;
+            std::cerr <<"Tracking-->> "<< "**ERROR in the config file, the format is not correct**" << std::endl;
             try
             {
                 throw -1;
@@ -124,21 +124,21 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
 
     // 遍历下地图中的相机，然后打印出来了
     vector<GeometricCamera*> vpCams = mpAtlas->GetAllCameras();
-    std::cout << "There are " << vpCams.size() << " cameras in the atlas" << std::endl;
+    std::cout <<"Tracking-->> "<< "There are " << vpCams.size() << " cameras in the atlas" << std::endl;
     for(GeometricCamera* pCam : vpCams)
     {
-        std::cout << "Camera " << pCam->GetId();
+        std::cout <<"Tracking-->> "<< "Camera " << pCam->GetId();
         if(pCam->GetType() == GeometricCamera::CAM_PINHOLE)//针孔
         {
-            std::cout << " is pinhole" << std::endl;
+            std::cout <<"Tracking-->> "<< " is pinhole" << std::endl;
         }
         else if(pCam->GetType() == GeometricCamera::CAM_FISHEYE)
         {
-            std::cout << " is fisheye" << std::endl;
+            std::cout <<"Tracking-->> "<< " is fisheye" << std::endl;
         }
         else
         {
-            std::cout << " is unknown" << std::endl;
+            std::cout <<"Tracking-->> "<< " is unknown" << std::endl;
         }
     }
 
@@ -296,12 +296,12 @@ void Tracking::PrintTimeStats()
     f.open("ExecMean.txt");
     f << fixed;
     //Report the mean and std of each one
-    std::cout << std::endl << " TIME STATS in ms (mean$\\pm$std)" << std::endl;
+    std::cout <<"Tracking-->> "<< std::endl << " TIME STATS in ms (mean$\\pm$std)" << std::endl;
     f << " TIME STATS in ms (mean$\\pm$std)" << std::endl;
-    cout << "OpenCV version: " << CV_VERSION << endl;
+    cout <<"Tracking-->> "<< "OpenCV version: " << CV_VERSION << endl;
     f << "OpenCV version: " << CV_VERSION << endl;
-    std::cout << "---------------------------" << std::endl;
-    std::cout << "Tracking" << std::setprecision(5) << std::endl << std::endl;
+    std::cout <<"Tracking-->> "<< "---------------------------" << std::endl;
+    std::cout <<"Tracking-->> "<< "Tracking" << std::setprecision(5) << std::endl << std::endl;
     f << "---------------------------" << std::endl;
     f << "Tracking" << std::setprecision(5) << std::endl << std::endl;
     double average, deviation;
@@ -309,7 +309,7 @@ void Tracking::PrintTimeStats()
     {
         average = calcAverage(vdRectStereo_ms);
         deviation = calcDeviation(vdRectStereo_ms, average);
-        std::cout << "Stereo Rectification: " << average << "$\\pm$" << deviation << std::endl;
+        std::cout <<"Tracking-->> "<< "Stereo Rectification: " << average << "$\\pm$" << deviation << std::endl;
         f << "Stereo Rectification: " << average << "$\\pm$" << deviation << std::endl;
     }
 
@@ -317,20 +317,20 @@ void Tracking::PrintTimeStats()
     {
         average = calcAverage(vdResizeImage_ms);
         deviation = calcDeviation(vdResizeImage_ms, average);
-        std::cout << "Image Resize: " << average << "$\\pm$" << deviation << std::endl;
+        std::cout <<"Tracking-->> "<< "Image Resize: " << average << "$\\pm$" << deviation << std::endl;
         f << "Image Resize: " << average << "$\\pm$" << deviation << std::endl;
     }
 
     average = calcAverage(vdORBExtract_ms);
     deviation = calcDeviation(vdORBExtract_ms, average);
-    std::cout << "ORB Extraction: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "ORB Extraction: " << average << "$\\pm$" << deviation << std::endl;
     f << "ORB Extraction: " << average << "$\\pm$" << deviation << std::endl;
 
     if(!vdStereoMatch_ms.empty())
     {
         average = calcAverage(vdStereoMatch_ms);
         deviation = calcDeviation(vdStereoMatch_ms, average);
-        std::cout << "Stereo Matching: " << average << "$\\pm$" << deviation << std::endl;
+        std::cout <<"Tracking-->> "<< "Stereo Matching: " << average << "$\\pm$" << deviation << std::endl;
         f << "Stereo Matching: " << average << "$\\pm$" << deviation << std::endl;
     }
 
@@ -338,101 +338,101 @@ void Tracking::PrintTimeStats()
     {
         average = calcAverage(vdIMUInteg_ms);
         deviation = calcDeviation(vdIMUInteg_ms, average);
-        std::cout << "IMU Preintegration: " << average << "$\\pm$" << deviation << std::endl;
+        std::cout <<"Tracking-->> "<< "IMU Preintegration: " << average << "$\\pm$" << deviation << std::endl;
         f << "IMU Preintegration: " << average << "$\\pm$" << deviation << std::endl;
     }
 
     average = calcAverage(vdPosePred_ms);
     deviation = calcDeviation(vdPosePred_ms, average);
-    std::cout << "Pose Prediction: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Pose Prediction: " << average << "$\\pm$" << deviation << std::endl;
     f << "Pose Prediction: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(vdLMTrack_ms);
     deviation = calcDeviation(vdLMTrack_ms, average);
-    std::cout << "LM Track: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "LM Track: " << average << "$\\pm$" << deviation << std::endl;
     f << "LM Track: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(vdNewKF_ms);
     deviation = calcDeviation(vdNewKF_ms, average);
-    std::cout << "New KF decision: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "New KF decision: " << average << "$\\pm$" << deviation << std::endl;
     f << "New KF decision: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(vdTrackTotal_ms);
     deviation = calcDeviation(vdTrackTotal_ms, average);
-    std::cout << "Total Tracking: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Total Tracking: " << average << "$\\pm$" << deviation << std::endl;
     f << "Total Tracking: " << average << "$\\pm$" << deviation << std::endl;
 
     // Local Mapping time stats
-    std::cout << std::endl << std::endl << std::endl;
-    std::cout << "Local Mapping" << std::endl << std::endl;
+    std::cout <<"Tracking-->> "<< std::endl << std::endl << std::endl;
+    std::cout <<"Tracking-->> "<< "Local Mapping" << std::endl << std::endl;
     f << std::endl << "Local Mapping" << std::endl << std::endl;
 
     average = calcAverage(mpLocalMapper->vdKFInsert_ms);
     deviation = calcDeviation(mpLocalMapper->vdKFInsert_ms, average);
-    std::cout << "KF Insertion: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "KF Insertion: " << average << "$\\pm$" << deviation << std::endl;
     f << "KF Insertion: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(mpLocalMapper->vdMPCulling_ms);
     deviation = calcDeviation(mpLocalMapper->vdMPCulling_ms, average);
-    std::cout << "MP Culling: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "MP Culling: " << average << "$\\pm$" << deviation << std::endl;
     f << "MP Culling: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(mpLocalMapper->vdMPCreation_ms);
     deviation = calcDeviation(mpLocalMapper->vdMPCreation_ms, average);
-    std::cout << "MP Creation: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "MP Creation: " << average << "$\\pm$" << deviation << std::endl;
     f << "MP Creation: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(mpLocalMapper->vdLBA_ms);
     deviation = calcDeviation(mpLocalMapper->vdLBA_ms, average);
-    std::cout << "LBA: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "LBA: " << average << "$\\pm$" << deviation << std::endl;
     f << "LBA: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(mpLocalMapper->vdKFCulling_ms);
     deviation = calcDeviation(mpLocalMapper->vdKFCulling_ms, average);
-    std::cout << "KF Culling: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "KF Culling: " << average << "$\\pm$" << deviation << std::endl;
     f << "KF Culling: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(mpLocalMapper->vdLMTotal_ms);
     deviation = calcDeviation(mpLocalMapper->vdLMTotal_ms, average);
-    std::cout << "Total Local Mapping: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Total Local Mapping: " << average << "$\\pm$" << deviation << std::endl;
     f << "Total Local Mapping: " << average << "$\\pm$" << deviation << std::endl;
 
     // Local Mapping LBA complexity
-    std::cout << "---------------------------" << std::endl;
-    std::cout << std::endl << "LBA complexity (mean$\\pm$std)" << std::endl;
+    std::cout <<"Tracking-->> "<< "---------------------------" << std::endl;
+    std::cout <<"Tracking-->> "<< std::endl << "LBA complexity (mean$\\pm$std)" << std::endl;
     f << "---------------------------" << std::endl;
     f << std::endl << "LBA complexity (mean$\\pm$std)" << std::endl;
 
     average = calcAverage(mpLocalMapper->vnLBA_edges);
     deviation = calcDeviation(mpLocalMapper->vnLBA_edges, average);
-    std::cout << "LBA Edges: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "LBA Edges: " << average << "$\\pm$" << deviation << std::endl;
     f << "LBA Edges: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(mpLocalMapper->vnLBA_KFopt);
     deviation = calcDeviation(mpLocalMapper->vnLBA_KFopt, average);
-    std::cout << "LBA KF optimized: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "LBA KF optimized: " << average << "$\\pm$" << deviation << std::endl;
     f << "LBA KF optimized: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(mpLocalMapper->vnLBA_KFfixed);
     deviation = calcDeviation(mpLocalMapper->vnLBA_KFfixed, average);
-    std::cout << "LBA KF fixed: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "LBA KF fixed: " << average << "$\\pm$" << deviation << std::endl;
     f << "LBA KF fixed: " << average << "$\\pm$" << deviation << std::endl;
 
     average = calcAverage(mpLocalMapper->vnLBA_MPs);
     deviation = calcDeviation(mpLocalMapper->vnLBA_MPs, average);
-    std::cout << "LBA MP: " << average << "$\\pm$" << deviation << std::endl << std::endl;
+    std::cout <<"Tracking-->> "<< "LBA MP: " << average << "$\\pm$" << deviation << std::endl << std::endl;
     f << "LBA MP: " << average << "$\\pm$" << deviation << std::endl << std::endl;
 
-    std::cout << "LBA executions: " << mpLocalMapper->nLBA_exec << std::endl;
-    std::cout << "LBA aborts: " << mpLocalMapper->nLBA_abort << std::endl;
+    std::cout <<"Tracking-->> "<< "LBA executions: " << mpLocalMapper->nLBA_exec << std::endl;
+    std::cout <<"Tracking-->> "<< "LBA aborts: " << mpLocalMapper->nLBA_abort << std::endl;
     f << "LBA executions: " << mpLocalMapper->nLBA_exec << std::endl;
     f << "LBA aborts: " << mpLocalMapper->nLBA_abort << std::endl;
 
     // Map complexity
-    std::cout << "---------------------------" << std::endl;
-    std::cout << std::endl << "Map complexity" << std::endl;
-    std::cout << "KFs in map: " << mpAtlas->GetAllKeyFrames().size() << std::endl;
-    std::cout << "MPs in map: " << mpAtlas->GetAllMapPoints().size() << std::endl;
+    std::cout <<"Tracking-->> "<< "---------------------------" << std::endl;
+    std::cout <<"Tracking-->> "<< std::endl << "Map complexity" << std::endl;
+    std::cout <<"Tracking-->> "<< "KFs in map: " << mpAtlas->GetAllKeyFrames().size() << std::endl;
+    std::cout <<"Tracking-->> "<< "MPs in map: " << mpAtlas->GetAllMapPoints().size() << std::endl;
     f << "---------------------------" << std::endl;
     f << std::endl << "Map complexity" << std::endl;
     vector<Map*> vpMaps = mpAtlas->GetAllMaps();
@@ -450,100 +450,100 @@ void Tracking::PrintTimeStats()
 
     f << "---------------------------" << std::endl;
     f << std::endl << "Place Recognition (mean$\\pm$std)" << std::endl;
-    std::cout << "---------------------------" << std::endl;
-    std::cout << std::endl << "Place Recognition (mean$\\pm$std)" << std::endl;
+    std::cout <<"Tracking-->> "<< "---------------------------" << std::endl;
+    std::cout <<"Tracking-->> "<< std::endl << "Place Recognition (mean$\\pm$std)" << std::endl;
     average = calcAverage(mpLoopClosing->vdDataQuery_ms);
     deviation = calcDeviation(mpLoopClosing->vdDataQuery_ms, average);
     f << "Database Query: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Database Query: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Database Query: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdEstSim3_ms);
     deviation = calcDeviation(mpLoopClosing->vdEstSim3_ms, average);
     f << "SE3 estimation: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "SE3 estimation: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "SE3 estimation: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdPRTotal_ms);
     deviation = calcDeviation(mpLoopClosing->vdPRTotal_ms, average);
     f << "Total Place Recognition: " << average << "$\\pm$" << deviation << std::endl << std::endl;
-    std::cout << "Total Place Recognition: " << average << "$\\pm$" << deviation << std::endl << std::endl;
+    std::cout <<"Tracking-->> "<< "Total Place Recognition: " << average << "$\\pm$" << deviation << std::endl << std::endl;
 
     f << std::endl << "Loop Closing (mean$\\pm$std)" << std::endl;
-    std::cout << std::endl << "Loop Closing (mean$\\pm$std)" << std::endl;
+    std::cout <<"Tracking-->> "<< std::endl << "Loop Closing (mean$\\pm$std)" << std::endl;
     average = calcAverage(mpLoopClosing->vdLoopFusion_ms);
     deviation = calcDeviation(mpLoopClosing->vdLoopFusion_ms, average);
     f << "Loop Fusion: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Loop Fusion: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Loop Fusion: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdLoopOptEss_ms);
     deviation = calcDeviation(mpLoopClosing->vdLoopOptEss_ms, average);
     f << "Essential Graph: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Essential Graph: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Essential Graph: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdLoopTotal_ms);
     deviation = calcDeviation(mpLoopClosing->vdLoopTotal_ms, average);
     f << "Total Loop Closing: " << average << "$\\pm$" << deviation << std::endl << std::endl;
-    std::cout << "Total Loop Closing: " << average << "$\\pm$" << deviation << std::endl << std::endl;
+    std::cout <<"Tracking-->> "<< "Total Loop Closing: " << average << "$\\pm$" << deviation << std::endl << std::endl;
 
     f << "Numb exec: " << mpLoopClosing->nLoop << std::endl;
-    std::cout << "Num exec: " << mpLoopClosing->nLoop << std::endl;
+    std::cout <<"Tracking-->> "<< "Num exec: " << mpLoopClosing->nLoop << std::endl;
     average = calcAverage(mpLoopClosing->vnLoopKFs);
     deviation = calcDeviation(mpLoopClosing->vnLoopKFs, average);
     f << "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
 
     f << std::endl << "Map Merging (mean$\\pm$std)" << std::endl;
-    std::cout << std::endl << "Map Merging (mean$\\pm$std)" << std::endl;
+    std::cout <<"Tracking-->> "<< std::endl << "Map Merging (mean$\\pm$std)" << std::endl;
     average = calcAverage(mpLoopClosing->vdMergeMaps_ms);
     deviation = calcDeviation(mpLoopClosing->vdMergeMaps_ms, average);
     f << "Merge Maps: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Merge Maps: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Merge Maps: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdWeldingBA_ms);
     deviation = calcDeviation(mpLoopClosing->vdWeldingBA_ms, average);
     f << "Welding BA: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Welding BA: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Welding BA: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdMergeOptEss_ms);
     deviation = calcDeviation(mpLoopClosing->vdMergeOptEss_ms, average);
     f << "Optimization Ess.: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Optimization Ess.: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Optimization Ess.: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdMergeTotal_ms);
     deviation = calcDeviation(mpLoopClosing->vdMergeTotal_ms, average);
     f << "Total Map Merging: " << average << "$\\pm$" << deviation << std::endl << std::endl;
-    std::cout << "Total Map Merging: " << average << "$\\pm$" << deviation << std::endl << std::endl;
+    std::cout <<"Tracking-->> "<< "Total Map Merging: " << average << "$\\pm$" << deviation << std::endl << std::endl;
 
     f << "Numb exec: " << mpLoopClosing->nMerges << std::endl;
-    std::cout << "Num exec: " << mpLoopClosing->nMerges << std::endl;
+    std::cout <<"Tracking-->> "<< "Num exec: " << mpLoopClosing->nMerges << std::endl;
     average = calcAverage(mpLoopClosing->vnMergeKFs);
     deviation = calcDeviation(mpLoopClosing->vnMergeKFs, average);
     f << "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vnMergeMPs);
     deviation = calcDeviation(mpLoopClosing->vnMergeMPs, average);
     f << "Number of MPs: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Number of MPs: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Number of MPs: " << average << "$\\pm$" << deviation << std::endl;
 
     f << std::endl << "Full GBA (mean$\\pm$std)" << std::endl;
-    std::cout << std::endl << "Full GBA (mean$\\pm$std)" << std::endl;
+    std::cout <<"Tracking-->> "<< std::endl << "Full GBA (mean$\\pm$std)" << std::endl;
     average = calcAverage(mpLoopClosing->vdGBA_ms);
     deviation = calcDeviation(mpLoopClosing->vdGBA_ms, average);
     f << "GBA: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "GBA: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "GBA: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdUpdateMap_ms);
     deviation = calcDeviation(mpLoopClosing->vdUpdateMap_ms, average);
     f << "Map Update: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Map Update: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Map Update: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vdFGBATotal_ms);
     deviation = calcDeviation(mpLoopClosing->vdFGBATotal_ms, average);
     f << "Total Full GBA: " << average << "$\\pm$" << deviation << std::endl << std::endl;
-    std::cout << "Total Full GBA: " << average << "$\\pm$" << deviation << std::endl << std::endl;
+    std::cout <<"Tracking-->> "<< "Total Full GBA: " << average << "$\\pm$" << deviation << std::endl << std::endl;
 
     f << "Numb exec: " << mpLoopClosing->nFGBA_exec << std::endl;
-    std::cout << "Num exec: " << mpLoopClosing->nFGBA_exec << std::endl;
+    std::cout <<"Tracking-->> "<< "Num exec: " << mpLoopClosing->nFGBA_exec << std::endl;
     f << "Numb abort: " << mpLoopClosing->nFGBA_abort << std::endl;
-    std::cout << "Num abort: " << mpLoopClosing->nFGBA_abort << std::endl;
+    std::cout <<"Tracking-->> "<< "Num abort: " << mpLoopClosing->nFGBA_abort << std::endl;
     average = calcAverage(mpLoopClosing->vnGBAKFs);
     deviation = calcDeviation(mpLoopClosing->vnGBAKFs, average);
     f << "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Number of KFs: " << average << "$\\pm$" << deviation << std::endl;
     average = calcAverage(mpLoopClosing->vnGBAMPs);
     deviation = calcDeviation(mpLoopClosing->vnGBAMPs, average);
     f << "Number of MPs: " << average << "$\\pm$" << deviation << std::endl;
-    std::cout << "Number of MPs: " << average << "$\\pm$" << deviation << std::endl;
+    std::cout <<"Tracking-->> "<< "Number of MPs: " << average << "$\\pm$" << deviation << std::endl;
 
     f.close();
 
@@ -658,7 +658,7 @@ void Tracking::newParameterLoader(Settings *settings) {
 bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
 {
     mDistCoef = cv::Mat::zeros(4,1,CV_32F);
-    cout << endl << "Camera Parameters: " << endl;
+    cout <<"Tracking-->> "<< endl << "Camera Parameters: " << endl;
     bool b_miss_params = false;
 
     string sCameraName = fSettings["Camera.type"];
@@ -675,7 +675,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.fx parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.fx parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -686,7 +686,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.fy parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.fy parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -697,7 +697,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.cx parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.cx parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -708,7 +708,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.cy parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.cy parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -720,7 +720,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.k1 parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.k1 parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -731,7 +731,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.k2 parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.k2 parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -742,7 +742,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.p1 parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.p1 parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -753,7 +753,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.p2 parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.p2 parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -790,21 +790,21 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
 
         mpCamera = mpAtlas->AddCamera(mpCamera);
 
-        std::cout << "- Camera: Pinhole" << std::endl;
-        std::cout << "- Image scale: " << mImageScale << std::endl;
-        std::cout << "- fx: " << fx << std::endl;
-        std::cout << "- fy: " << fy << std::endl;
-        std::cout << "- cx: " << cx << std::endl;
-        std::cout << "- cy: " << cy << std::endl;
-        std::cout << "- k1: " << mDistCoef.at<float>(0) << std::endl;
-        std::cout << "- k2: " << mDistCoef.at<float>(1) << std::endl;
+        std::cout <<"Tracking-->> "<< "- Camera: Pinhole" << std::endl;
+        std::cout <<"Tracking-->> "<< "- Image scale: " << mImageScale << std::endl;
+        std::cout <<"Tracking-->> "<< "- fx: " << fx << std::endl;
+        std::cout <<"Tracking-->> "<< "- fy: " << fy << std::endl;
+        std::cout <<"Tracking-->> "<< "- cx: " << cx << std::endl;
+        std::cout <<"Tracking-->> "<< "- cy: " << cy << std::endl;
+        std::cout <<"Tracking-->> "<< "- k1: " << mDistCoef.at<float>(0) << std::endl;
+        std::cout <<"Tracking-->> "<< "- k2: " << mDistCoef.at<float>(1) << std::endl;
 
 
-        std::cout << "- p1: " << mDistCoef.at<float>(2) << std::endl;
-        std::cout << "- p2: " << mDistCoef.at<float>(3) << std::endl;
+        std::cout <<"Tracking-->> "<< "- p1: " << mDistCoef.at<float>(2) << std::endl;
+        std::cout <<"Tracking-->> "<< "- p2: " << mDistCoef.at<float>(3) << std::endl;
 
         if(mDistCoef.rows==5)
-            std::cout << "- k3: " << mDistCoef.at<float>(4) << std::endl;
+            std::cout <<"Tracking-->> "<< "- k3: " << mDistCoef.at<float>(4) << std::endl;
 
         mK = cv::Mat::eye(3,3,CV_32F);
         mK.at<float>(0,0) = fx;
@@ -832,7 +832,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.fx parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.fx parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
         node = fSettings["Camera.fy"];
@@ -842,7 +842,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.fy parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.fy parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -853,7 +853,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.cx parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.cx parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -864,7 +864,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.cy parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.cy parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -876,7 +876,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.k1 parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.k1 parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
         node = fSettings["Camera.k2"];
@@ -886,7 +886,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.k2 parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.k2 parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -897,7 +897,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.k3 parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.k3 parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -908,7 +908,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.k4 parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.k4 parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -932,16 +932,16 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             vector<float> vCamCalib{fx,fy,cx,cy,k1,k2,k3,k4};
             mpCamera = new KannalaBrandt8(vCamCalib);
             mpCamera = mpAtlas->AddCamera(mpCamera);
-            std::cout << "- Camera: Fisheye" << std::endl;
-            std::cout << "- Image scale: " << mImageScale << std::endl;
-            std::cout << "- fx: " << fx << std::endl;
-            std::cout << "- fy: " << fy << std::endl;
-            std::cout << "- cx: " << cx << std::endl;
-            std::cout << "- cy: " << cy << std::endl;
-            std::cout << "- k1: " << k1 << std::endl;
-            std::cout << "- k2: " << k2 << std::endl;
-            std::cout << "- k3: " << k3 << std::endl;
-            std::cout << "- k4: " << k4 << std::endl;
+            std::cout <<"Tracking-->> "<< "- Camera: Fisheye" << std::endl;
+            std::cout <<"Tracking-->> "<< "- Image scale: " << mImageScale << std::endl;
+            std::cout <<"Tracking-->> "<< "- fx: " << fx << std::endl;
+            std::cout <<"Tracking-->> "<< "- fy: " << fy << std::endl;
+            std::cout <<"Tracking-->> "<< "- cx: " << cx << std::endl;
+            std::cout <<"Tracking-->> "<< "- cy: " << cy << std::endl;
+            std::cout <<"Tracking-->> "<< "- k1: " << k1 << std::endl;
+            std::cout <<"Tracking-->> "<< "- k2: " << k2 << std::endl;
+            std::cout <<"Tracking-->> "<< "- k3: " << k3 << std::endl;
+            std::cout <<"Tracking-->> "<< "- k4: " << k4 << std::endl;
 
             mK = cv::Mat::eye(3,3,CV_32F);
             mK.at<float>(0,0) = fx;
@@ -966,7 +966,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cerr << "*Camera2.fx parameter doesn't exist or is not a real number*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Camera2.fx parameter doesn't exist or is not a real number*" << std::endl;
                 b_miss_params = true;
             }
             node = fSettings["Camera2.fy"];
@@ -976,7 +976,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cerr << "*Camera2.fy parameter doesn't exist or is not a real number*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Camera2.fy parameter doesn't exist or is not a real number*" << std::endl;
                 b_miss_params = true;
             }
 
@@ -987,7 +987,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cerr << "*Camera2.cx parameter doesn't exist or is not a real number*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Camera2.cx parameter doesn't exist or is not a real number*" << std::endl;
                 b_miss_params = true;
             }
 
@@ -998,7 +998,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cerr << "*Camera2.cy parameter doesn't exist or is not a real number*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Camera2.cy parameter doesn't exist or is not a real number*" << std::endl;
                 b_miss_params = true;
             }
 
@@ -1010,7 +1010,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cerr << "*Camera2.k1 parameter doesn't exist or is not a real number*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Camera2.k1 parameter doesn't exist or is not a real number*" << std::endl;
                 b_miss_params = true;
             }
             node = fSettings["Camera2.k2"];
@@ -1020,7 +1020,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cerr << "*Camera2.k2 parameter doesn't exist or is not a real number*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Camera2.k2 parameter doesn't exist or is not a real number*" << std::endl;
                 b_miss_params = true;
             }
 
@@ -1031,7 +1031,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cerr << "*Camera2.k3 parameter doesn't exist or is not a real number*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Camera2.k3 parameter doesn't exist or is not a real number*" << std::endl;
                 b_miss_params = true;
             }
 
@@ -1042,7 +1042,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cerr << "*Camera2.k4 parameter doesn't exist or is not a real number*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Camera2.k4 parameter doesn't exist or is not a real number*" << std::endl;
                 b_miss_params = true;
             }
 
@@ -1060,7 +1060,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cout << "WARNING: Camera.lappingBegin not correctly defined" << std::endl;
+                std::cout <<"Tracking-->> "<< "WARNING: Camera.lappingBegin not correctly defined" << std::endl;
             }
             node = fSettings["Camera.lappingEnd"];
             if(!node.empty() && node.isInt())
@@ -1069,7 +1069,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cout << "WARNING: Camera.lappingEnd not correctly defined" << std::endl;
+                std::cout <<"Tracking-->> "<< "WARNING: Camera.lappingEnd not correctly defined" << std::endl;
             }
             node = fSettings["Camera2.lappingBegin"];
             if(!node.empty() && node.isInt())
@@ -1078,7 +1078,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cout << "WARNING: Camera2.lappingBegin not correctly defined" << std::endl;
+                std::cout <<"Tracking-->> "<< "WARNING: Camera2.lappingBegin not correctly defined" << std::endl;
             }
             node = fSettings["Camera2.lappingEnd"];
             if(!node.empty() && node.isInt())
@@ -1087,7 +1087,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
             }
             else
             {
-                std::cout << "WARNING: Camera2.lappingEnd not correctly defined" << std::endl;
+                std::cout <<"Tracking-->> "<< "WARNING: Camera2.lappingEnd not correctly defined" << std::endl;
             }
 
             node = fSettings["Tlr"];
@@ -1097,13 +1097,13 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
                 cvTlr = node.mat();
                 if(cvTlr.rows != 3 || cvTlr.cols != 4)
                 {
-                    std::cerr << "*Tlr matrix have to be a 3x4 transformation matrix*" << std::endl;
+                    std::cerr <<"Tracking-->> "<< "*Tlr matrix have to be a 3x4 transformation matrix*" << std::endl;
                     b_miss_params = true;
                 }
             }
             else
             {
-                std::cerr << "*Tlr matrix doesn't exist*" << std::endl;
+                std::cerr <<"Tracking-->> "<< "*Tlr matrix doesn't exist*" << std::endl;
                 b_miss_params = true;
             }
 
@@ -1137,23 +1137,23 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
                 static_cast<KannalaBrandt8*>(mpCamera2)->mvLappingArea[0] = rightLappingBegin;
                 static_cast<KannalaBrandt8*>(mpCamera2)->mvLappingArea[1] = rightLappingEnd;
 
-                std::cout << "- Camera1 Lapping: " << leftLappingBegin << ", " << leftLappingEnd << std::endl;
+                std::cout <<"Tracking-->> "<< "- Camera1 Lapping: " << leftLappingBegin << ", " << leftLappingEnd << std::endl;
 
-                std::cout << std::endl << "Camera2 Parameters:" << std::endl;
-                std::cout << "- Camera: Fisheye" << std::endl;
-                std::cout << "- Image scale: " << mImageScale << std::endl;
-                std::cout << "- fx: " << fx << std::endl;
-                std::cout << "- fy: " << fy << std::endl;
-                std::cout << "- cx: " << cx << std::endl;
-                std::cout << "- cy: " << cy << std::endl;
-                std::cout << "- k1: " << k1 << std::endl;
-                std::cout << "- k2: " << k2 << std::endl;
-                std::cout << "- k3: " << k3 << std::endl;
-                std::cout << "- k4: " << k4 << std::endl;
+                std::cout <<"Tracking-->> "<< std::endl << "Camera2 Parameters:" << std::endl;
+                std::cout <<"Tracking-->> "<< "- Camera: Fisheye" << std::endl;
+                std::cout <<"Tracking-->> "<< "- Image scale: " << mImageScale << std::endl;
+                std::cout <<"Tracking-->> "<< "- fx: " << fx << std::endl;
+                std::cout <<"Tracking-->> "<< "- fy: " << fy << std::endl;
+                std::cout <<"Tracking-->> "<< "- cx: " << cx << std::endl;
+                std::cout <<"Tracking-->> "<< "- cy: " << cy << std::endl;
+                std::cout <<"Tracking-->> "<< "- k1: " << k1 << std::endl;
+                std::cout <<"Tracking-->> "<< "- k2: " << k2 << std::endl;
+                std::cout <<"Tracking-->> "<< "- k3: " << k3 << std::endl;
+                std::cout <<"Tracking-->> "<< "- k4: " << k4 << std::endl;
 
-                std::cout << "- mTlr: \n" << cvTlr << std::endl;
+                std::cout <<"Tracking-->> "<< "- mTlr: \n" << cvTlr << std::endl;
 
-                std::cout << "- Camera2 Lapping: " << rightLappingBegin << ", " << rightLappingEnd << std::endl;
+                std::cout <<"Tracking-->> "<< "- Camera2 Lapping: " << rightLappingBegin << ", " << rightLappingEnd << std::endl;
             }
         }
 
@@ -1165,8 +1165,8 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*Not Supported Camera Sensor*" << std::endl;
-        std::cerr << "Check an example configuration file with the desired sensor" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*Not Supported Camera Sensor*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "Check an example configuration file with the desired sensor" << std::endl;
     }
 
     if(mSensor==System::STEREO || mSensor==System::RGBD || mSensor==System::IMU_STEREO || mSensor==System::IMU_RGBD )
@@ -1182,7 +1182,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*Camera.bf parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Camera.bf parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -1196,16 +1196,16 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
     mMinFrames = 0;
     mMaxFrames = fps;
 
-    cout << "- fps: " << fps << endl;
+    cout <<"Tracking-->> "<< "- fps: " << fps << endl;
 
 
     int nRGB = fSettings["Camera.RGB"];
     mbRGB = nRGB;
 
     if(mbRGB)
-        cout << "- color order: RGB (ignored if grayscale)" << endl;
+        cout <<"Tracking-->> "<< "- color order: RGB (ignored if grayscale)" << endl;
     else
-        cout << "- color order: BGR (ignored if grayscale)" << endl;
+        cout <<"Tracking-->> "<< "- color order: BGR (ignored if grayscale)" << endl;
 
     if(mSensor==System::STEREO || mSensor==System::RGBD || mSensor==System::IMU_STEREO || mSensor==System::IMU_RGBD)
     {
@@ -1215,11 +1215,11 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         {
             mThDepth = node.real();
             mThDepth = mbf*mThDepth/fx;
-            cout << endl << "Depth Threshold (Close/Far Points): " << mThDepth << endl;
+            cout <<"Tracking-->> "<< endl << "Depth Threshold (Close/Far Points): " << mThDepth << endl;
         }
         else
         {
-            std::cerr << "*ThDepth parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*ThDepth parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -1239,7 +1239,7 @@ bool Tracking::ParseCamParamFile(cv::FileStorage &fSettings)
         }
         else
         {
-            std::cerr << "*DepthMapFactor parameter doesn't exist or is not a real number*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*DepthMapFactor parameter doesn't exist or is not a real number*" << std::endl;
             b_miss_params = true;
         }
 
@@ -1270,7 +1270,7 @@ bool Tracking::ParseORBParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*ORBextractor.nFeatures parameter doesn't exist or is not an integer*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*ORBextractor.nFeatures parameter doesn't exist or is not an integer*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1281,7 +1281,7 @@ bool Tracking::ParseORBParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*ORBextractor.scaleFactor parameter doesn't exist or is not a real number*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*ORBextractor.scaleFactor parameter doesn't exist or is not a real number*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1292,7 +1292,7 @@ bool Tracking::ParseORBParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*ORBextractor.nLevels parameter doesn't exist or is not an integer*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*ORBextractor.nLevels parameter doesn't exist or is not an integer*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1303,7 +1303,7 @@ bool Tracking::ParseORBParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*ORBextractor.iniThFAST parameter doesn't exist or is not an integer*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*ORBextractor.iniThFAST parameter doesn't exist or is not an integer*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1314,7 +1314,7 @@ bool Tracking::ParseORBParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*ORBextractor.minThFAST parameter doesn't exist or is not an integer*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*ORBextractor.minThFAST parameter doesn't exist or is not an integer*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1331,12 +1331,12 @@ bool Tracking::ParseORBParamFile(cv::FileStorage &fSettings)
     if(mSensor==System::MONOCULAR || mSensor==System::IMU_MONOCULAR)
         mpIniORBextractor = new ORBextractor(5*nFeatures,fScaleFactor,nLevels,fIniThFAST,fMinThFAST);
 
-    cout << endl << "ORB Extractor Parameters: " << endl;
-    cout << "- Number of Features: " << nFeatures << endl;
-    cout << "- Scale Levels: " << nLevels << endl;
-    cout << "- Scale Factor: " << fScaleFactor << endl;
-    cout << "- Initial Fast Threshold: " << fIniThFAST << endl;
-    cout << "- Minimum Fast Threshold: " << fMinThFAST << endl;
+    cout <<"Tracking-->> "<< endl << "ORB Extractor Parameters: " << endl;
+    cout <<"Tracking-->> "<< "- Number of Features: " << nFeatures << endl;
+    cout <<"Tracking-->> "<< "- Scale Levels: " << nLevels << endl;
+    cout <<"Tracking-->> "<< "- Scale Factor: " << fScaleFactor << endl;
+    cout <<"Tracking-->> "<< "- Initial Fast Threshold: " << fIniThFAST << endl;
+    cout <<"Tracking-->> "<< "- Minimum Fast Threshold: " << fMinThFAST << endl;
 
     return true;
 }
@@ -1356,17 +1356,17 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
         cvTbc = node.mat();
         if(cvTbc.rows != 4 || cvTbc.cols != 4)
         {
-            std::cerr << "*Tbc matrix have to be a 4x4 transformation matrix*" << std::endl;
+            std::cerr <<"Tracking-->> "<< "*Tbc matrix have to be a 4x4 transformation matrix*" << std::endl;
             b_miss_params = true;
         }
     }
     else
     {
-        std::cerr << "*Tbc matrix doesn't exist*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*Tbc matrix doesn't exist*" << std::endl;
         b_miss_params = true;
     }
-    cout << endl;
-    cout << "Left camera to Imu Transform (Tbc): " << endl << cvTbc << endl;
+    cout <<"Tracking-->> "<< endl;
+    cout <<"Tracking-->> "<< "Left camera to Imu Transform (Tbc): " << endl << cvTbc << endl;
     Eigen::Matrix<float,4,4,Eigen::RowMajor> eigTbc(cvTbc.ptr<float>(0));
     Sophus::SE3f Tbc(eigTbc);
 
@@ -1378,7 +1378,7 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
     }
 
     if(!mInsertKFsLost)
-        cout << "Do not insert keyframes when lost visual tracking " << endl;
+        cout <<"Tracking-->> "<< "Do not insert keyframes when lost visual tracking " << endl;
 
 
 
@@ -1392,7 +1392,7 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*IMU.Frequency parameter doesn't exist or is not an integer*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*IMU.Frequency parameter doesn't exist or is not an integer*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1403,7 +1403,7 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*IMU.NoiseGyro parameter doesn't exist or is not a real number*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*IMU.NoiseGyro parameter doesn't exist or is not a real number*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1414,7 +1414,7 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*IMU.NoiseAcc parameter doesn't exist or is not a real number*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*IMU.NoiseAcc parameter doesn't exist or is not a real number*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1425,7 +1425,7 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*IMU.GyroWalk parameter doesn't exist or is not a real number*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*IMU.GyroWalk parameter doesn't exist or is not a real number*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1436,7 +1436,7 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
     }
     else
     {
-        std::cerr << "*IMU.AccWalk parameter doesn't exist or is not a real number*" << std::endl;
+        std::cerr <<"Tracking-->> "<< "*IMU.AccWalk parameter doesn't exist or is not a real number*" << std::endl;
         b_miss_params = true;
     }
 
@@ -1448,7 +1448,7 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
     }
 
     if(mFastInit)
-        cout << "Fast IMU initialization. Acceleration is not checked \n";
+        cout <<"Tracking-->> "<< "Fast IMU initialization. Acceleration is not checked \n";
 
     if(b_miss_params)
     {
@@ -1456,12 +1456,12 @@ bool Tracking::ParseIMUParamFile(cv::FileStorage &fSettings)
     }
 
     const float sf = sqrt(mImuFreq);
-    cout << endl;
-    cout << "IMU frequency: " << mImuFreq << " Hz" << endl;
-    cout << "IMU gyro noise: " << Ng << " rad/s/sqrt(Hz)" << endl;
-    cout << "IMU gyro walk: " << Ngw << " rad/s^2/sqrt(Hz)" << endl;
-    cout << "IMU accelerometer noise: " << Na << " m/s^2/sqrt(Hz)" << endl;
-    cout << "IMU accelerometer walk: " << Naw << " m/s^3/sqrt(Hz)" << endl;
+    cout <<"Tracking-->> "<< endl;
+    cout <<"Tracking-->> "<< "IMU frequency: " << mImuFreq << " Hz" << endl;
+    cout <<"Tracking-->> "<< "IMU gyro noise: " << Ng << " rad/s/sqrt(Hz)" << endl;
+    cout <<"Tracking-->> "<< "IMU gyro walk: " << Ngw << " rad/s^2/sqrt(Hz)" << endl;
+    cout <<"Tracking-->> "<< "IMU accelerometer noise: " << Na << " m/s^2/sqrt(Hz)" << endl;
+    cout <<"Tracking-->> "<< "IMU accelerometer walk: " << Naw << " m/s^3/sqrt(Hz)" << endl;
 
     mpImuCalib = new IMU::Calib(Tbc,Ng*sf,Na*sf,Ngw/sf,Naw/sf);
 
@@ -1742,7 +1742,7 @@ void Tracking::PreintegrateIMU()
     // 上一帧不存在,说明两帧之间没有imu数据，不进行预积分
     if(!mCurrentFrame.mpPrevFrame)
     {
-        Verbose::PrintMess("non prev frame ", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> non prev frame ", Verbose::VERBOSITY_NORMAL);
         mCurrentFrame.setIntegrated();
         return;
     }
@@ -1752,7 +1752,7 @@ void Tracking::PreintegrateIMU()
     // 没有imu数据,不进行预积分
     if(mlQueueImuData.size() == 0)
     {
-        Verbose::PrintMess("Not IMU data in mlQueueImuData!!", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> Not IMU data in mlQueueImuData!!", Verbose::VERBOSITY_NORMAL);
         mCurrentFrame.setIntegrated();
         return;
     }
@@ -1800,7 +1800,7 @@ void Tracking::PreintegrateIMU()
     // m个imu组数据会有m-1个预积分量
     const int n = mvImuFromLastFrame.size()-1;
     if(n==0){
-        cout << "Empty IMU measurements vector!!!\n";
+        cout <<"Tracking-->> "<< "Empty IMU measurements vector!!!\n";
         return;
     }
 
@@ -1865,7 +1865,7 @@ void Tracking::PreintegrateIMU()
         // Step 3.依次进行预积分计算
         // 应该是必存在的吧，一个是相对上一关键帧，一个是相对上一帧
         if (!mpImuPreintegratedFromLastKF)
-            cout << "mpImuPreintegratedFromLastKF does not exist" << endl;
+            cout <<"Tracking-->> "<< "mpImuPreintegratedFromLastKF does not exist" << endl;
         mpImuPreintegratedFromLastKF->IntegrateNewMeasurement(acc,angVel,tstep);
         pImuPreintegratedFromLastFrame->IntegrateNewMeasurement(acc,angVel,tstep);
     }
@@ -1877,7 +1877,7 @@ void Tracking::PreintegrateIMU()
 
     mCurrentFrame.setIntegrated();
 
-    //Verbose::PrintMess("Preintegration is finished!! ", Verbose::VERBOSITY_DEBUG);
+    //Verbose::PrintMess("Tracking-->> Preintegration is finished!! ", Verbose::VERBOSITY_DEBUG);
 }
 
 /**
@@ -1893,7 +1893,7 @@ bool Tracking::PredictStateIMU()
 {
     if(!mCurrentFrame.mpPrevFrame)
     {
-        Verbose::PrintMess("No last frame", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> No last frame", Verbose::VERBOSITY_NORMAL);
         return false;
     }
 
@@ -1950,7 +1950,7 @@ bool Tracking::PredictStateIMU()
         return true;
     }
     else
-        cout << "not IMU prediction!!" << endl;
+        cout <<"Tracking-->> "<< "not IMU prediction!!" << endl;
 
     return false;
 }
@@ -1973,7 +1973,7 @@ void Tracking::Track()
 
     if (bStepByStep)
     {
-        std::cout << "Tracking: Waiting to the next step" << std::endl;
+        std::cout <<"Tracking-->> "<< "Tracking: Waiting to the next step" << std::endl;
         while(!mbStep && bStepByStep)
             usleep(500);
         mbStep = false;
@@ -1982,7 +1982,7 @@ void Tracking::Track()
     // Step 1 如局部建图里认为IMU有问题，重置当前活跃地图
     if(mpLocalMapper->mbBadImu)
     {
-        cout << "TRACK: Reset map because local mapper set the bad imu flag " << endl;
+        cout <<"Tracking-->> "<< "TRACK: Reset map because local mapper set the bad imu flag " << endl;
         mpSystem->ResetActiveMap();
         return;
     }
@@ -1991,7 +1991,7 @@ void Tracking::Track()
     Map* pCurrentMap = mpAtlas->GetCurrentMap();
     if(!pCurrentMap)
     {
-        cout << "ERROR: There is not an active map in the atlas" << endl;
+        cout <<"Tracking-->> "<< "ERROR: There is not an active map in the atlas" << endl;
     }
 
     // Step 2 处理时间戳异常的情况
@@ -2000,7 +2000,7 @@ void Tracking::Track()
         if(mLastFrame.mTimeStamp>mCurrentFrame.mTimeStamp)
         {
             // 如果当前图像时间戳比前一帧图像时间戳小，说明出错了，清除imu数据，创建新的子地图
-            cerr << "ERROR: Frame with a timestamp older than previous frame detected!" << endl;
+            cerr <<"Tracking-->> "<< "ERROR: Frame with a timestamp older than previous frame detected!" << endl;
             unique_lock<mutex> lock(mMutexImuQueue);
             // mlQueueImuData.clear();
             // 创建新地图
@@ -2009,8 +2009,8 @@ void Tracking::Track()
         }
         else if(mCurrentFrame.mTimeStamp>mLastFrame.mTimeStamp+1.0)
         {
-            // cout << mCurrentFrame.mTimeStamp << ", " << mLastFrame.mTimeStamp << endl;
-            // cout << "id last: " << mLastFrame.mnId << "    id curr: " << mCurrentFrame.mnId << endl;
+            // cout <<"Tracking-->> "<< mCurrentFrame.mTimeStamp << ", " << mLastFrame.mTimeStamp << endl;
+            // cout <<"Tracking-->> "<< "id last: " << mLastFrame.mnId << "    id curr: " << mCurrentFrame.mnId << endl;
             // 如果当前图像时间戳和前一帧图像时间戳大于1s，说明时间戳明显跳变了，重置地图后直接返回
             //根据是否是imu模式,进行imu的补偿
             if(mpAtlas->isInertial())
@@ -2018,7 +2018,7 @@ void Tracking::Track()
                 // 如果当前地图imu成功初始化
                 if(mpAtlas->isImuInitialized())
                 {
-                    cout << "Timestamp jump detected. State set to LOST. Reseting IMU integration..." << endl;
+                    cout <<"Tracking-->> "<< "Timestamp jump detected. State set to LOST. Reseting IMU integration..." << endl;
                     // IMU完成第3次初始化（在localmapping线程里）
                     if(!pCurrentMap->GetIniertialBA2())
                     {
@@ -2034,7 +2034,7 @@ void Tracking::Track()
                 else
                 {
                     // 如果当前子图中imu还没有初始化，重置active地图
-                    cout << "Timestamp jump detected, before IMU initialization. Reseting..." << endl;
+                    cout <<"Tracking-->> "<< "Timestamp jump detected, before IMU initialization. Reseting..." << endl;
                     mpSystem->ResetActiveMap();
                 }
                 return;
@@ -2117,6 +2117,8 @@ void Tracking::Track()
             // 如果当前地图是第一个地图，记录当前帧id为第一帧
             mnFirstFrameId = mCurrentFrame.mnId;
         }
+        cout <<"Tracking-->> "<< " mState==NOT_INITIALIZED" << endl;
+
     }
     else
     {
@@ -2124,9 +2126,9 @@ void Tracking::Track()
         // Step 6 系统成功初始化，下面是具体跟踪过程
         bool bOK;
 
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_StartPosePred = std::chrono::steady_clock::now();
-#endif
+        #ifdef REGISTER_TIMES
+                std::chrono::steady_clock::time_point time_StartPosePred = std::chrono::steady_clock::now();
+        #endif
 
         // Initial camera pose estimation using motion model or relocalization (if tracking is lost)
         // mbOnlyTracking等于false表示正常SLAM模式（定位+地图更新），mbOnlyTracking等于true表示仅定位模式
@@ -2147,25 +2149,27 @@ void Tracking::Track()
                 // Step 6.1 检查并更新上一帧被替换的MapPoints
                 // 局部建图线程则可能会对原有的地图点进行替换.在这里进行检查
                 CheckReplacedInLastFrame();
-
+                bool lost_1, lost_2;
                 // Step 6.2 运动模型是空的并且imu未初始化或刚完成重定位，跟踪参考关键帧；否则恒速模型跟踪
                 // 第一个条件,如果运动模型为空并且imu未初始化,说明是刚开始第一帧跟踪，或者已经跟丢了。
                 // 第二个条件,如果当前帧紧紧地跟着在重定位的帧的后面，我们用重定位帧来恢复位姿
                 // mnLastRelocFrameId 上一次重定位的那一帧
                 if((!mbVelocity && !pCurrentMap->isImuInitialized()) || mCurrentFrame.mnId<mnLastRelocFrameId+2)
                 {
-                    Verbose::PrintMess("TRACK: Track with respect to the reference KF ", Verbose::VERBOSITY_DEBUG);
+                    Verbose::PrintMess("Tracking-->> TRACK: Track with respect to the reference KF ", Verbose::VERBOSITY_DEBUG);
                     bOK = TrackReferenceKeyFrame();
                 }
                 else
                 {
-                    Verbose::PrintMess("TRACK: Track with motion model", Verbose::VERBOSITY_DEBUG);
+                    Verbose::PrintMess("Tracking-->> TRACK: Track with motion model !mbOnlyTracking", Verbose::VERBOSITY_DEBUG);
                     // 用恒速模型跟踪。所谓的恒速就是假设上上帧到上一帧的位姿=上一帧的位姿到当前帧位姿
                     // 根据恒速模型设定当前帧的初始位姿，用最近的普通帧来跟踪当前的普通帧
                     // 通过投影的方式在参考帧中找当前帧特征点的匹配点，优化每个特征点所对应3D点的投影误差即可得到位姿
                     bOK = TrackWithMotionModel();
+                    lost_1 = bOK;
                     if(!bOK)
                         bOK = TrackReferenceKeyFrame();  // 根据恒速模型失败了，只能根据参考关键帧来跟踪
+                    lost_2 = bOK;
                 }
 
                 // 新增了一个状态RECENTLY_LOST，主要是结合IMU看看能不能拽回来
@@ -2183,7 +2187,7 @@ void Tracking::Track()
                     }
                     else if(pCurrentMap->KeyFramesInMap()>10)
                     {
-                        // cout << "KF in map: " << pCurrentMap->KeyFramesInMap() << endl;
+                        cout <<"Tracking-->> "<< "KF in map: " << pCurrentMap->KeyFramesInMap() << endl;
                         // 条件1：当前地图中关键帧数目较多（大于10） 
                         // 条件2（隐藏条件）：当前帧距离上次重定位帧超过1s（说明还比较争气，值的救）或者非IMU模式
                         // 同时满足条件1，2，则将状态标记为RECENTLY_LOST，后面会结合IMU预测的位姿看看能不能拽回来
@@ -2196,13 +2200,14 @@ void Tracking::Track()
                         mState = LOST;
                     }
                 }
+                cout <<"Tracking-->> "<< " bOK->12 : (" <<lost_1<<") ("<<lost_2<<") mState "<<mState<<std::endl;
             }
             else  // 跟踪不正常按照下面处理
             {
                 // 如果是RECENTLY_LOST状态
                 if (mState == RECENTLY_LOST)
                 {
-                    Verbose::PrintMess("Lost for a short time", Verbose::VERBOSITY_NORMAL);
+                    Verbose::PrintMess("Tracking-->> Lost for a short time", Verbose::VERBOSITY_NORMAL);
                     // bOK先置为true
                     bOK = true;
                     if((mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD))
@@ -2219,22 +2224,23 @@ void Tracking::Track()
                         if (mCurrentFrame.mTimeStamp-mTimeStampLost>time_recently_lost)
                         {
                             mState = LOST;
-                            Verbose::PrintMess("Track Lost...", Verbose::VERBOSITY_NORMAL);
+                            Verbose::PrintMess("Tracking-->> Track Lost...", Verbose::VERBOSITY_NORMAL);
                             bOK=false;
                         }
                     }
                     else
                     {
+                         Verbose::PrintMess("Tracking-->> Lost for a long time", Verbose::VERBOSITY_NORMAL);
                         // Step 6.5 纯视觉模式则进行重定位。主要是BOW搜索，EPnP求解位姿
                         // Relocalization
                         bOK = Relocalization();
-                        //std::cout << "mCurrentFrame.mTimeStamp:" << to_string(mCurrentFrame.mTimeStamp) << std::endl;
-                        //std::cout << "mTimeStampLost:" << to_string(mTimeStampLost) << std::endl;
+                        //std::cout <<"Tracking-->> "<< "mCurrentFrame.mTimeStamp:" << to_string(mCurrentFrame.mTimeStamp) << std::endl;
+                        //std::cout <<"Tracking-->> "<< "mTimeStampLost:" << to_string(mTimeStampLost) << std::endl;
                         if(mCurrentFrame.mTimeStamp-mTimeStampLost>3.0f && !bOK)
                         {
                             // 纯视觉模式下重定位失败，状态为LOST
                             mState = LOST;
-                            Verbose::PrintMess("Track Lost...", Verbose::VERBOSITY_NORMAL);
+                            Verbose::PrintMess("Tracking-->> Track Lost...", Verbose::VERBOSITY_NORMAL);
                             bOK=false;
                         }
                     }
@@ -2243,20 +2249,20 @@ void Tracking::Track()
                 {
                     // Step 6.6 如果是LOST状态
                     // 开启一个新地图
-                    Verbose::PrintMess("A new map is started...", Verbose::VERBOSITY_NORMAL);
+                    Verbose::PrintMess("Tracking-->> A new map is started...", Verbose::VERBOSITY_NORMAL);
 
                     if (pCurrentMap->KeyFramesInMap()<10)
                     {
                         // 当前地图中关键帧数目小于10，重置当前地图
                         mpSystem->ResetActiveMap();
-                        Verbose::PrintMess("Reseting current map...", Verbose::VERBOSITY_NORMAL);
+                        Verbose::PrintMess("Tracking-->> Reseting current map...", Verbose::VERBOSITY_NORMAL);
                     }else
                         CreateMapInAtlas();  // 当前地图中关键帧数目超过10，创建新地图
                     // 干掉上一个关键帧
                     if(mpLastKeyFrame)
                         mpLastKeyFrame = static_cast<KeyFrame*>(NULL);
 
-                    Verbose::PrintMess("done", Verbose::VERBOSITY_NORMAL);
+                    Verbose::PrintMess("Tracking-->> done", Verbose::VERBOSITY_NORMAL);
 
                     return;
                 }
@@ -2265,12 +2271,13 @@ void Tracking::Track()
         }
         else  // 纯定位模式
         {
+             Verbose::PrintMess("Tracking-->> pure localization", Verbose::VERBOSITY_NORMAL);
             // Localization Mode: Local Mapping is deactivated (TODO Not available in inertial mode)
             // 只进行跟踪tracking，局部地图不工作
             if(mState==LOST)
             {
                 if(mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD)
-                    Verbose::PrintMess("IMU. State LOST", Verbose::VERBOSITY_NORMAL);
+                    Verbose::PrintMess("Tracking-->> IMU. State LOST", Verbose::VERBOSITY_NORMAL);
                 // Step 6.1 LOST状态进行重定位
                 bOK = Relocalization();
             }
@@ -2359,22 +2366,23 @@ void Tracking::Track()
                 }
             }
         }
+        
         // 将最新的关键帧作为当前帧的参考关键帧
         // mpReferenceKF先是上一时刻的参考关键帧，如果当前为新关键帧则变成当前关键帧，如果不是新的关键帧则先为上一帧的参考关键帧，而后经过更新局部关键帧重新确定
         if(!mCurrentFrame.mpReferenceKF)
             mCurrentFrame.mpReferenceKF = mpReferenceKF;
 
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_EndPosePred = std::chrono::steady_clock::now();
+        #ifdef REGISTER_TIMES
+                std::chrono::steady_clock::time_point time_EndPosePred = std::chrono::steady_clock::now();
 
-        double timePosePred = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndPosePred - time_StartPosePred).count();
-        vdPosePred_ms.push_back(timePosePred);
-#endif
+                double timePosePred = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndPosePred - time_StartPosePred).count();
+                vdPosePred_ms.push_back(timePosePred);
+        #endif
 
 
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_StartLMTrack = std::chrono::steady_clock::now();
-#endif
+        #ifdef REGISTER_TIMES
+                std::chrono::steady_clock::time_point time_StartLMTrack = std::chrono::steady_clock::now();
+        #endif
 
         // Step 7 在跟踪得到当前帧初始姿态后，现在对local map进行跟踪得到更多的匹配，并优化当前位姿
         // 前面只是跟踪一帧得到初始位姿，这里搜索局部关键帧、局部地图点，和当前帧进行投影匹配，得到更多匹配的MapPoints后进行Pose优化
@@ -2383,15 +2391,15 @@ void Tracking::Track()
         // 前面主要是两两跟踪（恒速模型跟踪上一帧、跟踪参考帧），这里搜索局部关键帧后搜集所有局部MapPoints，
         // 然后将局部MapPoints和当前帧进行投影匹配，得到更多匹配的MapPoints后进行Pose优化
         // If we have an initial estimation of the camera pose and matching. Track the local map.
-        if(!mbOnlyTracking)
+        if(!mbOnlyTracking)  //mbOnlyTracking等于true表示仅定位模式
         {
             if(bOK)
             {
                 // 局部地图跟踪
-                bOK = TrackLocalMap();
+                bOK = TrackLocalMap();  //go here normal lzq
             }
             if(!bOK)
-                cout << "Fail to track local map!" << endl;
+                cout <<"Tracking-->> "<< "Fail to track local map! !mbOnlyTracking" << endl;
         }
         else
         {
@@ -2428,11 +2436,11 @@ void Tracking::Track()
             // 状态变为最近丢失
             if (mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD)
             {
-                Verbose::PrintMess("Track lost for less than one second...", Verbose::VERBOSITY_NORMAL);
+                Verbose::PrintMess("Tracking-->> Track lost for less than one second...", Verbose::VERBOSITY_NORMAL);
                 if(!pCurrentMap->isImuInitialized() || !pCurrentMap->GetIniertialBA2())
                 {
                     // IMU模式下IMU没有成功初始化或者没有完成IMU BA，则重置当前地图
-                    cout << "IMU is not or recently initialized. Reseting active map..." << endl;
+                    cout <<"Tracking-->> "<< "IMU is not or recently initialized. Reseting active map..." << endl;
                     mpSystem->ResetActiveMap();
                 }
 
@@ -2454,7 +2462,7 @@ void Tracking::Track()
            (mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD) && pCurrentMap->isImuInitialized())
         {
             // TODO check this situation
-            Verbose::PrintMess("Saving pointer to frame. imu needs reset...", Verbose::VERBOSITY_NORMAL);
+            Verbose::PrintMess("Tracking-->> Saving pointer to frame. imu needs reset...", Verbose::VERBOSITY_NORMAL);
             Frame* pF = new Frame(mCurrentFrame);
             pF->mpPrevFrame = new Frame(mLastFrame);
 
@@ -2469,7 +2477,7 @@ void Tracking::Track()
                 // 当前帧距离上次重定位帧刚好等于1s，重置（还未实现 TODO）
                 if(mCurrentFrame.mnId==(mnLastRelocFrameId+mnFramesToResetIMU))
                 {
-                    cout << "RESETING FRAME!!!" << endl;
+                    cout <<"Tracking-->> "<< "RESETING FRAME!!!" << endl;
                     ResetFrameIMU();
                 }
                 else if(mCurrentFrame.mnId>(mnLastRelocFrameId+30))
@@ -2477,12 +2485,12 @@ void Tracking::Track()
             }
         }
 
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_EndLMTrack = std::chrono::steady_clock::now();
+        #ifdef REGISTER_TIMES
+                std::chrono::steady_clock::time_point time_EndLMTrack = std::chrono::steady_clock::now();
 
-        double timeLMTrack = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndLMTrack - time_StartLMTrack).count();
-        vdLMTrack_ms.push_back(timeLMTrack);
-#endif
+                double timeLMTrack = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndLMTrack - time_StartLMTrack).count();
+                vdLMTrack_ms.push_back(timeLMTrack);
+        #endif
 
         // Update drawer
         // 更新显示线程中的图像、特征点、地图点等信息
@@ -2509,6 +2517,7 @@ void Tracking::Track()
         // Step 9 如果跟踪成功 或 最近刚刚跟丢，更新速度，清除无效地图点，按需创建关键帧
         if(bOK || mState==RECENTLY_LOST)
         {
+            cout <<"Tracking-->> "<< " bOK || mState==RECENTLY_LOST" << endl;
             // Update motion model
             // Step 9.1 更新恒速运动模型 TrackWithMotionModel 中的mVelocity
             if(mLastFrame.isSet() && mCurrentFrame.isSet())
@@ -2553,9 +2562,9 @@ void Tracking::Track()
             // 不能够直接执行这个是因为其中存储的都是指针,之前的操作都是为了避免内存泄露
             mlpTemporalPoints.clear();
 
-#ifdef REGISTER_TIMES
-            std::chrono::steady_clock::time_point time_StartNewKF = std::chrono::steady_clock::now();
-#endif
+            #ifdef REGISTER_TIMES
+                        std::chrono::steady_clock::time_point time_StartNewKF = std::chrono::steady_clock::now();
+            #endif
             // 判断是否需要插入关键帧
             bool bNeedKF = NeedNewKeyFrame();
 
@@ -2570,12 +2579,12 @@ void Tracking::Track()
                                    (mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD))))
                 CreateNewKeyFrame();  // 创建关键帧，对于双目或RGB-D会产生新的地图点
 
-#ifdef REGISTER_TIMES
-            std::chrono::steady_clock::time_point time_EndNewKF = std::chrono::steady_clock::now();
+            #ifdef REGISTER_TIMES
+                        std::chrono::steady_clock::time_point time_EndNewKF = std::chrono::steady_clock::now();
 
-            double timeNewKF = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndNewKF - time_StartNewKF).count();
-            vdNewKF_ms.push_back(timeNewKF);
-#endif
+                        double timeNewKF = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndNewKF - time_StartNewKF).count();
+                        vdNewKF_ms.push_back(timeNewKF);
+            #endif
 
             // We allow points with high innovation (considererd outliers by the Huber Function)
             // pass to the new keyframe, so that bundle adjustment will finally decide
@@ -2596,6 +2605,7 @@ void Tracking::Track()
         // Step 10 如果第二阶段跟踪失败，跟踪状态为LOST
         if(mState==LOST)
         {
+            cout <<"Tracking-->> "<< " mState==LOST" << endl;
             // 如果地图中关键帧小于10，重置当前地图，退出当前跟踪
             if(pCurrentMap->KeyFramesInMap()<=10)  // 上一个版本这里是5
             {
@@ -2606,7 +2616,7 @@ void Tracking::Track()
                 if (!pCurrentMap->isImuInitialized())
                 {
                     // 如果是IMU模式并且还未进行IMU初始化，重置当前地图，退出当前跟踪
-                    Verbose::PrintMess("Track lost before IMU initialisation, reseting...", Verbose::VERBOSITY_QUIET);
+                    Verbose::PrintMess("Tracking-->> Track lost before IMU initialisation, reseting...", Verbose::VERBOSITY_QUIET);
                     mpSystem->ResetActiveMap();
                     return;
                 }
@@ -2635,6 +2645,7 @@ void Tracking::Track()
     // Step 11 记录位姿信息，用于最后保存所有的轨迹
     if(mState==OK || mState==RECENTLY_LOST)
     {
+       
         // Store frame pose information to retrieve the complete camera trajectory afterwards.
         // Step 11：记录位姿信息，用于最后保存所有的轨迹
         if(mCurrentFrame.isSet())
@@ -2655,19 +2666,19 @@ void Tracking::Track()
             mlFrameTimes.push_back(mlFrameTimes.back());
             mlbLost.push_back(mState==LOST);
         }
-
+         cout <<"Tracking-->> "<< " size "<<mlRelativeFramePoses.size()<<" "<<mlpReferences.size() << endl;
     }
 
-#ifdef REGISTER_LOOP
-    if (Stop()) {
+    #ifdef REGISTER_LOOP
+        if (Stop()) {
 
-        // Safe area to stop
-        while(isStopped())
-        {
-            usleep(3000);
+            // Safe area to stop
+            while(isStopped())
+            {
+                usleep(3000);
+            }
         }
-    }
-#endif
+    #endif
 }
 
 /*
@@ -2684,13 +2695,13 @@ void Tracking::StereoInitialization()
         {
             if (!mCurrentFrame.mpImuPreintegrated || !mLastFrame.mpImuPreintegrated)
             {
-                cout << "not IMU meas" << endl;
+                cout <<"Tracking-->> "<< "not IMU meas" << endl;
                 return;
             }
 
             if (!mFastInit && (mCurrentFrame.mpImuPreintegratedFrame->avgA-mLastFrame.mpImuPreintegratedFrame->avgA).norm()<0.5)
             {
-                cout << "not enough acceleration" << endl;
+                cout <<"Tracking-->> "<< "not enough acceleration" << endl;
                 return;
             }
 
@@ -2772,7 +2783,7 @@ void Tracking::StereoInitialization()
             }
         }
 
-        Verbose::PrintMess("New Map created with " + to_string(mpAtlas->MapPointsInMap()) + " points", Verbose::VERBOSITY_QUIET);
+        Verbose::PrintMess("Tracking-->> New Map created with " + to_string(mpAtlas->MapPointsInMap()) + " points", Verbose::VERBOSITY_QUIET);
 
         //cout << "Active map: " << mpAtlas->GetCurrentMap()->GetId() << endl;
         // 在局部地图中添加该初始关键帧
@@ -2992,7 +3003,7 @@ void Tracking::CreateInitialMapMonocular()
 
     // Bundle Adjustment
     // Step 4 全局BA优化，同时优化所有位姿和三维点
-    Verbose::PrintMess("New Map created with " + to_string(mpAtlas->MapPointsInMap()) + " points", Verbose::VERBOSITY_QUIET);
+    Verbose::PrintMess("Tracking-->> New Map created with " + to_string(mpAtlas->MapPointsInMap()) + " points", Verbose::VERBOSITY_QUIET);
     Optimizer::GlobalBundleAdjustemnt(mpAtlas->GetCurrentMap(),20);
 
     // Step 5 取场景的中值深度，用于尺度归一化 
@@ -3007,7 +3018,7 @@ void Tracking::CreateInitialMapMonocular()
     // 两个条件,一个是平均深度要大于0,另外一个是在当前帧中被观测到的地图点的数目应该大于50
     if(medianDepth<0 || pKFcur->TrackedMapPoints(1)<50) // TODO Check, originally 100 tracks
     {
-        Verbose::PrintMess("Wrong initialization, reseting...", Verbose::VERBOSITY_QUIET);
+        Verbose::PrintMess("Tracking-->> Wrong initialization, reseting...", Verbose::VERBOSITY_QUIET);
         mpSystem->ResetActiveMap();
         return;
     }
@@ -3104,7 +3115,7 @@ void Tracking::CreateMapInAtlas()
     // Restart the variable with information about the last KF
     mbVelocity = false;
     //mnLastRelocFrameId = mnLastInitFrameId; // The last relocation KF_id is the current id, because it is the new starting point for new map
-    Verbose::PrintMess("First frame id in map: " + to_string(mnLastInitFrameId+1), Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> First frame id in map: " + to_string(mnLastInitFrameId+1), Verbose::VERBOSITY_NORMAL);
     mbVO = false; // Init value for know if there are enough MapPoints in the last KF
     if(mSensor == System::MONOCULAR || mSensor == System::IMU_MONOCULAR)
     {
@@ -3185,7 +3196,7 @@ bool Tracking::TrackReferenceKeyFrame()
     // 匹配数目小于15，认为跟踪失败
     if(nmatches<15)
     {
-        cout << "TRACK_REF_KF: Less than 15 matches!!\n";
+        cout <<"Tracking-->> "<< "TRACK_REF_KF: Less than 15 matches!!\n";
         return false;
     }
 
@@ -3196,7 +3207,7 @@ bool Tracking::TrackReferenceKeyFrame()
     //mCurrentFrame.PrintPointDistribution();
 
 
-    // cout << " TrackReferenceKeyFrame mLastFrame.mTcw:  " << mLastFrame.mTcw << endl;
+    // cout <<"Tracking-->> "<< " TrackReferenceKeyFrame mLastFrame.mTcw:  " << mLastFrame.mTcw << endl;
     // Step 4:通过优化3D-2D的重投影误差来获得位姿
     Optimizer::PoseOptimization(&mCurrentFrame);
 
@@ -3392,18 +3403,18 @@ bool Tracking::TrackWithMotionModel()
     // 如果匹配点太少，则扩大搜索半径再来一次
     if(nmatches<20)
     {
-        Verbose::PrintMess("Not enough matches, wider window search!!", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> Not enough matches, wider window search!!", Verbose::VERBOSITY_NORMAL);
         fill(mCurrentFrame.mvpMapPoints.begin(),mCurrentFrame.mvpMapPoints.end(),static_cast<MapPoint*>(NULL));
 
         nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,2*th,mSensor==System::MONOCULAR || mSensor==System::IMU_MONOCULAR);
-        Verbose::PrintMess("Matches with wider search: " + to_string(nmatches), Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> Matches with wider search: " + to_string(nmatches), Verbose::VERBOSITY_NORMAL);
 
     }
 
     // 这里不同于ORB-SLAM2的方式
     if(nmatches<20)
     {
-        Verbose::PrintMess("Not enough matches!!", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> Not enough matches!!", Verbose::VERBOSITY_NORMAL);
         if (mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD)
             return true;
         else
@@ -3505,7 +3516,7 @@ bool Tracking::TrackLocalMap()
         // 初始化，重定位，重新开启一个地图都会使mnLastRelocFrameId变化
         if(mCurrentFrame.mnId<=mnLastRelocFrameId+mnFramesToResetIMU)
         {
-            Verbose::PrintMess("TLM: PoseOptimization ", Verbose::VERBOSITY_DEBUG);
+            Verbose::PrintMess("Tracking-->> TLM: PoseOptimization ", Verbose::VERBOSITY_DEBUG);
             Optimizer::PoseOptimization(&mCurrentFrame);
         }
         else  // 如果积累的IMU数据量比较多，考虑使用IMU数据优化
@@ -3515,13 +3526,13 @@ bool Tracking::TrackLocalMap()
             // 未更新地图
             if(!mbMapUpdated) //  && (mnMatchesInliers>30))
             {
-                Verbose::PrintMess("TLM: PoseInertialOptimizationLastFrame ", Verbose::VERBOSITY_DEBUG);
+                Verbose::PrintMess("Tracking-->> TLM: PoseInertialOptimizationLastFrame ", Verbose::VERBOSITY_DEBUG);
                 // 使用上一普通帧以及当前帧的视觉信息和IMU信息联合优化当前帧位姿、速度和IMU零偏
                 inliers = Optimizer::PoseInertialOptimizationLastFrame(&mCurrentFrame); // , !mpLastKeyFrame->GetMap()->GetIniertialBA1());
             }
             else
             {
-                Verbose::PrintMess("TLM: PoseInertialOptimizationLastKeyFrame ", Verbose::VERBOSITY_DEBUG);
+                Verbose::PrintMess("Tracking-->> TLM: PoseInertialOptimizationLastKeyFrame ", Verbose::VERBOSITY_DEBUG);
                 // 使用上一关键帧以及当前帧的视觉信息和IMU信息联合优化当前帧位姿、速度和IMU零偏
                 inliers = Optimizer::PoseInertialOptimizationLastKeyFrame(&mCurrentFrame); // , !mpLastKeyFrame->GetMap()->GetIniertialBA1());
             }
@@ -3645,7 +3656,7 @@ bool Tracking::NeedNewKeyFrame()
     if(mpLocalMapper->isStopped() || mpLocalMapper->stopRequested()) {
         /*if(mSensor == System::MONOCULAR)
         {
-            std::cout << "NeedNewKeyFrame: localmap stopped" << std::endl;
+            std::cout <<"Tracking-->> "<< "NeedNewKeyFrame: localmap stopped" << std::endl;
         }*/
         return false;
     }
@@ -3698,7 +3709,7 @@ bool Tracking::NeedNewKeyFrame()
 
             }
         }
-        //Verbose::PrintMess("[NEEDNEWKF]-> closed points: " + to_string(nTrackedClose) + "; non tracked closed points: " + to_string(nNonTrackedClose), Verbose::VERBOSITY_NORMAL);// Verbose::VERBOSITY_DEBUG);
+        //Verbose::PrintMess("Tracking-->> [NEEDNEWKF]-> closed points: " + to_string(nTrackedClose) + "; non tracked closed points: " + to_string(nNonTrackedClose), Verbose::VERBOSITY_NORMAL);// Verbose::VERBOSITY_DEBUG);
     }
     // 双目或RGBD情况下：跟踪到的地图点中近点太少 同时 没有跟踪到的三维点太多，可以插入关键帧了
     // 单目时，为false
@@ -3749,7 +3760,7 @@ bool Tracking::NeedNewKeyFrame()
     // Step 7.5：和参考帧相比当前跟踪到的点太少 或者满足bNeedToInsertClose；同时跟踪到的内点还不能太少
     const bool c2 = (((mnMatchesInliers<nRefMatches*thRefRatio || bNeedToInsertClose)) && mnMatchesInliers>15);
 
-    //std::cout << "NeedNewKF: c1a=" << c1a << "; c1b=" << c1b << "; c1c=" << c1c << "; c2=" << c2 << std::endl;
+    //std::cout <<"Tracking-->> "<< "NeedNewKF: c1a=" << c1a << "; c1b=" << c1b << "; c1c=" << c1c << "; c2=" << c2 << std::endl;
     // Temporal condition for Inertial cases
     // 新增的条件c3：单目/双目+IMU模式下，并且IMU完成了初始化（隐藏条件），当前帧和上一关键帧之间时间超过0.5秒，则c3=true
     bool c3 = false;
@@ -3802,7 +3813,7 @@ bool Tracking::NeedNewKeyFrame()
             }
             else
             {
-                //std::cout << "NeedNewKeyFrame: localmap is busy" << std::endl;
+                //std::cout <<"Tracking-->> "<< "NeedNewKeyFrame: localmap is busy" << std::endl;
                 //对于单目情况,就直接无法插入关键帧了
                 //? 为什么这里对单目情况的处理不一样?
                 //回答：可能是单目关键帧相对比较密集
@@ -3850,7 +3861,7 @@ void Tracking::CreateNewKeyFrame()
         mpLastKeyFrame->mNextKF = pKF;
     }
     else
-        Verbose::PrintMess("No last KF in KF creation!!", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> No last KF in KF creation!!", Verbose::VERBOSITY_NORMAL);
 
     // Reset preintegration from last KF (Create new object)
     if (mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD)
@@ -3864,7 +3875,7 @@ void Tracking::CreateNewKeyFrame()
     {
         // 根据Tcw计算mRcw、mtcw和mRwc、mOw
         mCurrentFrame.UpdatePoseMatrices();
-        // cout << "create new MPs" << endl;
+        // cout <<"Tracking-->> "<< "create new MPs" << endl;
         // We sort points by the measured depth by the stereo/RGBD sensor.
         // We create all those MapPoints whose depth < mThDepth.
         // If there are less than 100 close points we create the 100 closest.
@@ -3956,7 +3967,7 @@ void Tracking::CreateNewKeyFrame()
                     break;
                 }
             }
-            //Verbose::PrintMess("new mps for stereo KF: " + to_string(nPoints), Verbose::VERBOSITY_NORMAL);
+            //Verbose::PrintMess("Tracking-->> new mps for stereo KF: " + to_string(nPoints), Verbose::VERBOSITY_NORMAL);
         }
     }
 
@@ -4323,7 +4334,7 @@ void Tracking::UpdateLocalKeyFrames()
  */
 bool Tracking::Relocalization()
 {
-    Verbose::PrintMess("Starting relocalization", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> Starting relocalization", Verbose::VERBOSITY_NORMAL);
     // Compute Bag of Words Vector
     // Step 1: 计算当前帧特征点的Bow映射
     mCurrentFrame.ComputeBoW();
@@ -4334,7 +4345,7 @@ bool Tracking::Relocalization()
     vector<KeyFrame*> vpCandidateKFs = mpKeyFrameDB->DetectRelocalizationCandidates(&mCurrentFrame, mpAtlas->GetCurrentMap());
 
     if(vpCandidateKFs.empty()) {
-        Verbose::PrintMess("There are not candidates", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> There are not candidates", Verbose::VERBOSITY_NORMAL);
         return false;
     }
 
@@ -4537,7 +4548,7 @@ bool Tracking::Relocalization()
         // 如果匹配上了,说明当前帧重定位成功了(当前帧已经有了自己的位姿)
         // 记录成功重定位帧的id，防止短时间多次重定位
         mnLastRelocFrameId = mCurrentFrame.mnId;
-        cout << "Relocalized!!" << endl;
+        cout <<"Tracking-->> "<< "Relocalized!!" << endl;
         return true;
     }
 
@@ -4548,7 +4559,7 @@ bool Tracking::Relocalization()
  */
 void Tracking::Reset(bool bLocMap)
 {
-    Verbose::PrintMess("System Reseting", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> System Reseting", Verbose::VERBOSITY_NORMAL);
     // 基本上是挨个请求各个线程终止
     if(mpViewer)
     {
@@ -4560,21 +4571,21 @@ void Tracking::Reset(bool bLocMap)
     // Reset Local Mapping
     if (!bLocMap)
     {
-        Verbose::PrintMess("Reseting Local Mapper...", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> Reseting Local Mapper...", Verbose::VERBOSITY_NORMAL);
         mpLocalMapper->RequestReset();
-        Verbose::PrintMess("done", Verbose::VERBOSITY_NORMAL);
+        Verbose::PrintMess("Tracking-->> done", Verbose::VERBOSITY_NORMAL);
     }
 
 
     // Reset Loop Closing
-    Verbose::PrintMess("Reseting Loop Closing...", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> Reseting Loop Closing...", Verbose::VERBOSITY_NORMAL);
     mpLoopClosing->RequestReset();
-    Verbose::PrintMess("done", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> done", Verbose::VERBOSITY_NORMAL);
 
     // Clear BoW Database
-    Verbose::PrintMess("Reseting Database...", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> Reseting Database...", Verbose::VERBOSITY_NORMAL);
     mpKeyFrameDB->clear();
-    Verbose::PrintMess("done", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> done", Verbose::VERBOSITY_NORMAL);
 
     // Clear Map (this erase MapPoints and KeyFrames)
     mpAtlas->clearAtlas();
@@ -4605,7 +4616,7 @@ void Tracking::Reset(bool bLocMap)
     if(mpViewer)
         mpViewer->Release();
 
-    Verbose::PrintMess("   End reseting! ", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->>    End reseting! ", Verbose::VERBOSITY_NORMAL);
 }
 
 /**
@@ -4613,7 +4624,7 @@ void Tracking::Reset(bool bLocMap)
  */
 void Tracking::ResetActiveMap(bool bLocMap)
 {
-    Verbose::PrintMess("Active map Reseting", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> Active map Reseting", Verbose::VERBOSITY_NORMAL);
     if(mpViewer)
     {
         mpViewer->RequestStop();
@@ -4625,20 +4636,20 @@ void Tracking::ResetActiveMap(bool bLocMap)
 
     if (!bLocMap)
     {
-        Verbose::PrintMess("Reseting Local Mapper...", Verbose::VERBOSITY_VERY_VERBOSE);
+        Verbose::PrintMess("Tracking-->> Reseting Local Mapper...", Verbose::VERBOSITY_VERY_VERBOSE);
         mpLocalMapper->RequestResetActiveMap(pMap);
-        Verbose::PrintMess("done", Verbose::VERBOSITY_VERY_VERBOSE);
+        Verbose::PrintMess("Tracking-->> done", Verbose::VERBOSITY_VERY_VERBOSE);
     }
 
     // Reset Loop Closing
-    Verbose::PrintMess("Reseting Loop Closing...", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> Reseting Loop Closing...", Verbose::VERBOSITY_NORMAL);
     mpLoopClosing->RequestResetActiveMap(pMap);
-    Verbose::PrintMess("done", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> done", Verbose::VERBOSITY_NORMAL);
 
     // Clear BoW Database
-    Verbose::PrintMess("Reseting Database", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> Reseting Database", Verbose::VERBOSITY_NORMAL);
     mpKeyFrameDB->clearMap(pMap); // Only clear the active map references
-    Verbose::PrintMess("done", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->> done", Verbose::VERBOSITY_NORMAL);
 
     // Clear Map (this erase MapPoints and KeyFrames)
     mpAtlas->clearMap();
@@ -4655,7 +4666,7 @@ void Tracking::ResetActiveMap(bool bLocMap)
     list<bool> lbLost;
     // lbLost.reserve(mlbLost.size());
     unsigned int index = mnFirstFrameId;
-    cout << "mnFirstFrameId = " << mnFirstFrameId << endl;
+    cout <<"Tracking-->> "<< "mnFirstFrameId = " << mnFirstFrameId << endl;
     for(Map* pMap : mpAtlas->GetAllMaps())
     {
         if(pMap->GetAllKeyFrames().size() > 0)
@@ -4667,7 +4678,7 @@ void Tracking::ResetActiveMap(bool bLocMap)
 
     //cout << "First Frame id: " << index << endl;
     int num_lost = 0;
-    cout << "mnInitialFrameId = " << mnInitialFrameId << endl;
+    cout <<"Tracking-->> "<< "mnInitialFrameId = " << mnInitialFrameId << endl;
 
     for(list<bool>::iterator ilbL = mlbLost.begin(); ilbL != mlbLost.end(); ilbL++)
     {
@@ -4681,7 +4692,7 @@ void Tracking::ResetActiveMap(bool bLocMap)
 
         index++;
     }
-    cout << num_lost << " Frames set to lost" << endl;
+    cout <<"Tracking-->> "<< num_lost << " Frames set to lost" << endl;
 
     mlbLost = lbLost;
 
@@ -4699,7 +4710,7 @@ void Tracking::ResetActiveMap(bool bLocMap)
     if(mpViewer)
         mpViewer->Release();
 
-    Verbose::PrintMess("   End reseting! ", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("Tracking-->>    End reseting! ", Verbose::VERBOSITY_NORMAL);
 }
 
 /**
@@ -4893,7 +4904,7 @@ bool Tracking::Stop()
     if(mbStopRequested && !mbNotStop)
     {
         mbStopped = true;
-        cout << "Tracking STOP" << endl;
+        cout <<"Tracking-->> "<< "Tracking STOP" << endl;
         return true;
     }
 

@@ -101,7 +101,9 @@
 		"xstddef": "cpp",
 		"xstring": "cpp",
 		"xtr1common": "cpp",
-		"xutility": "cpp"
+		"xutility": "cpp",
+		"condition_variable": "cpp",
+		"*.ipp": "cpp"
 	},
 	"ros.distro": "melodic"
 }

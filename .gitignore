@@ -77,4 +77,6 @@ cmake-build-debug/
 .vscode/settings.json
 build/
 CMakeFiles/
+*.bag
+*.log
 
