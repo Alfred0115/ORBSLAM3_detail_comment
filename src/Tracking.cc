@@ -1967,6 +1967,7 @@ void Tracking::ResetFrameIMU()
  * Step 1：初始化
  * Step 2：跟踪
  * Step 3：记录位姿信息，用于轨迹复现
+ * https://blog.csdn.net/iwanderu/article/details/124934521
  */
 void Tracking::Track()
 {
@@ -3816,7 +3817,7 @@ bool Tracking::NeedNewKeyFrame()
         c4=true;
     else
         c4=false;
-
+    std::cout <<"Tracking-->> "<< "c1a||c1b||c1c) && c2)||c3 ||c4 "<<c1a<<" "<<c1b<<" "<<c1c<<" "<<c2<<" "<<c3<<" "<<c4<<" thRefRatio "<<thRefRatio<<std::end;
     // 相比ORB-SLAM2多了c3,c4
     if(((c1a||c1b||c1c) && c2)||c3 ||c4)
     {
@@ -3999,7 +4000,7 @@ void Tracking::CreateNewKeyFrame()
                     break;
                 }
             }
-            //Verbose::PrintMess("Tracking-->> new mps for stereo KF: " + to_string(nPoints), Verbose::VERBOSITY_NORMAL);
+            Verbose::PrintMess("Tracking-->> new mps for stereo KF: " + to_string(nPoints), Verbose::VERBOSITY_NORMAL);
         }
     }
 

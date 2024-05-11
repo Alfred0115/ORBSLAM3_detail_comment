@@ -744,8 +744,8 @@ namespace ORB_SLAM3
             rotHist[i].reserve(500);
 
         //! 原作者代码是 const float factor = 1.0f/HISTO_LENGTH; 是错误的，更改为下面代码
-        // const float factor = HISTO_LENGTH/360.0f;
-        const float factor = 1.0f/HISTO_LENGTH;
+        const float factor = HISTO_LENGTH/360.0f;
+        // const float factor = 1.0f/HISTO_LENGTH;
 
 
         // 匹配点对距离，注意是按照F2特征点数目分配空间
@@ -912,8 +912,8 @@ namespace ORB_SLAM3
             rotHist[i].reserve(500);
 
         //! 原作者代码是 const float factor = 1.0f/HISTO_LENGTH; 是错误的，更改为下面代码   
-        // const float factor = HISTO_LENGTH/360.0f;
-        const float factor = 1.0f/HISTO_LENGTH;
+        const float factor = HISTO_LENGTH/360.0f;
+        // const float factor = 1.0f/HISTO_LENGTH;
 
         int nmatches = 0;
 
@@ -1094,8 +1094,8 @@ namespace ORB_SLAM3
             rotHist[i].reserve(500);
 
         //! 原作者代码是 const float factor = 1.0f/HISTO_LENGTH; 是错误的，更改为下面代码   
-        // const float factor = HISTO_LENGTH/360.0f;
-        const float factor = 1.0f/HISTO_LENGTH;
+        const float factor = HISTO_LENGTH/360.0f;
+        // const float factor = 1.0f/HISTO_LENGTH;
 
         // We perform the matching over ORB that belong to the same vocabulary node (at a certain level)
         // Step 2 利用BoW加速匹配：只对属于同一节点(特定层)的ORB特征进行匹配
@@ -1958,8 +1958,8 @@ namespace ORB_SLAM3
             rotHist[i].reserve(500);
 
         //! 原作者代码是 const float factor = 1.0f/HISTO_LENGTH; 是错误的，更改为下面代码
-        // const float factor = HISTO_LENGTH/360.0f;
-        const float factor = 1.0f/HISTO_LENGTH;
+        const float factor = HISTO_LENGTH/360.0f;
+        // const float factor = 1.0f/HISTO_LENGTH;
 
         // Step 2 计算当前帧和前一帧的平移向量
         //当前帧的相机位姿
@@ -2205,7 +2205,8 @@ namespace ORB_SLAM3
         vector<int> rotHist[HISTO_LENGTH];
         for(int i=0;i<HISTO_LENGTH;i++)
             rotHist[i].reserve(500);
-        const float factor = 1.0f/HISTO_LENGTH;
+        // const float factor = 1.0f/HISTO_LENGTH;
+        const float factor = HISTO_LENGTH/360.0f;
 
         const vector<MapPoint*> vpMPs = pKF->GetMapPointMatches();
 
