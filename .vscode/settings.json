@@ -126,7 +126,8 @@
 		"optional": "cpp",
 		"random": "cpp",
 		"string_view": "cpp",
-		"variant": "cpp"
+		"variant": "cpp",
+		"core": "cpp"
 	},
 	"ros.distro": "melodic"
 }

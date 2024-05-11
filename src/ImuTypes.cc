@@ -279,7 +279,14 @@ void Preintegrated::IntegrateNewMeasurement(const Eigen::Vector3f &acceleration,
     // Compute velocity and position parts of matrices A and B (rely on non-updated delta rotation)
     // 根据η_ij = A * η_i,j-1 + B_j-1 * η_j-1中的Ａ矩阵和Ｂ矩阵对速度和位移进行更新
     Eigen::Matrix<float, 3, 3> Wacc = Sophus::SO3f::hat(acc);
-
+    /*
+    在这段代码中，首先定义了一个大小为 9x9 的 Eigen 矩阵 A，
+    并使用 setIdentity() 方法将其初始化为单位矩阵。
+    接着，通过 block<Rows, Cols>(startRow, startCol) 方法来提取 A 矩阵的一个子块，
+    并对其进行操作。
+    在这里，block<3, 3>(3, 0) 表示从矩阵 A 的第 4 行（由 0 开始计数）第 1 列开始，
+    提取一个大小为 3x3 的子块。
+    */
     A.block<3, 3>(3, 0) = -dR * dt * Wacc;
     A.block<3, 3>(6, 0) = -0.5f * dR * dt * dt * Wacc;
     A.block<3, 3>(6, 3) = Eigen::DiagonalMatrix<float, 3>(dt, dt, dt);
@@ -287,8 +294,10 @@ void Preintegrated::IntegrateNewMeasurement(const Eigen::Vector3f &acceleration,
     B.block<3, 3>(6, 3) = 0.5f * dR * dt * dt;
 
     // Update position and velocity jacobians wrt bias correction
-    // 因为随着时间推移，不可能每次都重新计算雅克比矩阵，所以需要做J(k+1) = j(k) + (~)这类事，分解方式与AB矩阵相同
-    // 论文作者对forster论文公式的基础上做了变形，然后递归更新，参见 https://github.com/UZ-SLAMLab/ORB_SLAM3/issues/212
+    // 因为随着时间推移，不可能每次都重新计算雅克比矩阵，所以需要做J(k+1) = j(k) + (~)这类事，
+    //分解方式与AB矩阵相同
+    // 论文作者对forster论文公式的基础上做了变形，然后递归更新，
+    //参见 https://github.com/UZ-SLAMLab/ORB_SLAM3/issues/212
     JPa = JPa + JVa * dt - 0.5f * dR * dt * dt;
     JPg = JPg + JVg * dt - 0.5f * dR * dt * dt * Wacc * JRg;
     JVa = JVa - dR * dt;

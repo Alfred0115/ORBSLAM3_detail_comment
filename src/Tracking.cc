@@ -1970,7 +1970,21 @@ void Tracking::ResetFrameIMU()
  */
 void Tracking::Track()
 {
-
+    /*
+    首先把active map找出来；然后IMU预积分还没干，这里需要补上；
+    接下来还得判断是正常跟踪建图状态还是初始化状态，如果没初始化那就去初始化；
+    如果初始化了，先进行帧间匹配，
+                也就是短期数据关联获得当前帧位姿的初始值，
+                先试试与相邻帧匹配，
+                不行就和最近的关键帧匹配，
+                还不行就重定位，
+                还是不行就开张新图重新跑里程计；
+    然后和local Map匹配，也就是中期数据关联让位姿更加准确。
+    无论是和上一帧，和关键帧还是局部地图进行匹配，
+    虽然细节不同，但是都经过找点，找匹配关系，优化求位姿这3大步。
+    最后，如果需要创建KeyFrame的话，那就创建一个。           
+    原文链接：https://blog.csdn.net/iwanderu/article/details/124934521
+    */
     if (bStepByStep)
     {
         std::cout <<"Tracking-->> "<< "Tracking: Waiting to the next step" << std::endl;
@@ -2007,6 +2021,7 @@ void Tracking::Track()
             CreateMapInAtlas();
             return;
         }
+        ////时间戳没错乱
         else if(mCurrentFrame.mTimeStamp>mLastFrame.mTimeStamp+1.0)
         {
             // cout <<"Tracking-->> "<< mCurrentFrame.mTimeStamp << ", " << mLastFrame.mTimeStamp << endl;
@@ -2056,17 +2071,17 @@ void Tracking::Track()
     // Step 4 IMU模式且没有创建地图的情况下对IMU数据进行预积分
     if ((mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD) && !mbCreatedMap)
     {
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_StartPreIMU = std::chrono::steady_clock::now();
-#endif
-        // IMU数据进行预积分
+        #ifdef REGISTER_TIMES
+                std::chrono::steady_clock::time_point time_StartPreIMU = std::chrono::steady_clock::now();
+        #endif
+                // IMU数据进行预积分
         PreintegrateIMU();
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_EndPreIMU = std::chrono::steady_clock::now();
+        #ifdef REGISTER_TIMES
+                std::chrono::steady_clock::time_point time_EndPreIMU = std::chrono::steady_clock::now();
 
-        double timePreImu = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndPreIMU - time_StartPreIMU).count();
-        vdIMUInteg_ms.push_back(timePreImu);
-#endif
+                double timePreImu = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndPreIMU - time_StartPreIMU).count();
+                vdIMUInteg_ms.push_back(timePreImu);
+        #endif
 
     }
     mbCreatedMap = false;
@@ -2185,6 +2200,8 @@ void Tracking::Track()
                     {
                         mState = LOST;
                     }
+
+                    //如果当前帧所在的map有很多KeyFrames，那还可以抢救一下
                     else if(pCurrentMap->KeyFramesInMap()>10)
                     {
                         cout <<"Tracking-->> "<< "KF in map: " << pCurrentMap->KeyFramesInMap() << endl;
@@ -2457,7 +2474,7 @@ void Tracking::Track()
         }
 
         // Save frame if recent relocalization, since they are used for IMU reset (as we are making copy, it shluld be once mCurrFrame is completely modified)
-        // 这段貌似没啥作用
+        // 这段貌似没啥作用  每隔若干帧更新IMU预积分
         if((mCurrentFrame.mnId<(mnLastRelocFrameId+mnFramesToResetIMU)) && (mCurrentFrame.mnId > mnFramesToResetIMU) &&
            (mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD) && pCurrentMap->isImuInitialized())
         {
@@ -2480,6 +2497,7 @@ void Tracking::Track()
                     cout <<"Tracking-->> "<< "RESETING FRAME!!!" << endl;
                     ResetFrameIMU();
                 }
+                //如果当前帧的idx和mnLastRelocFrameId离得远了，那么mLastBias就应该是当前帧的bias
                 else if(mCurrentFrame.mnId>(mnLastRelocFrameId+30))
                     mLastBias = mCurrentFrame.mImuBias;  // 没啥用，后面会重新赋值后传给普通帧
             }
@@ -2666,7 +2684,21 @@ void Tracking::Track()
             mlFrameTimes.push_back(mlFrameTimes.back());
             mlbLost.push_back(mState==LOST);
         }
-         cout <<"Tracking-->> "<< " size "<<mlRelativeFramePoses.size()<<" "<<mlpReferences.size() << endl;
+        if(fabs(mlRelativeFramePoses.back().translation()[0]) <= 100 && fabs(mlRelativeFramePoses.back().translation()[1]) <= 100)
+        {
+            float x = mlRelativeFramePoses.back().translation()[0] ;
+            float y = mlRelativeFramePoses.back().translation()[1];
+            if(fabs(mlRelativeFramePoses.back().translation()[0]) <= 0.01)
+                x = 0.001;
+            if(fabs(mlRelativeFramePoses.back().translation()[1]) <= 0.01)
+                y = 0.001;
+              cout <<"Tracking-->> "<<"robot_pose , "<< std::setprecision(3)
+            <<x<<" , "
+            <<y<<" , "
+            <<mlRelativeFramePoses.back().translation()[2]<<" , "
+            << " size "<<mlRelativeFramePoses.size()<<" "<<mlpReferences.size() << endl;
+
+        }
     }
 
     #ifdef REGISTER_LOOP

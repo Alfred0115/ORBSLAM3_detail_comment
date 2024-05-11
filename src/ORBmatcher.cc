@@ -276,8 +276,8 @@ namespace ORB_SLAM3
 
         // 将0~360的数转换到0~HISTO_LENGTH的系数
         //! 原作者代码是 const float factor = 1.0f/HISTO_LENGTH; 是错误的，更改为下面代码  
-        // const float factor = HISTO_LENGTH/360.0f;
-        const float factor = 1.0f/HISTO_LENGTH;
+        const float factor = HISTO_LENGTH/360.0f;//change lzq
+        // const float factor = 1.0f/HISTO_LENGTH;
 
         // We perform the matching over ORB that belong to the same vocabulary node (at a certain level)
         // 将属于同一节点(特定层)的ORB特征进行匹配
