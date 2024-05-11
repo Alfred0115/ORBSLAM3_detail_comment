@@ -495,12 +495,12 @@ void KeyFrame::UpdateConnections(bool upParent)
     vector<pair<int, KeyFrame *>> vPairs;
     vPairs.reserve(KFcounter.size());
     if (!upParent)
-        cout << "UPDATE_CONN: current KF " << mnId << endl;
+        cout << "KeyFrame-->> "<<"UPDATE_CONN: current KF " << mnId << endl;
     // Step 2 找到对应权重最大的关键帧（共视程度最高的关键帧）
     for (map<KeyFrame *, int>::iterator mit = KFcounter.begin(), mend = KFcounter.end(); mit != mend; mit++)
     {
         if (!upParent)
-            cout << "  UPDATE_CONN: KF " << mit->first->mnId << " ; num matches: " << mit->second << endl;
+            cout << "KeyFrame-->> "<<"  UPDATE_CONN: KF " << mit->first->mnId << " ; num matches: " << mit->second << endl;
         if (mit->second > nmax)
         {
             nmax = mit->second;
@@ -580,7 +580,7 @@ void KeyFrame::ChangeParent(KeyFrame *pKF)
     unique_lock<mutex> lockCon(mMutexConnections);
     if (pKF == this)
     {
-        cout << "ERROR: Change parent KF, the parent and child are the same KF" << endl;
+        cout << "KeyFrame-->> "<<"ERROR: Change parent KF, the parent and child are the same KF" << endl;
         throw std::invalid_argument("The parent and child can not be the same");
     }
 
@@ -1137,7 +1137,7 @@ void KeyFrame::PostLoad(map<long unsigned int, KeyFrame *> &mpKFid, map<long uns
     }
     else
     {
-        cout << "ERROR: There is not a main camera in KF " << mnId << endl;
+        cout << "KeyFrame-->> "<<"ERROR: There is not a main camera in KF " << mnId << endl;
     }
     if (mnBackupIdCamera2 >= 0)
     {
@@ -1179,7 +1179,7 @@ bool KeyFrame::ProjectPointDistort(MapPoint *pMP, cv::Point2f &kp, float &u, flo
     // Check positive depth
     if (PcZ < 0.0f)
     {
-        cout << "Negative depth: " << PcZ << endl;
+        cout << "KeyFrame-->> "<<"Negative depth: " << PcZ << endl;
         return false;
     }
 
@@ -1188,7 +1188,7 @@ bool KeyFrame::ProjectPointDistort(MapPoint *pMP, cv::Point2f &kp, float &u, flo
     u = fx * PcX * invz + cx;
     v = fy * PcY * invz + cy;
 
-    // cout << "c";
+    // cout << "KeyFrame-->> "<<"c";
 
     if (u < mnMinX || u > mnMaxX)
         return false;
@@ -1242,7 +1242,7 @@ bool KeyFrame::ProjectPointUnDistort(MapPoint *pMP, cv::Point2f &kp, float &u, f
     // Check positive depth
     if (PcZ < 0.0f)
     {
-        cout << "Negative depth: " << PcZ << endl;
+        cout << "KeyFrame-->> "<<"Negative depth: " << PcZ << endl;
         return false;
     }
 

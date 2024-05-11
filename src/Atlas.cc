@@ -63,7 +63,7 @@ void Atlas::CreateNewMap()
 {
     // 锁住地图集
     unique_lock<mutex> lock(mMutexAtlas);
-    cout << "Creation of new map with id: " << Map::nNextId << endl;
+    cout << "Atlas-->> "<<"Creation of new map with id: " << Map::nNextId << endl;
     // 如果当前活跃地图有效，先存储当前地图为不活跃地图后退出
     if (mpCurrentMap)
     {
@@ -73,12 +73,12 @@ void Atlas::CreateNewMap()
 
         // 将当前地图储存起来，其实就是把mIsInUse标记为false
         mpCurrentMap->SetStoredMap();
-        cout << "Stored map with ID: " << mpCurrentMap->GetId() << endl;
+        cout << "Atlas-->> "<<"Stored map with ID: " << mpCurrentMap->GetId() << endl;
 
         // if(mHasViewer)
         //     mpViewer->AddMapToCreateThumbnail(mpCurrentMap);
     }
-    cout << "Creation of new map with last KF id: " << mnLastInitKFidMap << endl;
+    cout << "Atlas-->> "<<"Creation of new map with last KF id: " << mnLastInitKFidMap << endl;
 
     mpCurrentMap = new Map(mnLastInitKFidMap);  //新建地图
     mpCurrentMap->SetCurrentMap();              //设置为活跃地图
@@ -88,7 +88,7 @@ void Atlas::CreateNewMap()
 void Atlas::ChangeMap(Map *pMap)
 {
     unique_lock<mutex> lock(mMutexAtlas);
-    cout << "Change to map with id: " << pMap->GetId() << endl;
+    cout << "Atlas-->> "<<"Change to map with id: " << pMap->GetId() << endl;
     if (mpCurrentMap)
     {
         mpCurrentMap->SetStoredMap();
@@ -136,9 +136,9 @@ GeometricCamera *Atlas::AddCamera(GeometricCamera *pCam)
     {
         GeometricCamera *pCam_i = mvpCameras[i];
         if (!pCam)
-            std::cout << "Not pCam" << std::endl;
+            std::cout << "Atlas-->> "<<"Not pCam" << std::endl;
         if (!pCam_i)
-            std::cout << "Not pCam_i" << std::endl;
+            std::cout << "Atlas-->> "<<"Not pCam_i" << std::endl;
         if (pCam->GetType() != pCam_i->GetType())
             continue;
 
