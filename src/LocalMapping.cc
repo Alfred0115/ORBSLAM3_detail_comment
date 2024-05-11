@@ -201,6 +201,9 @@ void LocalMapping::Run()
                         // 局部地图+IMU一起优化，优化关键帧位姿、地图点、IMU参数
                         Optimizer::LocalInertialBA(mpCurrentKeyFrame, &mbAbortBA, mpCurrentKeyFrame->GetMap(),num_FixedKF_BA,num_OptKF_BA,num_MPs_BA,num_edges_BA, bLarge, !mpCurrentKeyFrame->GetMap()->GetIniertialBA2());
                         b_doneLBA = true;
+                        cout <<"LocalMapping-->> "<< " bLarge "<<bLarge 
+                                                <<" dist "<<dist
+                                                << endl;
                     }
                     else
                     {
@@ -354,7 +357,7 @@ void LocalMapping::Run()
         time_2 = time_.tv_sec*1000 + time_.tv_usec/1000;
         print_count++;
         if(time_2 - time_1 > 1) 
-            cout <<" LocalMapping-->> "<<print_count<<"LocalMapping::Run cost time "<<time_2 - time_1<<std::endl;
+            cout <<"LocalMapping-->> "<<print_count<<"LocalMapping::Run cost time "<<time_2 - time_1<<std::endl;
         // 如果当前线程已经结束了就跳出主循环
         if(CheckFinish())
             break;

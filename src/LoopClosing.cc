@@ -100,50 +100,52 @@ void LoopClosing::SetLocalMapper(LocalMapping *pLocalMapper)
 void LoopClosing::Run()
 {
     mbFinished =false;
-
+    int print_count = 0;
     // 线程主循环
     while(1)
     {
-
+        print_count++;
         //NEW LOOP AND MERGE DETECTION ALGORITHM
         //----------------------------
-
+        //  cout <<"LoopClosing-->> "<< "loop" << endl;
         // Loopclosing中的关键帧是LocalMapping发送过来的，LocalMapping是Tracking中发过来的
         // 在LocalMapping中通过 InsertKeyFrame 将关键帧插入闭环检测队列mlpLoopKeyFrameQueue
         // Step 1 查看闭环检测队列mlpLoopKeyFrameQueue中有没有关键帧进来
         if(CheckNewKeyFrames())
         {
+             cout <<"LoopClosing-->> "<< "CheckNewKeyFrames "<<print_count << endl;
             // 这部分后续未使用
             if(mpLastCurrentKF)
             {
                 mpLastCurrentKF->mvpLoopCandKFs.clear();
                 mpLastCurrentKF->mvpMergeCandKFs.clear();
             }
-#ifdef REGISTER_TIMES
-            std::chrono::steady_clock::time_point time_StartPR = std::chrono::steady_clock::now();
-#endif
+            #ifdef REGISTER_TIMES
+                        std::chrono::steady_clock::time_point time_StartPR = std::chrono::steady_clock::now();
+            #endif
             // Step 2 检测有没有共视的区域
             bool bFindedRegion = NewDetectCommonRegions();
 
-#ifdef REGISTER_TIMES
-            std::chrono::steady_clock::time_point time_EndPR = std::chrono::steady_clock::now();
+            #ifdef REGISTER_TIMES
+                        std::chrono::steady_clock::time_point time_EndPR = std::chrono::steady_clock::now();
 
-            double timePRTotal = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndPR - time_StartPR).count();
-            vdPRTotal_ms.push_back(timePRTotal);
-#endif
+                        double timePRTotal = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndPR - time_StartPR).count();
+                        vdPRTotal_ms.push_back(timePRTotal);
+            #endif
             if(bFindedRegion)
             {
                 // Step 3 如果检测到融合（当前关键帧与其他地图有关联）, 则合并地图
-                if(mbMergeDetected)
+                if(mbMergeDetected) //form NewDetectCommonRegions() lzq
                 {
                     // 在imu没有初始化就放弃融合
                     if ((mpTracker->mSensor==System::IMU_MONOCULAR || mpTracker->mSensor==System::IMU_STEREO || mpTracker->mSensor==System::IMU_RGBD) &&
                         (!mpCurrentKF->GetMap()->isImuInitialized()))
                     {
-                        cout << "IMU is not initilized, merge is aborted" << endl;
+                        cout <<"LoopClosing-->> "<< "IMU is not initilized, merge is aborted" << endl;
                     }
                     else
                     {
+                        cout <<"LoopClosing-->> "<< "merge detected" << endl;
                         // 拿到融合帧在自己地图所在坐标系(w2)下的位姿
                         Sophus::SE3d mTmw = mpMergeMatchedKF->GetPose().cast<double>();
                         g2o::Sim3 gSmw2(mTmw.unit_quaternion(), mTmw.translation(), 1.0);
@@ -163,7 +165,7 @@ void LoopClosing::Run()
                         // 如果是imu模式
                         if(mpCurrentKF->GetMap()->IsInertial() && mpMergeMatchedKF->GetMap()->IsInertial())
                         {
-                            cout << "Merge check transformation with IMU" << endl;
+                            cout <<"LoopClosing-->> "<< "Merge check transformation with IMU" << endl;
                             // 如果尺度变换太大, 认为累积误差较大，则放弃融合
                             if(mSold_new.scale()<0.90||mSold_new.scale()>1.1){
                                 mpMergeLastCurrentKF->SetErase();
@@ -173,7 +175,7 @@ void LoopClosing::Run()
                                 mvpMergeMPs.clear();
                                 mnMergeNumNotFound = 0;
                                 mbMergeDetected = false;
-                                Verbose::PrintMess("scale bad estimated. Abort merging", Verbose::VERBOSITY_NORMAL);
+                                Verbose::PrintMess("LoopClosing-->> scale bad estimated. Abort merging", Verbose::VERBOSITY_NORMAL);
                                 continue;
                             }
                             // If inertial, force only yaw
@@ -197,13 +199,13 @@ void LoopClosing::Run()
 
                         //mpTracker->SetStepByStep(true);
 
-                        Verbose::PrintMess("*Merge detected", Verbose::VERBOSITY_QUIET);
+                        Verbose::PrintMess("LoopClosing-->> *Merge detected", Verbose::VERBOSITY_QUIET);
 
-#ifdef REGISTER_TIMES
-                        std::chrono::steady_clock::time_point time_StartMerge = std::chrono::steady_clock::now();
+                        #ifdef REGISTER_TIMES
+                                                std::chrono::steady_clock::time_point time_StartMerge = std::chrono::steady_clock::now();
 
-                        nMerges += 1;
-#endif
+                                                nMerges += 1;
+                        #endif
                         // TODO UNCOMMENT
                         // 如果是imu模式,则开启 Visual-Inertial Map Merging
                         // 如果是纯视觉模式,则开启 Visual-Welding Map Merging
@@ -212,14 +214,14 @@ void LoopClosing::Run()
                         else
                             MergeLocal();
 
-#ifdef REGISTER_TIMES
-                        std::chrono::steady_clock::time_point time_EndMerge = std::chrono::steady_clock::now();
+                        #ifdef REGISTER_TIMES
+                                                std::chrono::steady_clock::time_point time_EndMerge = std::chrono::steady_clock::now();
 
-                        double timeMergeTotal = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndMerge - time_StartMerge).count();
-                        vdMergeTotal_ms.push_back(timeMergeTotal);
-#endif
+                                                double timeMergeTotal = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndMerge - time_StartMerge).count();
+                                                vdMergeTotal_ms.push_back(timeMergeTotal);
+                        #endif
 
-                        Verbose::PrintMess("Merge finished!", Verbose::VERBOSITY_QUIET);
+                        Verbose::PrintMess("LoopClosing-->> Merge finished!", Verbose::VERBOSITY_QUIET);
                     }
                     // 记录时间戳
                     vdPR_CurrentTime.push_back(mpCurrentKF->mTimeStamp);
@@ -261,7 +263,7 @@ void LoopClosing::Run()
                     vdPR_MatchedTime.push_back(mpLoopMatchedKF->mTimeStamp);
                     vnPR_TypeRecogn.push_back(0);
 
-                    Verbose::PrintMess("*Loop detected", Verbose::VERBOSITY_QUIET);
+                    Verbose::PrintMess("LoopClosing-->> *Loop detected", Verbose::VERBOSITY_QUIET);
                     // 更新 mg2oLoopScw
                     mg2oLoopScw = mg2oLoopSlw; //*mvg2oSim3LoopTcw[nCurrentIndex];
                     // 如果是带imu的模式则做下判断，纯视觉跳过
@@ -277,7 +279,7 @@ void LoopClosing::Run()
 
                         // 拿到 roll ,pitch ,yaw
                         Eigen::Vector3d phi = LogSO3(g2oSww_new.rotation().toRotationMatrix());
-                        cout << "phi = " << phi.transpose() << endl; 
+                        cout <<"LoopClosing-->> "<< "phi = " << phi.transpose() << endl; 
                         // 这里算是通过imu重力方向验证回环结果, 如果pitch或roll角度偏差稍微有一点大,则回环失败. 对yaw容忍比较大(20度)
                         if (fabs(phi(0))<0.008f && fabs(phi(1))<0.008f && fabs(phi(2))<0.349f)
                         {
@@ -299,7 +301,7 @@ void LoopClosing::Run()
                         }
                         else
                         {
-                            cout << "BAD LOOP!!!" << endl;
+                            cout <<"LoopClosing-->> "<< "BAD LOOP!!!" << endl;
                             bGoodLoop = false;
                         }
 
@@ -309,20 +311,20 @@ void LoopClosing::Run()
 
                         mvpLoopMapPoints = mvpLoopMPs;
 
-#ifdef REGISTER_TIMES
-                        std::chrono::steady_clock::time_point time_StartLoop = std::chrono::steady_clock::now();
+                    #ifdef REGISTER_TIMES
+                                            std::chrono::steady_clock::time_point time_StartLoop = std::chrono::steady_clock::now();
 
-                        nLoop += 1;
+                                            nLoop += 1;
 
-#endif
-                        // 开启回环矫正
-                        CorrectLoop();
-#ifdef REGISTER_TIMES
-                        std::chrono::steady_clock::time_point time_EndLoop = std::chrono::steady_clock::now();
+                    #endif
+                    // 开启回环矫正
+                    CorrectLoop();
+                    #ifdef REGISTER_TIMES
+                                            std::chrono::steady_clock::time_point time_EndLoop = std::chrono::steady_clock::now();
 
-                        double timeLoopTotal = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndLoop - time_StartLoop).count();
-                        vdLoopTotal_ms.push_back(timeLoopTotal);
-#endif
+                                            double timeLoopTotal = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndLoop - time_StartLoop).count();
+                                            vdLoopTotal_ms.push_back(timeLoopTotal);
+                    #endif
 
                         mnNumCorrection += 1;
                     }
@@ -414,7 +416,7 @@ bool LoopClosing::NewDetectCommonRegions()
     // 2.双目模式下且当前地图关键帧数少于5则不考虑
     if(mpTracker->mSensor == System::STEREO && mpLastMap->GetAllKeyFrames().size() < 5) //12
     {
-        // cout << "LoopClousure: Stereo KF inserted without check: " << mpCurrentKF->mnId << endl;
+        // cout <<"LoopClosing-->> "<< "LoopClousure: Stereo KF inserted without check: " << mpCurrentKF->mnId << endl;
         mpKeyFrameDB->add(mpCurrentKF);
         mpCurrentKF->SetErase();
         return false;
@@ -423,13 +425,13 @@ bool LoopClosing::NewDetectCommonRegions()
     // 3.当前地图关键帧少于12则不进行检测
     if(mpLastMap->GetAllKeyFrames().size() < 12)
     {
-        // cout << "LoopClousure: Stereo KF inserted without check, map is small: " << mpCurrentKF->mnId << endl;
+        // cout <<"LoopClosing-->> "<< "LoopClousure: Stereo KF inserted without check, map is small: " << mpCurrentKF->mnId << endl;
         mpKeyFrameDB->add(mpCurrentKF);
         mpCurrentKF->SetErase();
         return false;
     }
 
-    //cout << "LoopClousure: Checking KF: " << mpCurrentKF->mnId << endl;
+    //cout <<"LoopClosing-->> "<< "LoopClousure: Checking KF: " << mpCurrentKF->mnId << endl;
     
     //Check the last candidates with geometric validation
     // Loop candidates
@@ -437,9 +439,9 @@ bool LoopClosing::NewDetectCommonRegions()
     bool bLoopDetectedInKF = false;  // 某次时序验证是否成功
     bool bCheckSpatial = false;
 
-#ifdef REGISTER_TIMES
-    std::chrono::steady_clock::time_point time_StartEstSim3_1 = std::chrono::steady_clock::now();
-#endif
+    #ifdef REGISTER_TIMES
+        std::chrono::steady_clock::time_point time_StartEstSim3_1 = std::chrono::steady_clock::now();
+    #endif
     // Step 3.1 回环的时序几何校验。注意初始化时mnLoopNumCoincidences=0, 所以可以先跳过看后面
     // 如果成功验证总次数大于0
     if(mnLoopNumCoincidences > 0)
@@ -478,7 +480,7 @@ bool LoopClosing::NewDetectCommonRegions()
             //! 这里的条件反了,不过对功能没什么影响,只是打印信息
             if(!mbLoopDetected)
             {
-                cout << "PR: Loop detected with Reffine Sim3" << endl;
+                cout <<"LoopClosing-->> "<< "PR: Loop detected with Reffine Sim3" << endl;
             }
         }
         // 如果没找到共同区域(时序验证失败一次)
@@ -673,7 +675,7 @@ bool LoopClosing::DetectAndReffineSim3FromLastKF(KeyFrame* pCurrentKF, KeyFrame*
     // 2.点数如果不符合返回false
     if(nNumProjMatches >= nProjMatches)
     {
-        //Verbose::PrintMess("Sim3 reffine: There are " + to_string(nNumProjMatches) + " initial matches ", Verbose::VERBOSITY_DEBUG);
+        //Verbose::PrintMess("LoopClosing-->> Sim3 reffine: There are " + to_string(nNumProjMatches) + " initial matches ", Verbose::VERBOSITY_DEBUG);
         // 3.1 求得gScm 为OptimizeSim3接口准备数据
         Sophus::SE3d mTwm = pMatchedKF->GetPoseInverse().cast<double>();
         g2o::Sim3 gSwm(mTwm.unit_quaternion(),mTwm.translation(),1.0);
@@ -688,7 +690,7 @@ bool LoopClosing::DetectAndReffineSim3FromLastKF(KeyFrame* pCurrentKF, KeyFrame*
         // 3.2 优化gScm，mp固定
         int numOptMatches = Optimizer::OptimizeSim3(mpCurrentKF, pMatchedKF, vpMatchedMPs, gScm, 10, bFixedScale, mHessian7x7, true);
 
-        //Verbose::PrintMess("Sim3 reffine: There are " + to_string(numOptMatches) + " matches after of the optimization ", Verbose::VERBOSITY_DEBUG);
+        //Verbose::PrintMess("LoopClosing-->> Sim3 reffine: There are " + to_string(numOptMatches) + " matches after of the optimization ", Verbose::VERBOSITY_DEBUG);
         // 若匹配的数量大于一定的数目
         if(numOptMatches > nProjOptMatches)
         {
@@ -768,21 +770,21 @@ bool LoopClosing::DetectCommonRegionsFromBoW(
     vector<int> vnMatchesStage(numCandidates, 0);
     int index = 0;
 
-    //Verbose::PrintMess("BoW candidates: There are " + to_string(vpBowCand.size()) + " possible candidates ", Verbose::VERBOSITY_DEBUG);
+    //Verbose::PrintMess("LoopClosing-->> BoW candidates: There are " + to_string(vpBowCand.size()) + " possible candidates ", Verbose::VERBOSITY_DEBUG);
     // 2. 对每个候选关键帧都进行详细的分析
     for(KeyFrame* pKFi : vpBowCand)
     {
         if(!pKFi || pKFi->isBad())
             continue;
 
-        // std::cout << "KF candidate: " << pKFi->mnId << std::endl;
+        // std::cout <<"LoopClosing-->> "<< "KF candidate: " << pKFi->mnId << std::endl;
         // Current KF against KF with covisibles version
         // 2.1 获得候选关键帧的局部窗口 W_m
         // 拿到候选关键帧的10个最优共视帧 
         std::vector<KeyFrame*> vpCovKFi = pKFi->GetBestCovisibilityKeyFrames(nNumCovisibles);
         if(vpCovKFi.empty())
         {
-            std::cout << "Covisible list empty" << std::endl;
+            std::cout <<"LoopClosing-->> "<< "Covisible list empty" << std::endl;
             vpCovKFi.push_back(pKFi);
         }
         else
@@ -808,10 +810,10 @@ bool LoopClosing::DetectCommonRegionsFromBoW(
         }
         if(bAbortByNearKF)
         {
-            //std::cout << "Check BoW aborted because is close to the matched one " << std::endl;
+            //std::cout <<"LoopClosing-->> "<< "Check BoW aborted because is close to the matched one " << std::endl;
             continue;
         }
-        //std::cout << "Check BoW continue because is far to the matched one " << std::endl;
+        //std::cout <<"LoopClosing-->> "<< "Check BoW continue because is far to the matched one " << std::endl;
 
         // search by bow 返回的参数, 记录窗口Wm中每个关键帧有哪些点能在当前关键帧Ka中通过bow找到匹配点
         std::vector<std::vector<MapPoint*> > vvpMatchedMPs;
@@ -909,15 +911,15 @@ bool LoopClosing::DetectCommonRegionsFromBoW(
             while(!bConverge && !bNoMore)
             {
                 mTcm = solver.iterate(20,bNoMore, vbInliers, nInliers, bConverge);
-                //Verbose::PrintMess("BoW guess: Solver achieve " + to_string(nInliers) + " geometrical inliers among " + to_string(nBoWInliers) + " BoW matches", Verbose::VERBOSITY_DEBUG);
+                //Verbose::PrintMess("LoopClosing-->> BoW guess: Solver achieve " + to_string(nInliers) + " geometrical inliers among " + to_string(nBoWInliers) + " BoW matches", Verbose::VERBOSITY_DEBUG);
             }
 
             // 3.3 Guide matching refinement: 利用初始的Scm信息,进行双向重投影,并非线性优化得到更精确的Scm
             if(bConverge)
             {
-                //std::cout << "Check BoW: SolverSim3 converged" << std::endl;
+                //std::cout <<"LoopClosing-->> "<< "Check BoW: SolverSim3 converged" << std::endl;
 
-                //Verbose::PrintMess("BoW guess: Convergende with " + to_string(nInliers) + " geometrical inliers among " + to_string(nBoWInliers) + " BoW matches", Verbose::VERBOSITY_DEBUG);
+                //Verbose::PrintMess("LoopClosing-->> BoW guess: Convergende with " + to_string(nInliers) + " geometrical inliers among " + to_string(nBoWInliers) + " BoW matches", Verbose::VERBOSITY_DEBUG);
                 // Match by reprojection
                 vpCovKFi.clear();
                 // 拿到窗口内匹配最多的帧的最佳10个共视帧和它自己组成的窗口
@@ -926,7 +928,7 @@ bool LoopClosing::DetectCommonRegionsFromBoW(
                 // 这个后面没有用到
                 set<KeyFrame*> spCheckKFs(vpCovKFi.begin(), vpCovKFi.end());
 
-                //std::cout << "There are " << vpCovKFi.size() <<" near KFs" << std::endl;
+                //std::cout <<"LoopClosing-->> "<< "There are " << vpCovKFi.size() <<" near KFs" << std::endl;
 
                  // 辅助容器,避免重复添加地图点
                 set<MapPoint*> spMapPoints;
@@ -956,7 +958,7 @@ bool LoopClosing::DetectCommonRegionsFromBoW(
                     }
                 }
 
-                //std::cout << "There are " << vpKeyFrames.size() <<" KFs which view all the mappoints" << std::endl;
+                //std::cout <<"LoopClosing-->> "<< "There are " << vpKeyFrames.size() <<" KFs which view all the mappoints" << std::endl;
 
                 // 拿到solver 估计的 Scm初始值, 为后续的非线性优化做准备, 在这里 c 表示当前关键帧, m 表示回环/融合候选帧
                 g2o::Sim3 gScm(solver.GetEstimatedRotation().cast<double>(),solver.GetEstimatedTranslation().cast<double>(), (double) solver.GetEstimatedScale());
@@ -974,7 +976,7 @@ bool LoopClosing::DetectCommonRegionsFromBoW(
                 vpMatchedKF.resize(mpCurrentKF->GetMapPointMatches().size(), static_cast<KeyFrame*>(NULL));
                 // 3.3.1 重新利用之前计算的mScw信息, 通过投影寻找更多的匹配点
                 int numProjMatches = matcher.SearchByProjection(mpCurrentKF, mScw, vpMapPoints, vpKeyFrames, vpMatchedMP, vpMatchedKF, 8, 1.5);
-                //cout <<"BoW: " << numProjMatches << " matches between " << vpMapPoints.size() << " points with coarse Sim3" << endl;
+                //cout <<"LoopClosing-->> "<<"BoW: " << numProjMatches << " matches between " << vpMapPoints.size() << " points with coarse Sim3" << endl;
 
                 // 如果拿到了足够多的匹配点, nProjMatches = 50
                 if(numProjMatches >= nProjMatches)
@@ -1102,7 +1104,7 @@ bool LoopClosing::DetectCommonRegionsFromBoW(
             }
             /*else
             {
-                Verbose::PrintMess("BoW candidate: it don't match with the current one", Verbose::VERBOSITY_DEBUG);
+                Verbose::PrintMess("LoopClosing-->> BoW candidate: it don't match with the current one", Verbose::VERBOSITY_DEBUG);
             }*/
         }
         index++;
@@ -1267,7 +1269,7 @@ int LoopClosing::FindMatchesByProjection(
  */
 void LoopClosing::CorrectLoop()
 {
-    //cout << "Loop detected!" << endl;
+    //cout <<"LoopClosing-->> "<< "Loop detected!" << endl;
 
     // Send a stop signal to Local Mapping
     // Avoid new keyframes are inserted while correcting the loop
@@ -1280,7 +1282,7 @@ void LoopClosing::CorrectLoop()
     // If a Global Bundle Adjustment is running, abort it
     if(isRunningGBA())
     {
-        cout << "Stoping Global Bundle Adjustment...";
+        cout <<"LoopClosing-->> "<< "Stoping Global Bundle Adjustment...";
         unique_lock<mutex> lock(mMutexGBA);
         mbStopGBA = true;
         // 记录全局BA次数
@@ -1291,7 +1293,7 @@ void LoopClosing::CorrectLoop()
             mpThreadGBA->detach();
             delete mpThreadGBA;
         }
-        cout << "  Done!!" << endl;
+        cout <<"LoopClosing-->> "<< "  Done!!" << endl;
     }
 
     // Wait until Local Mapping has effectively stopped
@@ -1302,7 +1304,7 @@ void LoopClosing::CorrectLoop()
     }
 
     // Ensure current keyframe is updated
-    //cout << "Start updating connections" << endl;
+    //cout <<"LoopClosing-->> "<< "Start updating connections" << endl;
     //assert(mpCurrentKF->GetMap()->CheckEssentialGraph());
     // Step 2. 根据共视关系更新当前关键帧与其它关键帧之间的连接关系
     // 因为之前闭环检测、计算Sim3中改变了该关键帧的地图点，所以需要更新
@@ -1318,7 +1320,7 @@ void LoopClosing::CorrectLoop()
     mvpCurrentConnectedKFs = mpCurrentKF->GetVectorCovisibleKeyFrames();
     mvpCurrentConnectedKFs.push_back(mpCurrentKF);
 
-    //std::cout << "Loop: number of connected KFs -> " + to_string(mvpCurrentConnectedKFs.size()) << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "Loop: number of connected KFs -> " + to_string(mvpCurrentConnectedKFs.size()) << std::endl;
     // CorrectedSim3：存放闭环g2o优化后当前关键帧的共视关键帧的世界坐标系下Sim3 变换
     // NonCorrectedSim3：存放没有矫正的当前关键帧的共视关键帧的世界坐标系下Sim3 变换
     KeyFrameAndPose CorrectedSim3, NonCorrectedSim3;
@@ -1476,7 +1478,7 @@ void LoopClosing::CorrectLoop()
                 }
             }
         }
-        //cout << "LC: end replacing duplicated" << endl;
+        //cout <<"LoopClosing-->> "<< "LC: end replacing duplicated" << endl;
     }
 
     // Project MapPoints observed in the neighborhood of the loop keyframe
@@ -1529,14 +1531,14 @@ void LoopClosing::CorrectLoop()
         double timeFusion = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndFusion - time_StartFusion).count();
         vdLoopFusion_ms.push_back(timeFusion);
 #endif
-    //cout << "Optimize essential graph" << endl;
+    //cout <<"LoopClosing-->> "<< "Optimize essential graph" << endl;
     if(pLoopMap->IsInertial() && pLoopMap->isImuInitialized())
     {
         Optimizer::OptimizeEssentialGraph4DoF(pLoopMap, mpLoopMatchedKF, mpCurrentKF, NonCorrectedSim3, CorrectedSim3, LoopConnections);
     }
     else
     {
-        //cout << "Loop -> Scale correction: " << mg2oLoopScw.scale() << endl;
+        //cout <<"LoopClosing-->> "<< "Loop -> Scale correction: " << mg2oLoopScw.scale() << endl;
         // Step 7. 进行EssentialGraph优化，LoopConnections是形成闭环后新生成的连接关系，不包括步骤7中当前帧与闭环匹配帧之间的连接关系
         Optimizer::OptimizeEssentialGraph(pLoopMap, mpLoopMatchedKF, mpCurrentKF, NonCorrectedSim3, CorrectedSim3, LoopConnections, bFixedScale);
     }
@@ -1601,7 +1603,7 @@ void LoopClosing::MergeLocal()
     // 记录是否把全局BA停下
     bool bRelaunchBA = false;
 
-    //Verbose::PrintMess("MERGE-VISUAL: Check Full Bundle Adjustment", Verbose::VERBOSITY_DEBUG);
+    //Verbose::PrintMess("LoopClosing-->> MERGE-VISUAL: Check Full Bundle Adjustment", Verbose::VERBOSITY_DEBUG);
     // If a Global Bundle Adjustment is running, abort it
     if(isRunningGBA())
     {
@@ -1618,8 +1620,8 @@ void LoopClosing::MergeLocal()
         bRelaunchBA = true;  // 以后还会重新开启
     }
 
-    //Verbose::PrintMess("MERGE-VISUAL: Request Stop Local Mapping", Verbose::VERBOSITY_DEBUG);
-    //cout << "Request Stop Local Mapping" << endl;
+    //Verbose::PrintMess("LoopClosing-->> MERGE-VISUAL: Request Stop Local Mapping", Verbose::VERBOSITY_DEBUG);
+    //cout <<"LoopClosing-->> "<< "Request Stop Local Mapping" << endl;
     // 请求局部建图线程停止
     mpLocalMapper->RequestStop();
     // Wait until Local Mapping has effectively stopped
@@ -1628,7 +1630,7 @@ void LoopClosing::MergeLocal()
     {
         usleep(1000);
     }
-    //cout << "Local Map stopped" << endl;
+    //cout <<"LoopClosing-->> "<< "Local Map stopped" << endl;
 
     mpLocalMapper->EmptyQueue();
 
@@ -1642,8 +1644,8 @@ void LoopClosing::MergeLocal()
     // 融合关键帧地图的指针
     Map* pMergeMap = mpMergeMatchedKF->GetMap();
 
-    //std::cout << "Merge local, Active map: " << pCurrentMap->GetId() << std::endl;
-    //std::cout << "Merge local, Non-Active map: " << pMergeMap->GetId() << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "Merge local, Active map: " << pCurrentMap->GetId() << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "Merge local, Non-Active map: " << pMergeMap->GetId() << std::endl;
 
 #ifdef REGISTER_TIMES
     std::chrono::steady_clock::time_point time_StartMerge = std::chrono::steady_clock::now();
@@ -1743,7 +1745,7 @@ void LoopClosing::MergeLocal()
         spLocalWindowMPs.insert(spMPs.begin(), spMPs.end());
     }
 
-    //std::cout << "[Merge]: Ma = " << to_string(pCurrentMap->GetId()) << "; #KFs = " << to_string(spLocalWindowKFs.size()) << "; #MPs = " << to_string(spLocalWindowMPs.size()) << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "[Merge]: Ma = " << to_string(pCurrentMap->GetId()) << "; #KFs = " << to_string(spLocalWindowKFs.size()) << "; #MPs = " << to_string(spLocalWindowMPs.size()) << std::endl;
 
     // Step 1.3 构造融合帧的共视帧窗口
     // 融合关键帧的共视关键帧们
@@ -1819,7 +1821,7 @@ void LoopClosing::MergeLocal()
     // 把spMapPointMerge拷贝到vpCheckFuseMapPoint里
     std::copy(spMapPointMerge.begin(), spMapPointMerge.end(), std::back_inserter(vpCheckFuseMapPoint));
 
-    //std::cout << "[Merge]: Mm = " << to_string(pMergeMap->GetId()) << "; #KFs = " << to_string(spMergeConnectedKFs.size()) << "; #MPs = " << to_string(spMapPointMerge.size()) << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "[Merge]: Mm = " << to_string(pMergeMap->GetId()) << "; #KFs = " << to_string(spMergeConnectedKFs.size()) << "; #MPs = " << to_string(spMapPointMerge.size()) << std::endl;
 
 
     // Step 2 根据之前的Sim3初始值, 记录当前帧窗口内关键帧,地图点的矫正前的值,和矫正后的初始值
@@ -1855,12 +1857,12 @@ void LoopClosing::MergeLocal()
         // 跳过空的指针,或者坏的关键帧
         if(!pKFi || pKFi->isBad())
         {
-            Verbose::PrintMess("Bad KF in correction", Verbose::VERBOSITY_DEBUG);
+            Verbose::PrintMess("LoopClosing-->> Bad KF in correction", Verbose::VERBOSITY_DEBUG);
             continue;
         }
 
         if(pKFi->GetMap() != pCurrentMap)
-            Verbose::PrintMess("Other map KF, this should't happen", Verbose::VERBOSITY_DEBUG);
+            Verbose::PrintMess("LoopClosing-->> Other map KF, this should't happen", Verbose::VERBOSITY_DEBUG);
 
         // 确保这些共视关键帧在当前地图下
         // 保存第i个共视关键帧融合矫正后的初始位姿
@@ -1957,8 +1959,8 @@ void LoopClosing::MergeLocal()
     }
     /*if(numPointsWithCorrection>0)
     {
-        std::cout << "[Merge]: " << std::to_string(numPointsWithCorrection) << " points removed from Ma due to its reference KF is not in welding area" << std::endl;
-        std::cout << "[Merge]: Ma has " << std::to_string(spLocalWindowMPs.size()) << " points" << std::endl;
+        std::cout <<"LoopClosing-->> "<< "[Merge]: " << std::to_string(numPointsWithCorrection) << " points removed from Ma due to its reference KF is not in welding area" << std::endl;
+        std::cout <<"LoopClosing-->> "<< "[Merge]: Ma has " << std::to_string(spLocalWindowMPs.size()) << " points" << std::endl;
     }*/
     // Step 3 两个地图以新（当前帧所在地图）换旧（融合帧所在地图），包括关键帧及地图点关联地图的以新换旧、地图集的以新换旧
     {
@@ -1966,19 +1968,19 @@ void LoopClosing::MergeLocal()
         unique_lock<mutex> currentLock(pCurrentMap->mMutexMapUpdate); // We update the current map with the Merge information
         unique_lock<mutex> mergeLock(pMergeMap->mMutexMapUpdate); // We remove the Kfs and MPs in the merged area from the old map
 
-        //std::cout << "Merge local window: " << spLocalWindowKFs.size() << std::endl;
-        //std::cout << "[Merge]: init merging maps " << std::endl;
+        //std::cout <<"LoopClosing-->> "<< "Merge local window: " << spLocalWindowKFs.size() << std::endl;
+        //std::cout <<"LoopClosing-->> "<< "[Merge]: init merging maps " << std::endl;
         // 对于当前关键帧共视窗口内的每一个关键帧
         // Step 3.1 更新当前关键帧共视窗口内的关键帧信息
         for(KeyFrame* pKFi : spLocalWindowKFs)
         {
             if(!pKFi || pKFi->isBad())
             {
-                //std::cout << "Bad KF in correction" << std::endl;
+                //std::cout <<"LoopClosing-->> "<< "Bad KF in correction" << std::endl;
                 continue;
             }
 
-            //std::cout << "KF id: " << pKFi->mnId << std::endl;
+            //std::cout <<"LoopClosing-->> "<< "KF id: " << pKFi->mnId << std::endl;
             // 记录融合矫正前的位姿
             pKFi->mTcwBefMerge = pKFi->GetPose();
             pKFi->mTwcBefMerge = pKFi->GetPoseInverse();
@@ -2030,7 +2032,7 @@ void LoopClosing::MergeLocal()
         //TODO for debug
         pMergeMap->ChangeId(pCurrentMap->GetId());
 
-        //std::cout << "[Merge]: merging maps finished" << std::endl;
+        //std::cout <<"LoopClosing-->> "<< "[Merge]: merging maps finished" << std::endl;
     }
 
     // Step 4 融合新旧地图的生成树
@@ -2076,10 +2078,10 @@ void LoopClosing::MergeLocal()
     // Project MapPoints observed in the neighborhood of the merge keyframe
     // into the current keyframe and neighbors using corrected poses.
     // Fuse duplications.
-    //std::cout << "[Merge]: start fuse points" << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "[Merge]: start fuse points" << std::endl;
     // Step 5 把融合关键帧的共视窗口里的地图点投到当前关键帧的共视窗口里,把重复的点融合掉(以旧换新)
     SearchAndFuse(vCorrectedSim3, vpCheckFuseMapPoint);
-    //std::cout << "[Merge]: fuse points finished" << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "[Merge]: fuse points finished" << std::endl;
 
     // Update connectivity
     // Step 6 因为融合导致地图点变化。需要更新关键帧中图的连接关系
@@ -2100,7 +2102,7 @@ void LoopClosing::MergeLocal()
         pKFi->UpdateConnections();
     }
 
-    //std::cout << "[Merge]: Start welding bundle adjustment" << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "[Merge]: Start welding bundle adjustment" << std::endl;
 
 #ifdef REGISTER_TIMES
     std::chrono::steady_clock::time_point time_StartWeldingBA = std::chrono::steady_clock::now();
@@ -2133,7 +2135,7 @@ void LoopClosing::MergeLocal()
     double timeWeldingBA = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndWeldingBA - time_StartWeldingBA).count();
     vdWeldingBA_ms.push_back(timeWeldingBA);
 #endif
-    //std::cout << "[Merge]: Welding bundle adjustment finished" << std::endl;
+    //std::cout <<"LoopClosing-->> "<< "[Merge]: Welding bundle adjustment finished" << std::endl;
 
     // Loop closed. Release Local Mapping.
     mpLocalMapper->Release();
@@ -2235,7 +2237,7 @@ void LoopClosing::MergeLocal()
             unique_lock<mutex> currentLock(pCurrentMap->mMutexMapUpdate); // We update the current map with the Merge information
             unique_lock<mutex> mergeLock(pMergeMap->mMutexMapUpdate); // We remove the Kfs and MPs in the merged area from the old map
 
-            //std::cout << "Merge outside KFs: " << vpCurrentMapKFs.size() << std::endl;
+            //std::cout <<"LoopClosing-->> "<< "Merge outside KFs: " << vpCurrentMapKFs.size() << std::endl;
             // 确保融合后信息被更新
             for(KeyFrame* pKFi : vpCurrentMapKFs)
             {
@@ -2243,7 +2245,7 @@ void LoopClosing::MergeLocal()
                 {
                     continue;
                 }
-                //std::cout << "KF id: " << pKFi->mnId << std::endl;
+                //std::cout <<"LoopClosing-->> "<< "KF id: " << pKFi->mnId << std::endl;
 
                 // Make sure connections are updated
                 // 当前关键帧所在地图更新为融合地图，并建立关联。并从当前地图中删掉
@@ -2304,7 +2306,7 @@ void LoopClosing::MergeLocal()
  */
 void LoopClosing::MergeLocal2()
 {
-    //cout << "Merge detected!!!!" << endl;
+    //cout <<"LoopClosing-->> "<< "Merge detected!!!!" << endl;
     // 没用上
     int numTemporalKFs = 11; //TODO (set by parameter): Temporal KFs in the local window if the map is inertial.
 
@@ -2325,7 +2327,7 @@ void LoopClosing::MergeLocal2()
     // 记录要不要重新进行全局ba
     bool bRelaunchBA = false;
 
-    //cout << "Check Full Bundle Adjustment" << endl;
+    //cout <<"LoopClosing-->> "<< "Check Full Bundle Adjustment" << endl;
     // If a Global Bundle Adjustment is running, abort it
     // Step 1 如果正在进行全局BA，停掉它
     if(isRunningGBA())
@@ -2344,7 +2346,7 @@ void LoopClosing::MergeLocal2()
     }
 
 
-    //cout << "Request Stop Local Mapping" << endl;
+    //cout <<"LoopClosing-->> "<< "Request Stop Local Mapping" << endl;
     // Step 2 暂停局部建图线程
     mpLocalMapper->RequestStop();
     // Wait until Local Mapping has effectively stopped
@@ -2353,7 +2355,7 @@ void LoopClosing::MergeLocal2()
     {
         usleep(1000);
     }
-    //cout << "Local Map stopped" << endl;
+    //cout <<"LoopClosing-->> "<< "Local Map stopped" << endl;
 
     // 当前关键帧地图的指针
     Map* pCurrentMap = mpCurrentKF->GetMap();
@@ -2370,15 +2372,15 @@ void LoopClosing::MergeLocal2()
         // 锁住altas更新地图
         unique_lock<mutex> lock(mpAtlas->GetCurrentMap()->mMutexMapUpdate);
 
-        //cout << "KFs before empty: " << mpAtlas->GetCurrentMap()->KeyFramesInMap() << endl;
+        //cout <<"LoopClosing-->> "<< "KFs before empty: " << mpAtlas->GetCurrentMap()->KeyFramesInMap() << endl;
         // 队列里还没来得及处理的关键帧清空
         mpLocalMapper->EmptyQueue();
-        //cout << "KFs after empty: " << mpAtlas->GetCurrentMap()->KeyFramesInMap() << endl;
+        //cout <<"LoopClosing-->> "<< "KFs after empty: " << mpAtlas->GetCurrentMap()->KeyFramesInMap() << endl;
 
         std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
-        //cout << "updating active map to merge reference" << endl;
-        //cout << "curr merge KF id: " << mpCurrentKF->mnId << endl;
-        //cout << "curr tracking KF id: " << mpTracker->GetLastKeyFrame()->mnId << endl;
+        //cout <<"LoopClosing-->> "<< "updating active map to merge reference" << endl;
+        //cout <<"LoopClosing-->> "<< "curr merge KF id: " << mpCurrentKF->mnId << endl;
+        //cout <<"LoopClosing-->> "<< "curr tracking KF id: " << mpTracker->GetLastKeyFrame()->mnId << endl;
         // 是否将尺度更新到速度
         bool bScaleVel=false;
         if(s_on!=1)  // ?判断浮点数和1严格相等是不是不合适？
@@ -2418,10 +2420,10 @@ void LoopClosing::MergeLocal2()
     }
 
 
-    //cout << "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
+    //cout <<"LoopClosing-->> "<< "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
 
     // Load KFs and MPs from merge map
-    //cout << "updating current map" << endl;
+    //cout <<"LoopClosing-->> "<< "updating current map" << endl;
     // Step 5 地图以旧换新。把融合帧所在地图里的关键帧和地图点从原地图里删掉，变更为当前关键帧所在地图。
     {
         // Get Merge Map Mutex (This section stops tracking!!)
@@ -2473,16 +2475,16 @@ void LoopClosing::MergeLocal2()
         }
     }
 
-    //cout << "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
+    //cout <<"LoopClosing-->> "<< "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
 
-    //cout << "end updating current map" << endl;
+    //cout <<"LoopClosing-->> "<< "end updating current map" << endl;
 
     // Critical zone
     //bool good = pCurrentMap->CheckEssentialGraph();
     /*if(!good)
-        cout << "BAD ESSENTIAL GRAPH!!" << endl;*/
+        cout <<"LoopClosing-->> "<< "BAD ESSENTIAL GRAPH!!" << endl;*/
 
-    //cout << "Update essential graph" << endl;
+    //cout <<"LoopClosing-->> "<< "Update essential graph" << endl;
     // mpCurrentKF->UpdateConnections(); // to put at false mbFirstConnection
     // Step 6 融合新旧地图的生成树
     pMergeMap->GetOriginKF()->SetFirstConnection(false);
@@ -2500,15 +2502,15 @@ void LoopClosing::MergeLocal2()
     }
 
 
-    //cout << "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
+    //cout <<"LoopClosing-->> "<< "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
 
-    //cout << "end update essential graph" << endl;
+    //cout <<"LoopClosing-->> "<< "end update essential graph" << endl;
 
     /*good = pCurrentMap->CheckEssentialGraph();
     if(!good)
-        cout << "BAD ESSENTIAL GRAPH 1!!" << endl;*/
+        cout <<"LoopClosing-->> "<< "BAD ESSENTIAL GRAPH 1!!" << endl;*/
 
-    //cout << "Update relationship between KFs" << endl;
+    //cout <<"LoopClosing-->> "<< "Update relationship between KFs" << endl;
     vector<MapPoint*> vpCheckFuseMapPoint; // MapPoint vector from current map to allow to fuse duplicated points with the old map (merge)
     vector<KeyFrame*> vpCurrentConnectedKFs;
 
@@ -2542,33 +2544,33 @@ void LoopClosing::MergeLocal2()
             break;
     }
 
-    /*cout << "vpCurrentConnectedKFs.size() " << vpCurrentConnectedKFs.size() << endl;
-    cout << "mvpMergeConnectedKFs.size() " << mvpMergeConnectedKFs.size() << endl;
-    cout << "spMapPointMerge.size() " << spMapPointMerge.size() << endl;*/
+    /*cout <<"LoopClosing-->> "<< "vpCurrentConnectedKFs.size() " << vpCurrentConnectedKFs.size() << endl;
+    cout <<"LoopClosing-->> "<< "mvpMergeConnectedKFs.size() " << mvpMergeConnectedKFs.size() << endl;
+    cout <<"LoopClosing-->> "<< "spMapPointMerge.size() " << spMapPointMerge.size() << endl;*/
 
 
     vpCheckFuseMapPoint.reserve(spMapPointMerge.size());
     std::copy(spMapPointMerge.begin(), spMapPointMerge.end(), std::back_inserter(vpCheckFuseMapPoint));
-    //cout << "Finished to update relationship between KFs" << endl;
+    //cout <<"LoopClosing-->> "<< "Finished to update relationship between KFs" << endl;
 
-    //cout << "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
+    //cout <<"LoopClosing-->> "<< "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
 
     /*good = pCurrentMap->CheckEssentialGraph();
     if(!good)
-        cout << "BAD ESSENTIAL GRAPH 2!!" << endl;*/
+        cout <<"LoopClosing-->> "<< "BAD ESSENTIAL GRAPH 2!!" << endl;*/
 
-    //cout << "start SearchAndFuse" << endl;
+    //cout <<"LoopClosing-->> "<< "start SearchAndFuse" << endl;
     // Step 7 把融合关键帧的共视窗口里的地图点投到当前关键帧的共视窗口里，把重复的点融合掉（以旧换新）
     SearchAndFuse(vpCurrentConnectedKFs, vpCheckFuseMapPoint);
-    //cout << "end SearchAndFuse" << endl;
+    //cout <<"LoopClosing-->> "<< "end SearchAndFuse" << endl;
 
-    //cout << "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
+    //cout <<"LoopClosing-->> "<< "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
 
     /*good = pCurrentMap->CheckEssentialGraph();
     if(!good)
-        cout << "BAD ESSENTIAL GRAPH 3!!" << endl;
+        cout <<"LoopClosing-->> "<< "BAD ESSENTIAL GRAPH 3!!" << endl;
 
-    cout << "Init to update connections" << endl;*/
+    cout <<"LoopClosing-->> "<< "Init to update connections" << endl;*/
 
     // 更新当前关键帧共视窗口内所有关键帧的连接
     for(KeyFrame* pKFi : vpCurrentConnectedKFs)
@@ -2587,13 +2589,13 @@ void LoopClosing::MergeLocal2()
 
         pKFi->UpdateConnections();
     }
-    //cout << "end update connections" << endl;
+    //cout <<"LoopClosing-->> "<< "end update connections" << endl;
 
-    //cout << "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
+    //cout <<"LoopClosing-->> "<< "MergeMap init ID: " << pMergeMap->GetInitKFid() << "       CurrMap init ID: " << pCurrentMap->GetInitKFid() << endl;
 
     /*good = pCurrentMap->CheckEssentialGraph();
     if(!good)
-        cout << "BAD ESSENTIAL GRAPH 4!!" << endl;*/
+        cout <<"LoopClosing-->> "<< "BAD ESSENTIAL GRAPH 4!!" << endl;*/
 
     // TODO Check: If new map is too small, we suppose that not informaiton can be propagated from new to old map
     if (numKFnew<10){
@@ -2603,19 +2605,19 @@ void LoopClosing::MergeLocal2()
 
     /*good = pCurrentMap->CheckEssentialGraph();
     if(!good)
-        cout << "BAD ESSENTIAL GRAPH 5!!" << endl;*/
+        cout <<"LoopClosing-->> "<< "BAD ESSENTIAL GRAPH 5!!" << endl;*/
 
     // Perform BA
     bool bStopFlag=false;
     KeyFrame* pCurrKF = mpTracker->GetLastKeyFrame();
-    //cout << "start MergeInertialBA" << endl;
+    //cout <<"LoopClosing-->> "<< "start MergeInertialBA" << endl;
     // Step 8 针对缝合区域的窗口内进行进行welding BA
     Optimizer::MergeInertialBA(pCurrKF, mpMergeMatchedKF, &bStopFlag, pCurrentMap,CorrectedSim3);
-    //cout << "end MergeInertialBA" << endl;
+    //cout <<"LoopClosing-->> "<< "end MergeInertialBA" << endl;
 
     /*good = pCurrentMap->CheckEssentialGraph();
     if(!good)
-        cout << "BAD ESSENTIAL GRAPH 6!!" << endl;*/
+        cout <<"LoopClosing-->> "<< "BAD ESSENTIAL GRAPH 6!!" << endl;*/
 
     // Release Local Mapping.
     mpLocalMapper->Release();
@@ -2629,7 +2631,7 @@ void LoopClosing::MergeLocal2()
  */
 void LoopClosing::CheckObservations(set<KeyFrame*> &spKFsMap1, set<KeyFrame*> &spKFsMap2)
 {
-    cout << "----------------------" << endl;
+    cout <<"LoopClosing-->> "<< "----------------------" << endl;
     for(KeyFrame* pKFi1 : spKFsMap1)
     {
         map<KeyFrame*, int> mMatchedMP;
@@ -2662,18 +2664,18 @@ void LoopClosing::CheckObservations(set<KeyFrame*> &spKFsMap1, set<KeyFrame*> &s
 
         if(mMatchedMP.size() == 0)
         {
-            cout << "CHECK-OBS: KF " << pKFi1->mnId << " has not any matched MP with the other map" << endl;
+            cout <<"LoopClosing-->> "<< "CHECK-OBS: KF " << pKFi1->mnId << " has not any matched MP with the other map" << endl;
         }
         else
         {
-            cout << "CHECK-OBS: KF " << pKFi1->mnId << " has matched MP with " << mMatchedMP.size() << " KF from the other map" << endl;
+            cout <<"LoopClosing-->> "<< "CHECK-OBS: KF " << pKFi1->mnId << " has matched MP with " << mMatchedMP.size() << " KF from the other map" << endl;
             for(pair<KeyFrame*, int> matchedKF : mMatchedMP)
             {
-                cout << "   -KF: " << matchedKF.first->mnId << ", Number of matches: " << matchedKF.second << endl;
+                cout <<"LoopClosing-->> "<< "   -KF: " << matchedKF.first->mnId << ", Number of matches: " << matchedKF.second << endl;
             }
         }
     }
-    cout << "----------------------" << endl;
+    cout <<"LoopClosing-->> "<< "----------------------" << endl;
 }
 
 /** 
@@ -2688,8 +2690,8 @@ void LoopClosing::SearchAndFuse(const KeyFrameAndPose &CorrectedPosesMap, vector
     int total_replaces = 0;
 
     // 遍历每个关键帧
-    //cout << "[FUSE]: Initially there are " << vpMapPoints.size() << " MPs" << endl;
-    //cout << "FUSE: Intially there are " << CorrectedPosesMap.size() << " KFs" << endl;
+    //cout <<"LoopClosing-->> "<< "[FUSE]: Initially there are " << vpMapPoints.size() << " MPs" << endl;
+    //cout <<"LoopClosing-->> "<< "FUSE: Intially there are " << CorrectedPosesMap.size() << " KFs" << endl;
     for(KeyFrameAndPose::const_iterator mit=CorrectedPosesMap.begin(), mend=CorrectedPosesMap.end(); mit!=mend;mit++)
     {
         int num_replaces = 0;
@@ -2728,7 +2730,7 @@ void LoopClosing::SearchAndFuse(const KeyFrameAndPose &CorrectedPosesMap, vector
 
         total_replaces += num_replaces;
     }
-    //cout << "[FUSE]: " << total_replaces << " MPs had been fused" << endl;
+    //cout <<"LoopClosing-->> "<< "[FUSE]: " << total_replaces << " MPs had been fused" << endl;
 }
 
 /** 
@@ -2742,8 +2744,8 @@ void LoopClosing::SearchAndFuse(const vector<KeyFrame*> &vConectedKFs, vector<Ma
 
     int total_replaces = 0;
 
-    //cout << "FUSE-POSE: Initially there are " << vpMapPoints.size() << " MPs" << endl;
-    //cout << "FUSE-POSE: Intially there are " << vConectedKFs.size() << " KFs" << endl;
+    //cout <<"LoopClosing-->> "<< "FUSE-POSE: Initially there are " << vpMapPoints.size() << " MPs" << endl;
+    //cout <<"LoopClosing-->> "<< "FUSE-POSE: Intially there are " << vConectedKFs.size() << " KFs" << endl;
     for(auto mit=vConectedKFs.begin(), mend=vConectedKFs.end(); mit!=mend;mit++)
     {
         int num_replaces = 0;
@@ -2752,7 +2754,7 @@ void LoopClosing::SearchAndFuse(const vector<KeyFrame*> &vConectedKFs, vector<Ma
         Sophus::SE3f Tcw = pKF->GetPose();
         Sophus::Sim3f Scw(Tcw.unit_quaternion(),Tcw.translation());
         Scw.setScale(1.f);
-        /*std::cout << "These should be zeros: " <<
+        /*std::cout <<"LoopClosing-->> "<< "These should be zeros: " <<
             Scw.rotationMatrix() - Tcw.rotationMatrix() << std::endl <<
             Scw.translation() - Tcw.translation() << std::endl <<
             Scw.scale() - 1.f << std::endl;*/
@@ -2771,10 +2773,10 @@ void LoopClosing::SearchAndFuse(const vector<KeyFrame*> &vConectedKFs, vector<Ma
                 pRep->Replace(vpMapPoints[i]);
             }
         }
-        /*cout << "FUSE-POSE: KF " << pKF->mnId << " ->" << num_replaces << " MPs fused" << endl;
+        /*cout <<"LoopClosing-->> "<< "FUSE-POSE: KF " << pKF->mnId << " ->" << num_replaces << " MPs fused" << endl;
         total_replaces += num_replaces;*/
     }
-    //cout << "FUSE-POSE: " << total_replaces << " MPs had been fused" << endl;
+    //cout <<"LoopClosing-->> "<< "FUSE-POSE: " << total_replaces << " MPs had been fused" << endl;
 }
 
 
@@ -2827,7 +2829,7 @@ void LoopClosing::ResetIfRequested()
     // 如果有来自于外部的线程的复位请求,那么就复位当前线程
     if(mbResetRequested)
     {
-        cout << "Loop closer reset requested..." << endl;
+        cout <<"LoopClosing-->> "<< "Loop closer reset requested..." << endl;
         // 清空参与和进行回环检测的关键帧队列
         mlpLoopKeyFrameQueue.clear();
         // 上一次没有和任何关键帧形成闭环关系
@@ -2863,7 +2865,7 @@ void LoopClosing::ResetIfRequested()
  */
 void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoopKF)
 {  
-    Verbose::PrintMess("Starting Global Bundle Adjustment", Verbose::VERBOSITY_NORMAL);
+    Verbose::PrintMess("LoopClosing-->> Starting Global Bundle Adjustment", Verbose::VERBOSITY_NORMAL);
 
 #ifdef REGISTER_TIMES
     std::chrono::steady_clock::time_point time_StartFGBA = std::chrono::steady_clock::now();
@@ -2912,8 +2914,8 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
 
         if(!mbStopGBA)
         {
-            Verbose::PrintMess("Global Bundle Adjustment finished", Verbose::VERBOSITY_NORMAL);
-            Verbose::PrintMess("Updating map ...", Verbose::VERBOSITY_NORMAL);
+            Verbose::PrintMess("LoopClosing-->> Global Bundle Adjustment finished", Verbose::VERBOSITY_NORMAL);
+            Verbose::PrintMess("LoopClosing-->> Updating map ...", Verbose::VERBOSITY_NORMAL);
 
             mpLocalMapper->RequestStop();
             // Wait until Local Mapping has effectively stopped
@@ -2925,7 +2927,7 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
 
             // Get Map Mutex
             unique_lock<mutex> lock(pActiveMap->mMutexMapUpdate);
-            // cout << "LC: Update Map Mutex adquired" << endl;
+            // cout <<"LoopClosing-->> "<< "LC: Update Map Mutex adquired" << endl;
 
             //pActiveMap->PrintEssentialGraph();
             // Correct keyframes starting at map first keyframe
@@ -2936,11 +2938,11 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
             {
                 KeyFrame* pKF = lpKFtoCheck.front();
                 const set<KeyFrame*> sChilds = pKF->GetChilds();
-                //cout << "---Updating KF " << pKF->mnId << " with " << sChilds.size() << " childs" << endl;
-                //cout << " KF mnBAGlobalForKF: " << pKF->mnBAGlobalForKF << endl;
+                //cout <<"LoopClosing-->> "<< "---Updating KF " << pKF->mnId << " with " << sChilds.size() << " childs" << endl;
+                //cout <<"LoopClosing-->> "<< " KF mnBAGlobalForKF: " << pKF->mnBAGlobalForKF << endl;
                 Sophus::SE3f Twc = pKF->GetPoseInverse();
-                //cout << "Twc: " << Twc << endl;
-                //cout << "GBA: Correct KeyFrames" << endl;
+                //cout <<"LoopClosing-->> "<< "Twc: " << Twc << endl;
+                //cout <<"LoopClosing-->> "<< "GBA: Correct KeyFrames" << endl;
                 // 广度优先搜索
                 for(set<KeyFrame*>::const_iterator sit=sChilds.begin();sit!=sChilds.end();sit++)
                 {
@@ -2951,11 +2953,11 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
                     // 专门处理没有参与优化的新关键帧
                     if(pChild->mnBAGlobalForKF!=nLoopKF)
                     {
-                        //cout << "++++New child with flag " << pChild->mnBAGlobalForKF << "; LoopKF: " << nLoopKF << endl;
-                        //cout << " child id: " << pChild->mnId << endl;
+                        //cout <<"LoopClosing-->> "<< "++++New child with flag " << pChild->mnBAGlobalForKF << "; LoopKF: " << nLoopKF << endl;
+                        //cout <<"LoopClosing-->> "<< " child id: " << pChild->mnId << endl;
                         Sophus::SE3f Tchildc = pChild->GetPose() * Twc;
-                        //cout << "Child pose: " << Tchildc << endl;
-                        //cout << "pKF->mTcwGBA: " << pKF->mTcwGBA << endl;
+                        //cout <<"LoopClosing-->> "<< "Child pose: " << Tchildc << endl;
+                        //cout <<"LoopClosing-->> "<< "pKF->mTcwGBA: " << pKF->mTcwGBA << endl;
                         pChild->mTcwGBA = Tchildc * pKF->mTcwGBA;//*Tcorc*pKF->mTcwGBA;
 
                         Sophus::SO3f Rcor = pChild->mTcwGBA.so3().inverse() * pChild->GetPose().so3();
@@ -2963,10 +2965,10 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
                             pChild->mVwbGBA = Rcor * pChild->GetVelocity();
                         }
                         else
-                            Verbose::PrintMess("Child velocity empty!! ", Verbose::VERBOSITY_NORMAL);
+                            Verbose::PrintMess("LoopClosing-->> Child velocity empty!! ", Verbose::VERBOSITY_NORMAL);
 
 
-                        //cout << "Child bias: " << pChild->GetImuBias() << endl;
+                        //cout <<"LoopClosing-->> "<< "Child bias: " << pChild->GetImuBias() << endl;
                         pChild->mBiasGBA = pChild->GetImuBias();
 
 
@@ -2976,14 +2978,14 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
                     lpKFtoCheck.push_back(pChild);
                 }
 
-                //cout << "-------Update pose" << endl;
+                //cout <<"LoopClosing-->> "<< "-------Update pose" << endl;
                 pKF->mTcwBefGBA = pKF->GetPose();
-                //cout << "pKF->mTcwBefGBA: " << pKF->mTcwBefGBA << endl;
+                //cout <<"LoopClosing-->> "<< "pKF->mTcwBefGBA: " << pKF->mTcwBefGBA << endl;
                 pKF->SetPose(pKF->mTcwGBA);
                 /*cv::Mat Tco_cn = pKF->mTcwBefGBA * pKF->mTcwGBA.inv();
                 cv::Vec3d trasl = Tco_cn.rowRange(0,3).col(3);
                 double dist = cv::norm(trasl);
-                cout << "GBA: KF " << pKF->mnId << " had been moved " << dist << " meters" << endl;
+                cout <<"LoopClosing-->> "<< "GBA: KF " << pKF->mnId << " had been moved " << dist << " meters" << endl;
                 double desvX = 0;
                 double desvY = 0;
                 double desvZ = 0;
@@ -3001,12 +3003,12 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
                 }
                 if(dist > 1)
                 {
-                    cout << "--To much distance correction: It has " << pKF->GetConnectedKeyFrames().size() << " connected KFs" << endl;
-                    cout << "--It has " << pKF->GetCovisiblesByWeight(80).size() << " connected KF with 80 common matches or more" << endl;
-                    cout << "--It has " << pKF->GetCovisiblesByWeight(50).size() << " connected KF with 50 common matches or more" << endl;
-                    cout << "--It has " << pKF->GetCovisiblesByWeight(20).size() << " connected KF with 20 common matches or more" << endl;
+                    cout <<"LoopClosing-->> "<< "--To much distance correction: It has " << pKF->GetConnectedKeyFrames().size() << " connected KFs" << endl;
+                    cout <<"LoopClosing-->> "<< "--It has " << pKF->GetCovisiblesByWeight(80).size() << " connected KF with 80 common matches or more" << endl;
+                    cout <<"LoopClosing-->> "<< "--It has " << pKF->GetCovisiblesByWeight(50).size() << " connected KF with 50 common matches or more" << endl;
+                    cout <<"LoopClosing-->> "<< "--It has " << pKF->GetCovisiblesByWeight(20).size() << " connected KF with 20 common matches or more" << endl;
 
-                    cout << "--STD in meters(x, y, z): " << desvX << ", " << desvY << ", " << desvZ << endl;
+                    cout <<"LoopClosing-->> "<< "--STD in meters(x, y, z): " << desvX << ", " << desvY << ", " << desvZ << endl;
 
 
                     string strNameFile = pKF->mNameFile;
@@ -3027,7 +3029,7 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
                         cv::circle(imLeft, pKF->mvKeys[i].pt, 2, cv::Scalar(0, 255, 0));
                         cv::putText(imLeft, strNumOBs, pKF->mvKeys[i].pt, CV_FONT_HERSHEY_DUPLEX, 1, cv::Scalar(255, 0, 0));
                     }
-                    cout << "--It has " << num_MPs << " MPs matched in the map" << endl;
+                    cout <<"LoopClosing-->> "<< "--It has " << num_MPs << " MPs matched in the map" << endl;
 
                     string namefile = "./test_GBA/GBA_" + to_string(nLoopKF) + "_KF" + to_string(pKF->mnId) +"_D" + to_string(dist) +".png";
                     cv::imwrite(namefile, imLeft);
@@ -3036,10 +3038,10 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
 
                 if(pKF->bImu)
                 {
-                    //cout << "-------Update inertial values" << endl;
+                    //cout <<"LoopClosing-->> "<< "-------Update inertial values" << endl;
                     pKF->mVwbBefGBA = pKF->GetVelocity();
                     //if (pKF->mVwbGBA.empty())
-                    //    Verbose::PrintMess("pKF->mVwbGBA is empty", Verbose::VERBOSITY_NORMAL);
+                    //    Verbose::PrintMess("LoopClosing-->> pKF->mVwbGBA is empty", Verbose::VERBOSITY_NORMAL);
 
                     //assert(!pKF->mVwbGBA.empty());
                     pKF->SetVelocity(pKF->mVwbGBA);
@@ -3049,7 +3051,7 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
                 lpKFtoCheck.pop_front();
             }
 
-            //cout << "GBA: Correct MapPoints" << endl;
+            //cout <<"LoopClosing-->> "<< "GBA: Correct MapPoints" << endl;
             // Correct MapPoints
             // 更新mp点
             const vector<MapPoint*> vpMPs = pActiveMap->GetAllMapPoints();
@@ -3110,7 +3112,7 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
             double timeFGBA = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndUpdateMap - time_StartFGBA).count();
             vdFGBATotal_ms.push_back(timeFGBA);
 #endif
-            Verbose::PrintMess("Map updated!", Verbose::VERBOSITY_NORMAL);
+            Verbose::PrintMess("LoopClosing-->> Map updated!", Verbose::VERBOSITY_NORMAL);
         }
 
         mbFinishedGBA = true;
@@ -3122,7 +3124,7 @@ void LoopClosing::RunGlobalBundleAdjustment(Map* pActiveMap, unsigned long nLoop
 void LoopClosing::RequestFinish()
 {
     unique_lock<mutex> lock(mMutexFinish);
-    // cout << "LC: Finish requested" << endl;
+    // cout <<"LoopClosing-->> "<< "LC: Finish requested" << endl;
     mbFinishRequested = true;
 }
 
