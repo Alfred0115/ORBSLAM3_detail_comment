@@ -1059,9 +1059,9 @@ vector<cv::KeyPoint> ORBextractor::DistributeOctTree(const vector<cv::KeyPoint>&
 
 //计算四叉树的特征点，函数名字后面的OctTree只是说明了在过滤和分配特征点时所使用的方式
 void ORBextractor::ComputeKeyPointsOctTree(
-	vector<vector<KeyPoint> >& allKeypoints)	//所有的特征点，这里第一层vector存储的是某图层里面的所有特征点，
-												//第二层存储的是整个图像金字塔中的所有图层里面的所有特征点
-{
+	vector<vector<KeyPoint> >& allKeypoints)	//所有的特征点，这里第一层vector存储的是某图层里面的所有特征点，											
+{              
+                                       //第二层存储的是整个图像金字塔中的所有图层里面的所有特征点
 	//重新调整图像层数
     allKeypoints.resize(nlevels);
 
@@ -1615,21 +1615,35 @@ static void computeDescriptors(const Mat& image, vector<KeyPoint>& keypoints, Ma
         int monoIndex = 0, stereoIndex = nkeypoints-1;
         for (int level = 0; level < nlevels; ++level)
         {
-		//获取在allKeypoints中当前层特征点容器的句柄
+		    //获取在allKeypoints中当前层特征点容器的句柄
             vector<KeyPoint>& keypoints = allKeypoints[level];
-		//本层的特征点数
+		    //本层的特征点数
             int nkeypointsLevel = (int)keypoints.size();
 
             if(nkeypointsLevel==0)
                 continue;
 
-        // preprocess the resized image 
-        //  Step 5 对图像进行高斯模糊
-		// 深拷贝当前金字塔所在层级的图像
-        Mat workingMat = mvImagePyramid[level].clone();
-
-		// 注意：提取特征点的时候，使用的是清晰的原图像；这里计算描述子的时候，为了避免图像噪声的影响，使用了高斯模糊
-        GaussianBlur(workingMat, 		//源图像
+            // preprocess the resized image 
+            //  Step 5 对图像进行高斯模糊
+            // 深拷贝当前金字塔所在层级的图像
+            Mat workingMat = mvImagePyramid[level].clone();
+            // if(true)
+            // {
+            //     Mat temp_Mat = mvImagePyramid[level].clone();
+            //     for (size_t i = 0; i < keypoints.size(); i++)
+            //     {
+            //         KeyPoint kpt = keypoints[i];
+            //         temp_Mat.at<uchar>(cvRound(kpt.pt.y), cvRound(kpt.pt.x)) = 0xff;
+            //     }
+            //     std::stringstream ss;
+            //     ss<<"im_";
+            //     ss<<level;
+            //     ss<<".png";
+            //     cv::imwrite(ss.str().c_str(), temp_Mat);
+            // }
+            
+            // 注意：提取特征点的时候，使用的是清晰的原图像；这里计算描述子的时候，为了避免图像噪声的影响，使用了高斯模糊
+            GaussianBlur(workingMat, 		//源图像
 					 workingMat, 		//输出图像
 					 Size(7, 7), 		//高斯滤波器kernel大小，必须为正的奇数
 					 2, 				//高斯滤波在x方向的标准差
@@ -1637,22 +1651,22 @@ static void computeDescriptors(const Mat& image, vector<KeyPoint>& keypoints, Ma
 					 BORDER_REFLECT_101);//边缘拓展点插值类型
 
             // Compute the descriptors
-		// desc存储当前图层的描述子
+		    // desc存储当前图层的描述子
             //Mat desc = descriptors.rowRange(offset, offset + nkeypointsLevel);
             Mat desc = cv::Mat(nkeypointsLevel, 32, CV_8U);
 			// Step 6 计算高斯模糊后图像的描述子
-        computeDescriptors(workingMat, 	//高斯模糊之后的图层图像
+            computeDescriptors(workingMat, 	//高斯模糊之后的图层图像
 						   keypoints, 	//当前图层中的特征点集合
 						   desc, 		//存储计算之后的描述子
 						   pattern);	//随机采样点集
 
-		// 更新偏移量的值 
-        offset += nkeypointsLevel;
+            // 更新偏移量的值 
+            offset += nkeypointsLevel;
 
-        // Scale keypoint coordinates
-		// Step 6 对非第0层图像中的特征点的坐标恢复到第0层图像（原图像）的坐标系下
-        // ? 得到所有层特征点在第0层里的坐标放到_keypoints里面
-		// 对于第0层的图像特征点，他们的坐标就不需要再进行恢复了
+            // Scale keypoint coordinates
+            // Step 6 对非第0层图像中的特征点的坐标恢复到第0层图像（原图像）的坐标系下
+            // ? 得到所有层特征点在第0层里的坐标放到_keypoints里面
+            // 对于第0层的图像特征点，他们的坐标就不需要再进行恢复了
             float scale = mvScaleFactor[level]; //getScale(level, firstLevel, scaleFactor);
             int i = 0;
             for (vector<KeyPoint>::iterator keypoint = keypoints.begin(),

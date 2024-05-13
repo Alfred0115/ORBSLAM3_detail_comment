@@ -3817,7 +3817,7 @@ bool Tracking::NeedNewKeyFrame()
         c4=true;
     else
         c4=false;
-    std::cout <<"Tracking-->> "<< "c1a||c1b||c1c) && c2)||c3 ||c4 "<<c1a<<" "<<c1b<<" "<<c1c<<" "<<c2<<" "<<c3<<" "<<c4<<" thRefRatio "<<thRefRatio<<std::end;
+    std::cout <<"Tracking-->> "<< "c1a||c1b||c1c) && c2)||c3 ||c4 "<<c1a<<" "<<c1b<<" "<<c1c<<" "<<c2<<" "<<c3<<" "<<c4<<" thRefRatio "<<thRefRatio<<std::endl;
     // 相比ORB-SLAM2多了c3,c4
     if(((c1a||c1b||c1c) && c2)||c3 ||c4)
     {
