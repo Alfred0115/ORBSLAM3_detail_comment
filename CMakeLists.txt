@@ -43,7 +43,11 @@ MESSAGE(${OpenCV_VERSION})
 find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(realsense2)
-
+if(realsense2_FOUND)
+    message(">>>>>>>>>>>>>>>>>>>>>>realsense2_FOUND>>>>>>>>>>>>>>>>>>>>>>.")
+elseif()
+    message(">>>>>>>>>>>>>>>>>>>>>>realsense2_not FOUND>>>>>>>>>>>>>>>>>>>>>>.")
+endif()
 include_directories(
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include

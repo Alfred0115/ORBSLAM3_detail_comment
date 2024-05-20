@@ -225,7 +225,7 @@ rosrun ORB_SLAM3 Mono /path/to/ORB_SLAM3/Vocabulary/ORBvoc.txt /path/to/ORB_SLAM
 
 rosrun ORB_SLAM3 Mono_Inertial Vocabulary/ORBvoc.txt Examples/Monocular-Inertial/EuRoC.yaml false
   ```
-
+https://arxiv.org/pdf/2007.11898v1
 ### Running Stereo Node
 For a stereo input from topic `/camera/left/image_raw` and `/camera/right/image_raw` run node ORB_SLAM3/Stereo. You will need to provide the vocabulary file and a settings file. For Pinhole camera model, if you **provide rectification matrices** (see Examples/Stereo/EuRoC.yaml example), the node will recitify the images online, **otherwise images must be pre-rectified**. For FishEye camera model, rectification is not required since system works with original images:
 

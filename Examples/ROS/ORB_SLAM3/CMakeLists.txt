@@ -34,7 +34,7 @@ LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../../../cmake_modules)
 # 3 4 都可以正常运行
 find_package(OpenCV 3.2)
    if(NOT OpenCV_FOUND)
-      message(FATAL_ERROR "OpenCV > 3.2 not found.")
+      message(FATAL_ERROR ">>>>>>>>>>>>>>>>>>>>>OpenCV > 3.2 not found.")
    endif()
 
 find_package(Eigen3 3.1.0 REQUIRED)

@@ -129,5 +129,6 @@
 		"variant": "cpp",
 		"core": "cpp"
 	},
-	"ros.distro": "melodic"
+	"ros.distro": "melodic",
+	"C_Cpp.errorSquiggles": "enabled"
 }
