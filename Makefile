@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/li/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments
+CMAKE_BINARY_DIR = /home/li/catkin_ws/src/V_SLAM_LZQ
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,9 +137,9 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/CMakeFiles /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/li/catkin_ws/src/V_SLAM_LZQ/CMakeFiles /home/li/catkin_ws/src/V_SLAM_LZQ/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/li/catkin_ws/src/V_SLAM_LZQ/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

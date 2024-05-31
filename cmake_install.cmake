@@ -56,7 +56,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -68,7 +68,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/env.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -81,8 +81,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
 file(INSTALL DESTINATION "/usr/local" TYPE FILE FILES
-    "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/setup.bash"
-    "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/local_setup.bash"
+    "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/setup.bash"
+    "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/local_setup.bash"
     )
 endif()
 
@@ -96,8 +96,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
 file(INSTALL DESTINATION "/usr/local" TYPE FILE FILES
-    "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/setup.sh"
-    "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/local_setup.sh"
+    "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/setup.sh"
+    "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/local_setup.sh"
     )
 endif()
 
@@ -111,8 +111,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
 file(INSTALL DESTINATION "/usr/local" TYPE FILE FILES
-    "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/setup.zsh"
-    "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/local_setup.zsh"
+    "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/setup.zsh"
+    "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/local_setup.zsh"
     )
 endif()
 
@@ -125,12 +125,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/installspace/.rosinstall")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/gtest/cmake_install.cmake")
+  include("/home/li/catkin_ws/src/V_SLAM_LZQ/gtest/cmake_install.cmake")
 
 endif()
 
@@ -142,5 +142,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/li/catkin_ws/src/V_SLAM_LZQ/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

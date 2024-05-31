@@ -2,9 +2,9 @@
 
 -by 计算机视觉life 公众号旗下开源学习小组：SLAM研习社
 
-![DEMO](https://github.com/electech6/ORB_SLAM3_detailed_comments/blob/master/demo.gif)
+![DEMO](https://github.com/electech6/V_SLAM_LZQ/blob/master/demo.gif)
 
-![课程大纲](https://github.com/electech6/ORB_SLAM3_detailed_comments/blob/master/outline.png)
+![课程大纲](https://github.com/electech6/V_SLAM_LZQ/blob/master/outline.png)
 
 [ORB-SLAM3 逐行源码讲解](https://cvlife.net/detail/term_6255372036a53_o5VfgR/25)
 

@@ -68,7 +68,7 @@ set(ORB_SLAM3_LIB_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
   set(ORB_SLAM3_LIB_SOURCE_PREFIX /home/li/catkin_ws/src/ORB-SLAM3-GRID-MAP/ORB_SLAM3_LIB)
-  set(ORB_SLAM3_LIB_DEVEL_PREFIX /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/devel)
+  set(ORB_SLAM3_LIB_DEVEL_PREFIX /home/li/catkin_ws/src/V_SLAM_LZQ/devel)
   set(ORB_SLAM3_LIB_INSTALL_PREFIX "")
   set(ORB_SLAM3_LIB_PREFIX ${ORB_SLAM3_LIB_DEVEL_PREFIX})
 else()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/devel/lib;/home/li/catkin_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/li/catkin_ws/src/V_SLAM_LZQ/devel/lib;/home/li/catkin_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

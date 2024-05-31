@@ -19,9 +19,9 @@ except ImportError:
             break
     from catkin.environment_cache import generate_environment_script
 
-code = generate_environment_script('/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/devel/env.sh')
+code = generate_environment_script('/home/li/catkin_ws/src/V_SLAM_LZQ/devel/env.sh')
 
-output_filename = '/home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/catkin_generated/setup_cached.sh'
+output_filename = '/home/li/catkin_ws/src/V_SLAM_LZQ/catkin_generated/setup_cached.sh'
 with open(output_filename, 'w') as f:
     # print('Generate script for cached setup "%s"' % output_filename)
     f.write('\n'.join(code))

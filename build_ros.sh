@@ -1,5 +1,6 @@
 echo "Building ROS nodes"
 currentDirectory=$(pwd)
+export ROS_PACKAGE_PATH=/home/li/catkin_ws/src/V_SLAM_LZQ/Examples/ROS/ORB_SLAM3:$ROS_PACKAGE_PATH
 cd Examples/ROS/ORB_SLAM3
 mkdir build
 cd build

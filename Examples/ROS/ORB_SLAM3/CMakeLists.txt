@@ -48,7 +48,6 @@ ${PROJECT_SOURCE_DIR}/../../../include/CameraModels
 ${PROJECT_SOURCE_DIR}/../../../Thirdparty/Sophus
 ${Pangolin_INCLUDE_DIRS}
 )
-
 set(LIBS 
 ${OpenCV_LIBS} 
 ${EIGEN3_LIBS}
@@ -58,7 +57,7 @@ ${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so
 ${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM3.so
 -lboost_system
 )
-message("------------->>>>>>>>>>>>>>>>>>>>>>         "${LIBS})
+message("------------->>>>>>>>>>>>>>>>>>>>>>lib         "${LIBS})
 message("------------->>>>>>>>>>>>>>>>>>>>>>")
 # Node for monocular camera
 rosbuild_add_executable(Mono

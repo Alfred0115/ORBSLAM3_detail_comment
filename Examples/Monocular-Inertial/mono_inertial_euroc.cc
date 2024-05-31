@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     int tot_images = 0;
     for (seq = 0; seq<num_seq; seq++)
     {
-        cout << "Loading images for sequence " << seq << "...";
+        cout << "Loading images for sequence " << seq << " of "<<num_seq<<"...";
 
         string pathSeq(argv[(2*seq) + 3]);
         string pathTimeStamps(argv[(2*seq) + 4]);

@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/li/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments
+CMAKE_BINARY_DIR = /home/li/catkin_ws/src/V_SLAM_LZQ
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,14 +137,14 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments && $(CMAKE_COMMAND) -E cmake_progress_start /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/CMakeFiles /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/gtest/CMakeFiles/progress.marks
-	cd /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments/CMakeFiles 0
+	cd /home/li/catkin_ws/src/V_SLAM_LZQ && $(CMAKE_COMMAND) -E cmake_progress_start /home/li/catkin_ws/src/V_SLAM_LZQ/CMakeFiles /home/li/catkin_ws/src/V_SLAM_LZQ/gtest/CMakeFiles/progress.marks
+	cd /home/li/catkin_ws/src/V_SLAM_LZQ && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/li/catkin_ws/src/V_SLAM_LZQ/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
+	cd /home/li/catkin_ws/src/V_SLAM_LZQ && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,17 +154,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
+	cd /home/li/catkin_ws/src/V_SLAM_LZQ && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
+	cd /home/li/catkin_ws/src/V_SLAM_LZQ && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/li/catkin_ws/src/V_SLAM_LZQ && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -191,6 +191,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/li/catkin_ws/src/ORB_SLAM3_detailed_comments && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/li/catkin_ws/src/V_SLAM_LZQ && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
