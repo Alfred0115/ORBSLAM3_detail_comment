@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
         string pathCam0 = pathSeq + "/mav0/cam0/data";
         string pathImu = pathSeq + "/mav0/imu0/data.csv";
-
+        cout << "pathCam0 " << pathCam0 << " pathImu "<<pathImu<<std::endl;
         LoadImages(pathCam0, pathTimeStamps, vstrImageFilenames[seq], vTimestampsCam[seq]);
         cout << "LOADED!" << endl;
 

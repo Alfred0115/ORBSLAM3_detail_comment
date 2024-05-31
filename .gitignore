@@ -79,5 +79,4 @@ build/
 CMakeFiles/
 CMakeFiles/CMakeTmp
 *.bag
-*.log
 

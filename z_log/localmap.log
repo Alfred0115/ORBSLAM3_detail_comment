@@ -1,0 +1,1951 @@
+LocalMapping-->> 2315LocalMapping::Run cost time 13
+LocalMapping-->> 2316LocalMapping::Run cost time 14
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 2406LocalMapping::Run cost time 18
+LocalMapping-->> 2407LocalMapping::Run cost time 14
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 2419LocalMapping::Run cost time 18
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 2481LocalMapping::Run cost time 11
+LocalMapping-->> 2482LocalMapping::Run cost time 11
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 2518LocalMapping::Run cost time 24
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 2642LocalMapping::Run cost time 12
+LocalMapping-->> 2643LocalMapping::Run cost time 15
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 2754LocalMapping::Run cost time 14
+LocalMapping-->> 2755LocalMapping::Run cost time 13
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 2802LocalMapping::Run cost time 11
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 2904LocalMapping::Run cost time 13
+LocalMapping-->> 2905LocalMapping::Run cost time 11
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 2947LocalMapping::Run cost time 20
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 3048LocalMapping::Run cost time 18
+LocalMapping-->> 3049LocalMapping::Run cost time 11
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 3143LocalMapping::Run cost time 13
+LocalMapping-->> 3144LocalMapping::Run cost time 12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 3180LocalMapping::Run cost time 23
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 3240LocalMapping::Run cost time 11
+LocalMapping-->> 3241LocalMapping::Run cost time 13
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 3281LocalMapping::Run cost time 14
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 3398LocalMapping::Run cost time 13
+LocalMapping-->> 3399LocalMapping::Run cost time 10
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 3494LocalMapping::Run cost time 11
+LocalMapping-->> 3495LocalMapping::Run cost time 10
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 3533LocalMapping::Run cost time 19
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 3607LocalMapping::Run cost time 32
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 3707LocalMapping::Run cost time 13
+LocalMapping-->> 3708LocalMapping::Run cost time 12
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 3790LocalMapping::Run cost time 12
+LocalMapping-->> 3791LocalMapping::Run cost time 14
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 3819LocalMapping::Run cost time 15
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 3897LocalMapping::Run cost time 18
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 3978LocalMapping::Run cost time 22
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4047LocalMapping::Run cost time 23
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4118LocalMapping::Run cost time 20
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4193LocalMapping::Run cost time 28
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4265LocalMapping::Run cost time 28
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 4337LocalMapping::Run cost time 31
+LocalMapping-->>  mpAtlas->KeyFramesInMap()11 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 4409LocalMapping::Run cost time 60
+LocalMapping-->>  mpAtlas->KeyFramesInMap()12 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4469LocalMapping::Run cost time 73
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 4516LocalMapping::Run cost time 14
+LocalMapping-->> 4517LocalMapping::Run cost time 13
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 4662LocalMapping::Run cost time 10
+Tracking-->> robot_pose , -0.551 , LocalMapping-->> 0.04974663LocalMapping::Run cost time 8
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4719LocalMapping::Run cost time 14
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4794LocalMapping::Run cost time 17
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4869LocalMapping::Run cost time 20
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 4945LocalMapping::Run cost time 22
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5019LocalMapping::Run cost time 25
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5090LocalMapping::Run cost time 40
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5157LocalMapping::Run cost time 35
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 5282LocalMapping::Run cost time 13
+LocalMapping-->> 5283LocalMapping::Run cost time 11
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5316LocalMapping::Run cost time 19
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5390LocalMapping::Run cost time 26
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5461LocalMapping::Run cost time 27
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 5528LocalMapping::Run cost time 16
+LocalMapping-->> 5529LocalMapping::Run cost time 9
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5575LocalMapping::Run cost time 16
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5651LocalMapping::Run cost time 22
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5723LocalMapping::Run cost time 25
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5794LocalMapping::Run cost time 20
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5868LocalMapping::Run cost time 28
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 5938LocalMapping::Run cost time 29
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6009LocalMapping::Run cost time 29
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6079LocalMapping::Run cost time 59
+LocalMapping-->>  bLarge 0 dist 0.0636
+LocalMapping-->>  mpAtlas->KeyFramesInMap()12 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6092LocalMapping::Run cost time 59
+LocalMapping-->>  bLarge 1 dist 0.0981
+LocalMapping-->>  mpAtlas->KeyFramesInMap()13 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6117LocalMapping::Run cost time 55
+LocalMapping-->>  bLarge 1 dist 0.136
+LocalMapping-->>  mpAtlas->KeyFramesInMap()14 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6124LocalMapping::Run cost time 55
+LocalMapping-->>  bLarge 1 dist 0.132
+LocalMapping-->>  mpAtlas->KeyFramesInMap()15 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6138LocalMapping::Run cost time 54
+LocalMapping-->>  bLarge 1 dist 0.117
+LocalMapping-->>  mpAtlas->KeyFramesInMap()16 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6154LocalMapping::Run cost time 70
+LocalMapping-->>  bLarge 1 dist 0.101
+LocalMapping-->>  mpAtlas->KeyFramesInMap()17 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6161LocalMapping::Run cost time 97
+LocalMapping-->>  bLarge 1 dist 0.0913
+LocalMapping-->>  mpAtlas->KeyFramesInMap()18 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6164LocalMapping::Run cost time 100
+LocalMapping-->>  bLarge 1 dist 0.09
+LocalMapping-->>  mpAtlas->KeyFramesInMap()19 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6169LocalMapping::Run cost time 106
+LocalMapping-->>  bLarge 1 dist 0.12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()20 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6178LocalMapping::Run cost time 135
+LocalMapping-->>  bLarge 1 dist 0.157
+LocalMapping-->>  mpAtlas->KeyFramesInMap()21 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6184LocalMapping::Run cost time 133
+LocalMapping-->>  bLarge 1 dist 0.17071971297264099
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6188LocalMapping::Run cost time 89
+LocalMapping-->>  bLarge 1 dist 0.151
+LocalMapping-->>  mpAtlas->KeyFramesInMap()23 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6189LocalMapping::Run cost time 86
+LocalMapping-->>  bLarge 1 dist 0.131
+LocalMapping-->>  mpAtlas->KeyFramesInMap()24 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6194LocalMapping::Run cost time 82
+LocalMapping-->>  bLarge 1 dist 0.13480016589164734
+LocalMapping-->>  mpAtlas->KeyFramesInMap()25 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6199LocalMapping::Run cost time 112
+Tracking-->>  bOK->12 : (LocalMapping-->>  bLarge 11) (1 dist ) mState 2
+LocalMapping-->>  mpAtlas->KeyFramesInMap()26 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6211LocalMapping::Run cost time 153
+LocalMapping-->>  bLarge 1 dist 0.14794719219207764
+LocalMapping-->>  mpAtlas->KeyFramesInMap()27 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6212LocalMapping::Run cost time 153
+LocalMapping-->>  bLarge 1 dist 0.187
+LocalMapping-->>  mpAtlas->KeyFramesInMap()28 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6225LocalMapping::Run cost time 128
+LocalMapping-->>  bLarge 1 dist 0.201
+LocalMapping-->>  mpAtlas->KeyFramesInMap()29 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6227LocalMapping::Run cost time 121
+LocalMapping-->>  bLarge 1 dist 0.19198331236839294
+LocalMapping-->>  mpAtlas->KeyFramesInMap()30 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6232LocalMapping::Run cost time 141
+LocalMapping-->>  bLarge 1 dist 0.213
+LocalMapping-->>  mpAtlas->KeyFramesInMap()31 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6246LocalMapping::Run cost time 104
+LocalMapping-->>  bLarge 1 dist 0.147
+LocalMapping-->>  mpAtlas->KeyFramesInMap()32 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6258LocalMapping::Run cost time 99
+LocalMapping-->>  bLarge 1 dist 0.095370359718799591
+LocalMapping-->>  mpAtlas->KeyFramesInMap()32 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6259LocalMapping::Run cost time 105
+LocalMapping-->>  bLarge 1 dist 0.137
+LocalMapping-->>  mpAtlas->KeyFramesInMap()33 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6274LocalMapping::Run cost time 103
+LocalMapping-->>  bLarge 1 dist 0.18
+LocalMapping-->>  mpAtlas->KeyFramesInMap()34 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> start VIBA 1
+LocalMapping-->> end VIBA 1
+LocalMapping-->> 6291LocalMapping::Run cost time 304
+LocalMapping-->>  bLarge 1 dist 0.20668458938598633
+LocalMapping-->>  mpAtlas->KeyFramesInMap()Tracking-->> TRACK: Track with motion model !mbOnlyTracking
+LocalMapping-->> 6303LocalMapping::Run cost time 98
+LocalMapping-->>  bLarge 1 dist 0.201
+LocalMapping-->>  mpAtlas->KeyFramesInMap()36 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6318LocalMapping::Run cost time 101
+LocalMapping-->>  bLarge 1 dist 0.13072486221790314
+LocalMapping-->>  mpAtlas->KeyFramesInMap()37 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6320LocalMapping::Run cost time 103
+LocalMapping-->>  bLarge 1 dist 0.086
+LocalMapping-->>  mpAtlas->KeyFramesInMap()38 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6335LocalMapping::Run cost time 112
+LocalMapping-->>  bLarge 1 dist 0.16756998002529144
+LocalMapping-->>  mpAtlas->KeyFramesInMap()39 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6411LocalMapping::Run cost time 112
+LocalMapping-->>  bLarge 1 dist 0.229
+LocalMapping-->>  mpAtlas->KeyFramesInMap()40 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6425LocalMapping::Run cost time 118
+LocalMapping-->>  bLarge 1 dist 0.202
+LocalMapping-->>  mpAtlas->KeyFramesInMap()40 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6433LocalMapping::Run cost time 122
+LocalMapping-->>  bLarge 1 dist 0.182
+LocalMapping-->>  mpAtlas->KeyFramesInMap()40 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6444LocalMapping::Run cost time 120
+LocalMapping-->>  bLarge 1 dist 0.121
+LocalMapping-->>  mpAtlas->KeyFramesInMap()40 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6452LocalMapping::Run cost time 116
+LocalMapping-->>  bLarge 1 dist 0.0664
+LocalMapping-->>  mpAtlas->KeyFramesInMap()41 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6463LocalMapping::Run cost time 126
+LocalMapping-->>  bLarge 1 dist 0.0778
+LocalMapping-->>  mpAtlas->KeyFramesInMap()40 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6469LocalMapping::Run cost time 129
+LocalMapping-->>  bLarge 1 dist 0.12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()40 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6472LocalMapping::Run cost time 131
+LocalMapping-->>  bLarge 1 dist 0.131
+LocalMapping-->>  mpAtlas->KeyFramesInMap()41 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6473LocalMapping::Run cost time 136
+LocalMapping-->>  bLarge 1 dist 0.1
+LocalMapping-->>  mpAtlas->KeyFramesInMap()41 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6475LocalMapping::Run cost time 122
+LocalMapping-->>  bLarge 1 dist 0.0707
+LocalMapping-->>  mpAtlas->KeyFramesInMap()42 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6485LocalMapping::Run cost time 131
+LocalMapping-->>  bLarge 1 dist 0.0883
+LocalMapping-->>  mpAtlas->KeyFramesInMap()42 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6490LocalMapping::Run cost time 127
+LocalMapping-->>  bLarge 1 dist 0.113
+LocalMapping-->>  mpAtlas->KeyFramesInMap()42 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6498LocalMapping::Run cost time 120
+LocalMapping-->>  bLarge 1 dist 0.115
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6505LocalMapping::Run cost time 123
+LocalMapping-->>  bLarge 1 dist 0.0923
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6514LocalMapping::Run cost time 128
+LocalMapping-->>  bLarge 0 dist 0.0633
+LocalMapping-->>  mpAtlas->KeyFramesInMap()42 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6521LocalMapping::Run cost time 82
+LocalMapping-->>  bLarge 1 dist 0.0422
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6528LocalMapping::Run cost time 129
+LocalMapping-->>  bLarge 0 dist 0.0336
+LocalMapping-->>  mpAtlas->KeyFramesInMap()44 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6535LocalMapping::Run cost time 75
+LocalMapping-->>  bLarge 1 dist 0.0285
+LocalMapping-->>  mpAtlas->KeyFramesInMap()45 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 6543LocalMapping::Run cost time 123
+LocalMapping-->> Not enough motion for initializing. Reseting...
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->>  bLarge 1 dist 0.0144
+LocalMapping-->>  mpAtlas->KeyFramesInMap()46 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> 6568LocalMapping::Run cost time 109
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 6649LocalMapping::Run cost time 10
+LocalMapping-->> 6650LocalMapping::Run cost time 12
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 14473LocalMapping::Run cost time 13
+LocalMapping-->> 14474LocalMapping::Run cost time 16
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 14856LocalMapping::Run cost time 16
+LocalMapping-->> 14857LocalMapping::Run cost time 18
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 14953LocalMapping::Run cost time 25
+LocalMapping-->> 14954LocalMapping::Run cost time 30
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> 14967LocalMapping::Run cost time 2
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 15064LocalMapping::Run cost time 24
+LocalMapping-->> 15065LocalMapping::Run cost time 24
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 15066LocalMapping::Run cost time 40
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 15122LocalMapping::Run cost time 37
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 15196LocalMapping::Run cost time 67
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 15249LocalMapping::Run cost time 67
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 15309LocalMapping::Run cost time 105
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 15356LocalMapping::Run cost time 112
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 15396LocalMapping::Run cost time 100
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 15444LocalMapping::Run cost time 168
+LocalMapping-->>  mpAtlas->KeyFramesInMap()11 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 15467LocalMapping::Run cost time 95
+LocalMapping-->>  mpAtlas->KeyFramesInMap()12 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> 15518LocalMapping::Run cost time 290
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 15583LocalMapping::Run cost time 16
+LocalMapping-->> 15584LocalMapping::Run cost time 16
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 15739LocalMapping::Run cost time 20
+LocalMapping-->> 15740LocalMapping::Run cost time 21
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 15741LocalMapping::Run cost time 22
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 15865LocalMapping::Run cost time 16
+LocalMapping-->> 15866LocalMapping::Run cost time 15
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 16002LocalMapping::Run cost time 17
+LocalMapping-->> 16003LocalMapping::Run cost time 24
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16011LocalMapping::Run cost time 53
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16064LocalMapping::Run cost time 43
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16131LocalMapping::Run cost time 75
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16186LocalMapping::Run cost time 63
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 16353LocalMapping::Run cost time 17
+LocalMapping-->> 16354LocalMapping::Run cost time 14
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16364LocalMapping::Run cost time 33
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16434LocalMapping::Run cost time 39
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16500LocalMapping::Run cost time 33
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16567LocalMapping::Run cost time 35
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16637LocalMapping::Run cost time 50
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16702LocalMapping::Run cost time 56
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16761LocalMapping::Run cost time 51
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> 16828LocalMapping::Run cost time 166
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 16906LocalMapping::Run cost time 22
+LocalMapping-->> 16907LocalMapping::Run cost time 14
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16919LocalMapping::Run cost time 31
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 16993LocalMapping::Run cost time 34
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17062LocalMapping::Run cost time 39
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17127LocalMapping::Run cost time 64
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 17251LocalMapping::Run cost time 22
+LocalMapping-->> 17252LocalMapping::Run cost time 19
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17253LocalMapping::Run cost time 34
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 17345LocalMapping::Run cost time 17
+LocalMapping-->> 17346LocalMapping::Run cost time 20
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17365LocalMapping::Run cost time 35
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17433LocalMapping::Run cost time 42
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17500LocalMapping::Run cost time 28
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17572LocalMapping::Run cost time 44
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17647LocalMapping::Run cost time 91
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17688LocalMapping::Run cost time 48
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17756LocalMapping::Run cost time 69
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> 17810LocalMapping::Run cost time 185
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 17908LocalMapping::Run cost time 14
+LocalMapping-->> 17909LocalMapping::Run cost time 12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 17933LocalMapping::Run cost time 27
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18003LocalMapping::Run cost time 31
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18086LocalMapping::Run cost time 32
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 18174LocalMapping::Run cost time 13
+LocalMapping-->> 18175LocalMapping::Run cost time 16
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 18275LocalMapping::Run cost time 13
+LocalMapping-->> 18276LocalMapping::Run cost time 12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18302LocalMapping::Run cost time 20
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 18385LocalMapping::Run cost time 11
+LocalMapping-->> 18386LocalMapping::Run cost time 9
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18435LocalMapping::Run cost time 16
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18512LocalMapping::Run cost time 18
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18584LocalMapping::Run cost time 22
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18659LocalMapping::Run cost time 28
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18731LocalMapping::Run cost time 28
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18802LocalMapping::Run cost time 40
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18869LocalMapping::Run cost time 30
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 18941LocalMapping::Run cost time 91
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 19078LocalMapping::Run cost time 14
+LocalMapping-->> 19079LocalMapping::Run cost time 13
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19127LocalMapping::Run cost time 14
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19202LocalMapping::Run cost time 18
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19278LocalMapping::Run cost time 23
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19350LocalMapping::Run cost time 24
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19423LocalMapping::Run cost time 31
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19495LocalMapping::Run cost time 34
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19569LocalMapping::Run cost time 47
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 19632LocalMapping::Run cost time 50
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 19723LocalMapping::Run cost time 14
+LocalMapping-->> 19724LocalMapping::Run cost time 14
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 19866LocalMapping::Run cost time 14
+LocalMapping-->> 19867LocalMapping::Run cost time 15
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19900LocalMapping::Run cost time 18
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 19975LocalMapping::Run cost time 27
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20049LocalMapping::Run cost time 25
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20122LocalMapping::Run cost time 34
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20193LocalMapping::Run cost time 32
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20260LocalMapping::Run cost time 43
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20326LocalMapping::Run cost time 45
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 20395LocalMapping::Run cost time 50
+LocalMapping-->>  mpAtlas->KeyFramesInMap()11 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 20460LocalMapping::Run cost time 48
+LocalMapping-->>  mpAtlas->KeyFramesInMap()12 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 20522LocalMapping::Run cost time 66
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 20605LocalMapping::Run cost time 11
+LocalMapping-->> 20606LocalMapping::Run cost time 12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20655LocalMapping::Run cost time 19
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20726LocalMapping::Run cost time 17
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20814LocalMapping::Run cost time 34
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20878LocalMapping::Run cost time 29
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 20944LocalMapping::Run cost time 31
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21017LocalMapping::Run cost time 37
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21085LocalMapping::Run cost time 50
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 21174LocalMapping::Run cost time 13
+LocalMapping-->> 21175LocalMapping::Run cost time 13
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21221LocalMapping::Run cost time 19
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21296LocalMapping::Run cost time 43
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21363LocalMapping::Run cost time 43
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21430LocalMapping::Run cost time 54
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21492LocalMapping::Run cost time 88
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21543LocalMapping::Run cost time 65
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21606LocalMapping::Run cost time 89
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> 21657LocalMapping::Run cost time 255
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 21744LocalMapping::Run cost time 13
+LocalMapping-->> 21745LocalMapping::Run cost time 15
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21770LocalMapping::Run cost time 38
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21838LocalMapping::Run cost time 32
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21911LocalMapping::Run cost time 41
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 21976LocalMapping::Run cost time 58
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22036LocalMapping::Run cost time 66
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22096LocalMapping::Run cost time 59
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22157LocalMapping::Run cost time 64
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22217LocalMapping::Run cost time 138
+LocalMapping-->>  bLarge 0 dist 0.151
+LocalMapping-->>  mpAtlas->KeyFramesInMap()11 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22218LocalMapping::Run cost time 100
+LocalMapping-->>  bLarge 1 dist 0.124
+LocalMapping-->>  mpAtlas->KeyFramesInMap()12 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22237LocalMapping::Run cost time 82
+LocalMapping-->>  bLarge 1 dist 0.0995
+LocalMapping-->>  mpAtlas->KeyFramesInMap()13 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22239LocalMapping::Run cost time 99
+LocalMapping-->>  bLarge 1 dist 0.0743
+LocalMapping-->>  mpAtlas->KeyFramesInMap()14 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22242LocalMapping::Run cost time 89
+LocalMapping-->>  bLarge 1 dist 0.0721
+LocalMapping-->>  mpAtlas->KeyFramesInMap()15 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22244LocalMapping::Run cost time 120
+LocalMapping-->>  bLarge 1 dist 0.0891
+LocalMapping-->>  mpAtlas->KeyFramesInMap()16 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22254LocalMapping::Run cost time 90
+LocalMapping-->>  bLarge 1 dist 0.0901
+LocalMapping-->>  mpAtlas->KeyFramesInMap()17 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22257LocalMapping::Run cost time 126
+LocalMapping-->>  bLarge 1 dist 0.0982
+LocalMapping-->>  mpAtlas->KeyFramesInMap()18 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22267LocalMapping::Run cost time 202
+LocalMapping-->>  bLarge 1 dist 0.154
+LocalMapping-->>  mpAtlas->KeyFramesInMap()19 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22271LocalMapping::Run cost time 167
+LocalMapping-->>  bLarge 1 dist 0.20430970191955566
+LocalMapping-->>  mpAtlas->KeyFramesInMap()20 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22274LocalMapping::Run cost time 151
+LocalMapping-->>  bLarge 1 dist 0.241
+LocalMapping-->>  mpAtlas->KeyFramesInMap()21 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22288LocalMapping::Run cost time 157
+LocalMapping-->>  bLarge 1 dist 0.232
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22290LocalMapping::Run cost time 187
+LocalMapping-->>  bLarge 1 dist 0.23754316568374634
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22293LocalMapping::Run cost time 152
+LocalMapping-->>  bLarge 1 dist 0.267
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22309LocalMapping::Run cost time 160
+LocalMapping-->>  bLarge 1 dist 0.262
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22323LocalMapping::Run cost time 173
+LocalMapping-->>  bLarge 1 dist 0.253
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22330LocalMapping::Run cost time 154
+LocalMapping-->>  bLarge 1 dist 0.215
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22336LocalMapping::Run cost time 161
+LocalMapping-->>  bLarge 1 dist 0.217
+LocalMapping-->>  mpAtlas->KeyFramesInMap()23 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> start VIBA 1
+LocalMapping-->> end VIBA 1
+LocalMapping-->> 22341LocalMapping::Run cost time 345
+LocalMapping-->>  bLarge 1 dist 0.367
+LocalMapping-->>  mpAtlas->KeyFramesInMap()24 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22344LocalMapping::Run cost time 176
+LocalMapping-->>  bLarge 1 dist 0.396
+LocalMapping-->>  mpAtlas->KeyFramesInMap()24 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22350LocalMapping::Run cost time 180
+LocalMapping-->>  bLarge 1 dist 0.315
+LocalMapping-->>  mpAtlas->KeyFramesInMap()24 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22354LocalMapping::Run cost time 199
+LocalMapping-->>  bLarge 1 dist 0.343
+LocalMapping-->>  mpAtlas->KeyFramesInMap()25 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22355LocalMapping::Run cost time 171
+LocalMapping-->>  bLarge 1 dist 0.35900419950485229
+LocalMapping-->>  mpAtlas->KeyFramesInMap()26 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22366LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.353
+LocalMapping-->>  mpAtlas->KeyFramesInMap()26 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22378LocalMapping::Run cost time 168
+LocalMapping-->>  bLarge 1 dist 0.33
+LocalMapping-->>  mpAtlas->KeyFramesInMap()27 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22384LocalMapping::Run cost time 178
+LocalMapping-->>  bLarge 1 dist 0.293
+LocalMapping-->>  mpAtlas->KeyFramesInMap()28 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22393LocalMapping::Run cost time 182
+LocalMapping-->>  bLarge 1 dist 0.25941646099090576
+LocalMapping-->>  mpAtlas->KeyFramesInMap()28 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22401LocalMapping::Run cost time 213
+LocalMapping-->>  bLarge 1 dist 0.263
+LocalMapping-->>  mpAtlas->KeyFramesInMap()29 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22412LocalMapping::Run cost time 275
+LocalMapping-->>  bLarge 1 dist 0.282
+LocalMapping-->>  mpAtlas->KeyFramesInMap()30 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22427LocalMapping::Run cost time 224
+LocalMapping-->>  bLarge 1 dist 0.26
+LocalMapping-->>  mpAtlas->KeyFramesInMap()31 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22428LocalMapping::Run cost time 184
+LocalMapping-->>  bLarge 1 dist 0.214
+LocalMapping-->>  mpAtlas->KeyFramesInMap()32 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22433LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.17968378961086273
+LocalMapping-->>  mpAtlas->KeyFramesInMap()33 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22439LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.138
+LocalMapping-->>  mpAtlas->KeyFramesInMap()34 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22450LocalMapping::Run cost time 132
+LocalMapping-->>  bLarge 1 dist 0.106
+LocalMapping-->>  mpAtlas->KeyFramesInMap()35 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22460LocalMapping::Run cost time 179
+LocalMapping-->>  bLarge 1 dist 0.13056932389736176
+LocalMapping-->>  mpAtlas->KeyFramesInMap()36 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22466LocalMapping::Run cost time 152
+LocalMapping-->>  bLarge 1 dist 0.17819701135158539
+LocalMapping-->>  mpAtlas->KeyFramesInMap()37 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22480LocalMapping::Run cost time 159
+LocalMapping-->>  bLarge 1 dist 0.186
+LocalMapping-->>  mpAtlas->KeyFramesInMap()38 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22495LocalMapping::Run cost time 176
+LocalMapping-->>  bLarge 1 dist 0.13649159669876099
+LocalMapping-->>  mpAtlas->KeyFramesInMap()39 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22503LocalMapping::Run cost time 156
+LocalMapping-->>  bLarge 1 dist 0.12777771055698395
+LocalMapping-->>  mpAtlas->KeyFramesInMap()40 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22516LocalMapping::Run cost time 152
+LocalMapping-->>  bLarge 1 dist 0.12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()41 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22531LocalMapping::Run cost time 192
+LocalMapping-->>  bLarge 1 dist 0.12289860844612122
+LocalMapping-->>  mpAtlas->KeyFramesInMap()42 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22534LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.12567532062530518
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22545LocalMapping::Run cost time 158
+LocalMapping-->>  bLarge 1 dist 0.134
+LocalMapping-->>  mpAtlas->KeyFramesInMap()42 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22556LocalMapping::Run cost time 175
+LocalMapping-->>  bLarge 1 dist 0.147
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22568LocalMapping::Run cost time 199
+LocalMapping-->>  bLarge 1 dist 0.164
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22583LocalMapping::Run cost time 238
+LocalMapping-->>  bLarge 1 dist 0.137
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22585LocalMapping::Run cost time 182
+LocalMapping-->>  bLarge 1 dist 0.0932
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22588LocalMapping::Run cost time 168
+LocalMapping-->>  bLarge 1 dist 0.0888
+LocalMapping-->>  mpAtlas->KeyFramesInMap()44 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22589LocalMapping::Run cost time 168
+LocalMapping-->>  bLarge 1 dist 0.1285390704870224
+LocalMapping-->>  mpAtlas->KeyFramesInMap()44 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22596LocalMapping::Run cost time 160
+LocalMapping-->>  bLarge 1 dist 0.186
+LocalMapping-->>  mpAtlas->KeyFramesInMap()44 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22608LocalMapping::Run cost time 211
+LocalMapping-->>  bLarge 1 dist 0.241
+LocalMapping-->>  mpAtlas->KeyFramesInMap()45 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22610LocalMapping::Run cost time 160
+LocalMapping-->>  bLarge 1 dist 0.29621013998985291
+LocalMapping-->>  mpAtlas->KeyFramesInMap()46 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22620LocalMapping::Run cost time 251
+LocalMapping-->>  bLarge 1 dist 0.4121583104133606
+LocalMapping-->>  mpAtlas->KeyFramesInMap()46 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22635LocalMapping::Run cost time 194
+LocalMapping-->>  bLarge 1 dist 0.448
+LocalMapping-->>  mpAtlas->KeyFramesInMap()46 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22647LocalMapping::Run cost time 175
+LocalMapping-->>  bLarge 1 dist 0.348
+LocalMapping-->>  mpAtlas->KeyFramesInMap()47 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22658LocalMapping::Run cost time 187
+LocalMapping-->>  bLarge 1 dist 0.31
+LocalMapping-->>  mpAtlas->KeyFramesInMap()48 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22663LocalMapping::Run cost time 242
+LocalMapping-->>  bLarge 1 dist 0.336
+LocalMapping-->>  mpAtlas->KeyFramesInMap()49 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22666LocalMapping::Run cost time 299
+LocalMapping-->>  bLarge 1 dist 0.457
+LocalMapping-->>  mpAtlas->KeyFramesInMap()50 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22681LocalMapping::Run cost time 300
+LocalMapping-->>  bLarge 1 dist 0.498
+LocalMapping-->>  mpAtlas->KeyFramesInMap()50 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22683LocalMapping::Run cost time 193
+LocalMapping-->>  bLarge 1 dist 0.383
+LocalMapping-->>  mpAtlas->KeyFramesInMap()51 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22698LocalMapping::Run cost time 143
+LocalMapping-->>  bLarge 1 dist 0.248
+LocalMapping-->>  mpAtlas->KeyFramesInMap()52 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22700LocalMapping::Run cost time 189
+LocalMapping-->>  bLarge 1 dist 0.19211502373218536
+LocalMapping-->>  mpAtlas->KeyFramesInMap()53 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22703LocalMapping::Run cost time 156
+LocalMapping-->>  bLarge 1 dist 0.21742367744445801
+LocalMapping-->>  mpAtlas->KeyFramesInMap()54 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22716LocalMapping::Run cost time 169
+LocalMapping-->>  bLarge 1 dist 0.198
+LocalMapping-->>  mpAtlas->KeyFramesInMap()55 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> start VIBA 2
+LocalMapping-->> end VIBA 2
+LocalMapping-->> 22727LocalMapping::Run cost time 695
+LocalMapping-->>  bLarge 1 dist 0.314
+LocalMapping-->>  mpAtlas->KeyFramesInMap()55 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22729LocalMapping::Run cost time 173
+LocalMapping-->>  bLarge 1 dist 0.1845867931842804
+LocalMapping-->>  mpAtlas->KeyFramesInMap()56 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22737LocalMapping::Run cost time 220
+LocalMapping-->>  bLarge 1 dist 0.22
+LocalMapping-->>  mpAtlas->KeyFramesInMap()57 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22745LocalMapping::Run cost time 328
+LocalMapping-->>  bLarge 1 dist 0.333
+LocalMapping-->>  mpAtlas->KeyFramesInMap()58 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22756LocalMapping::Run cost time 237
+LocalMapping-->>  bLarge 1 dist 0.41222825646400452
+LocalMapping-->>  mpAtlas->KeyFramesInMap()59 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22778LocalMapping::Run cost time 205
+LocalMapping-->>  bLarge 1 dist 0.38517367839813232
+LocalMapping-->>  mpAtlas->KeyFramesInMap()59 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22786LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.334
+LocalMapping-->>  mpAtlas->KeyFramesInMap()60 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22800LocalMapping::Run cost time 150
+LocalMapping-->>  bLarge 1 dist 0.30508929491043091
+LocalMapping-->>  mpAtlas->KeyFramesInMap()61 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22815LocalMapping::Run cost time 156
+LocalMapping-->>  bLarge 1 dist 0.309
+LocalMapping-->>  mpAtlas->KeyFramesInMap()62 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22828LocalMapping::Run cost time 179
+LocalMapping-->>  bLarge 1 dist 0.292
+LocalMapping-->>  mpAtlas->KeyFramesInMap()63 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22837LocalMapping::Run cost time 187
+LocalMapping-->>  bLarge 1 dist 0.243
+LocalMapping-->>  mpAtlas->KeyFramesInMap()63 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22839LocalMapping::Run cost time 237
+LocalMapping-->>  bLarge 1 dist 0.21
+LocalMapping-->>  mpAtlas->KeyFramesInMap()64 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22845LocalMapping::Run cost time 184
+LocalMapping-->>  bLarge 1 dist 0.245
+LocalMapping-->>  mpAtlas->KeyFramesInMap()65 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22850LocalMapping::Run cost time 157
+LocalMapping-->>  bLarge 1 dist 0.338
+LocalMapping-->>  mpAtlas->KeyFramesInMap()66 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22863LocalMapping::Run cost time 168
+LocalMapping-->>  bLarge 1 dist 0.41110286116600037
+LocalMapping-->>  mpAtlas->KeyFramesInMap()67 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22870LocalMapping::Run cost time 193
+LocalMapping-->>  bLarge 1 dist 0.673
+LocalMapping-->>  mpAtlas->KeyFramesInMap()67 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22881LocalMapping::Run cost time 178
+LocalMapping-->>  bLarge 1 dist 0.875
+LocalMapping-->>  mpAtlas->KeyFramesInMap()67 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22883LocalMapping::Run cost time 205
+LocalMapping-->>  bLarge 1 dist 0.896
+LocalMapping-->>  mpAtlas->KeyFramesInMap()68 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22899LocalMapping::Run cost time 175
+LocalMapping-->>  bLarge 1 dist 0.818
+LocalMapping-->>  mpAtlas->KeyFramesInMap()68 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22905LocalMapping::Run cost time 183
+LocalMapping-->>  bLarge 1 dist 0.609
+LocalMapping-->>  mpAtlas->KeyFramesInMap()69 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22911LocalMapping::Run cost time 194
+LocalMapping-->>  bLarge 1 dist 0.486
+LocalMapping-->>  mpAtlas->KeyFramesInMap()69 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22914LocalMapping::Run cost time 185
+LocalMapping-->>  bLarge 1 dist 0.341
+LocalMapping-->>  mpAtlas->KeyFramesInMap()70 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22919LocalMapping::Run cost time 190
+LocalMapping-->>  bLarge 1 dist 0.227
+LocalMapping-->>  mpAtlas->KeyFramesInMap()70 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22922LocalMapping::Run cost time 190
+LocalMapping-->>  bLarge 1 dist 0.174
+LocalMapping-->>  mpAtlas->KeyFramesInMap()70 imu 1 mbMonocular 1 mbInertial 1
+Tracking-->>  bOK->12 : (LocalMapping-->> 1) (1) mState 2
+LocalMapping-->>  bLarge 1 dist 0.123
+LocalMapping-->>  mpAtlas->KeyFramesInMap()71 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22928LocalMapping::Run cost time 185
+LocalMapping-->>  bLarge 1 dist 0.0682
+LocalMapping-->>  mpAtlas->KeyFramesInMap()72 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22935LocalMapping::Run cost time 204
+LocalMapping-->>  bLarge 1 dist 0.074304014444351196
+LocalMapping-->>  mpAtlas->KeyFramesInMap()71 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22937LocalMapping::Run cost time 282
+LocalMapping-->>  bLarge 1 dist 0.172
+LocalMapping-->>  mpAtlas->KeyFramesInMap()70 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> Tracking-->>  bOK->12 : (1) (1) mState 2
+LocalMapping-->>  bLarge 1 dist 0.224
+LocalMapping-->>  mpAtlas->KeyFramesInMap()71 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22942LocalMapping::Run cost time 187
+LocalMapping-->>  bLarge 1 dist 0.219
+LocalMapping-->>  mpAtlas->KeyFramesInMap()71 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22948LocalMapping::Run cost time 197
+LocalMapping-->>  bLarge 1 dist 0.247
+LocalMapping-->>  mpAtlas->KeyFramesInMap()72 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22949LocalMapping::Run cost time 234
+LocalMapping-->>  bLarge 1 dist 0.33052888512611389
+LocalMapping-->>  mpAtlas->KeyFramesInMap()72 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 22970LocalMapping::Run cost time 208
+LocalMapping-->>  bLarge 1 dist 0.43929034471511841
+LocalMapping-->>  mpAtlas->KeyFramesInMap()73 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23032LocalMapping::Run cost time 325
+LocalMapping-->>  bLarge 1 dist 0.554
+LocalMapping-->>  mpAtlas->KeyFramesInMap()72 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23038LocalMapping::Run cost time 247
+LocalMapping-->>  bLarge 1 dist 0.607
+LocalMapping-->>  mpAtlas->KeyFramesInMap()72 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23055LocalMapping::Run cost time 232
+LocalMapping-->>  bLarge 1 dist 0.53085243701934814
+LocalMapping-->>  mpAtlas->KeyFramesInMap()73 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23060LocalMapping::Run cost time 168
+LocalMapping-->>  bLarge 1 dist 0.418
+LocalMapping-->>  mpAtlas->KeyFramesInMap()73 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23070LocalMapping::Run cost time 200
+LocalMapping-->>  bLarge 1 dist 0.404
+LocalMapping-->>  mpAtlas->KeyFramesInMap()74 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23085LocalMapping::Run cost time 176
+LocalMapping-->>  bLarge 1 dist 0.411
+LocalMapping-->>  mpAtlas->KeyFramesInMap()74 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23093LocalMapping::Run cost time 185
+LocalMapping-->>  bLarge 1 dist 0.373
+LocalMapping-->>  mpAtlas->KeyFramesInMap()75 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23097LocalMapping::Run cost time 180
+LocalMapping-->>  bLarge 1 dist 0.366
+LocalMapping-->>  mpAtlas->KeyFramesInMap()76 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23106LocalMapping::Run cost time 180
+LocalMapping-->>  bLarge 1 dist 0.364
+LocalMapping-->>  mpAtlas->KeyFramesInMap()77 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23113LocalMapping::Run cost time 197
+LocalMapping-->>  bLarge 1 dist 0.38
+LocalMapping-->>  mpAtlas->KeyFramesInMap()77 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23129LocalMapping::Run cost time 209
+LocalMapping-->>  bLarge 1 dist 0.354
+LocalMapping-->>  mpAtlas->KeyFramesInMap()77 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> ScaleRefinement
+LocalMapping-->> 23140LocalMapping::Run cost time 222
+LocalMapping-->>  bLarge 1 dist 0.276
+LocalMapping-->>  mpAtlas->KeyFramesInMap()78 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> ScaleRefinement
+LocalMapping-->> 23151LocalMapping::Run cost time 183
+LocalMapping-->>  bLarge 1 dist 0.214
+LocalMapping-->>  mpAtlas->KeyFramesInMap()79 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23155LocalMapping::Run cost time 177
+LocalMapping-->>  bLarge 1 dist 0.18
+LocalMapping-->>  mpAtlas->KeyFramesInMap()79 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23163LocalMapping::Run cost time 185
+LocalMapping-->>  bLarge 1 dist 0.175
+LocalMapping-->>  mpAtlas->KeyFramesInMap()80 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23168LocalMapping::Run cost time 187
+LocalMapping-->>  bLarge 1 dist 0.161
+LocalMapping-->>  mpAtlas->KeyFramesInMap()80 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23171LocalMapping::Run cost time 174
+LocalMapping-->>  bLarge 1 dist 0.136
+LocalMapping-->>  mpAtlas->KeyFramesInMap()81 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23180LocalMapping::Run cost time 172
+LocalMapping-->>  bLarge 1 dist 0.127
+LocalMapping-->>  mpAtlas->KeyFramesInMap()81 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23189LocalMapping::Run cost time 185
+LocalMapping-->>  bLarge 1 dist 0.117
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23193LocalMapping::Run cost time 169
+LocalMapping-->>  bLarge 1 dist 0.10349094122648239
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23203LocalMapping::Run cost time 156
+LocalMapping-->>  bLarge 1 dist 0.115
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23218LocalMapping::Run cost time 162
+LocalMapping-->>  bLarge 1 dist 0.105
+LocalMapping-->>  mpAtlas->KeyFramesInMap()83 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23219LocalMapping::Run cost time 174
+LocalMapping-->>  bLarge 1 dist 0.147
+LocalMapping-->>  mpAtlas->KeyFramesInMap()84 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23221LocalMapping::Run cost time 164
+LocalMapping-->>  bLarge 1 dist 0.188
+LocalMapping-->>  mpAtlas->KeyFramesInMap()85 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23234LocalMapping::Run cost time 164
+LocalMapping-->>  bLarge 1 dist 0.199
+LocalMapping-->>  mpAtlas->KeyFramesInMap()86 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23247LocalMapping::Run cost time 162
+LocalMapping-->>  bLarge 1 dist 0.267
+LocalMapping-->>  mpAtlas->KeyFramesInMap()87 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23258LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.31
+LocalMapping-->>  mpAtlas->KeyFramesInMap()87 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23269LocalMapping::Run cost time 163
+LocalMapping-->>  bLarge 1 dist 0.303
+LocalMapping-->>  mpAtlas->KeyFramesInMap()87 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23283LocalMapping::Run cost time 190
+LocalMapping-->>  bLarge 1 dist 0.285
+LocalMapping-->>  mpAtlas->KeyFramesInMap()88 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23285LocalMapping::Run cost time 187
+LocalMapping-->>  bLarge 1 dist 0.286
+LocalMapping-->>  mpAtlas->KeyFramesInMap()89 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23290LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.293
+LocalMapping-->>  mpAtlas->KeyFramesInMap()89 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23298LocalMapping::Run cost time 271
+LocalMapping-->>  bLarge 1 dist 0.388
+LocalMapping-->>  mpAtlas->KeyFramesInMap()89 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23310LocalMapping::Run cost time 164
+LocalMapping-->>  bLarge 1 dist 0.399
+LocalMapping-->>  mpAtlas->KeyFramesInMap()90 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23320LocalMapping::Run cost time 164
+LocalMapping-->>  bLarge 1 dist 0.315
+LocalMapping-->>  mpAtlas->KeyFramesInMap()91 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23333LocalMapping::Run cost time 139
+LocalMapping-->>  bLarge 1 dist 0.268
+LocalMapping-->>  mpAtlas->KeyFramesInMap()92 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23335LocalMapping::Run cost time 142
+LocalMapping-->>  bLarge 1 dist 0.23
+LocalMapping-->>  mpAtlas->KeyFramesInMap()92 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23340LocalMapping::Run cost time 144
+LocalMapping-->>  bLarge 1 dist 0.27400970458984375
+LocalMapping-->>  mpAtlas->KeyFramesInMap()93 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23359LocalMapping::Run cost time 148
+LocalMapping-->>  bLarge 1 dist 0.329
+LocalMapping-->>  mpAtlas->KeyFramesInMap()94 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23374LocalMapping::Run cost time 148
+LocalMapping-->>  bLarge 1 dist 0.34656387567520142
+LocalMapping-->>  mpAtlas->KeyFramesInMap()93 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23390LocalMapping::Run cost time 157
+LocalMapping-->>  bLarge 1 dist 0.35378354787826538
+LocalMapping-->>  mpAtlas->KeyFramesInMap()94 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23405LocalMapping::Run cost time 153
+LocalMapping-->>  bLarge 1 dist 0.353
+LocalMapping-->>  mpAtlas->KeyFramesInMap()95 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23416LocalMapping::Run cost time 167
+LocalMapping-->>  bLarge 1 dist 0.337
+LocalMapping-->>  mpAtlas->KeyFramesInMap()96 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23429LocalMapping::Run cost time 145
+LocalMapping-->>  bLarge 1 dist 0.285
+LocalMapping-->>  mpAtlas->KeyFramesInMap()97 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23430LocalMapping::Run cost time 152
+LocalMapping-->>  bLarge 1 dist 0.244
+LocalMapping-->>  mpAtlas->KeyFramesInMap()98 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23431LocalMapping::Run cost time 153
+LocalMapping-->>  bLarge 1 dist 0.28
+LocalMapping-->>  mpAtlas->KeyFramesInMap()98 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23444LocalMapping::Run cost time 153
+LocalMapping-->>  bLarge 1 dist 0.27
+LocalMapping-->>  mpAtlas->KeyFramesInMap()98 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23446LocalMapping::Run cost time 190
+LocalMapping-->>  bLarge 1 dist 0.2624286413192749
+LocalMapping-->>  mpAtlas->KeyFramesInMap()99 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23447LocalMapping::Run cost time 154
+LocalMapping-->>  bLarge 1 dist 0.26167154312133789
+LocalMapping-->>  mpAtlas->KeyFramesInMap()100 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23448LocalMapping::Run cost time 168
+LocalMapping-->>  bLarge 1 dist 0.263
+LocalMapping-->>  mpAtlas->KeyFramesInMap()101 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23458LocalMapping::Run cost time 150
+LocalMapping-->>  bLarge 1 dist 0.27220559120178223
+LocalMapping-->>  mpAtlas->KeyFramesInMap()101 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23459LocalMapping::Run cost time 148
+LocalMapping-->>  bLarge 1 dist 0.279
+LocalMapping-->>  mpAtlas->KeyFramesInMap()102 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23472LocalMapping::Run cost time 161
+LocalMapping-->>  bLarge 1 dist 0.326
+LocalMapping-->>  mpAtlas->KeyFramesInMap()102 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23485LocalMapping::Run cost time 144
+LocalMapping-->>  bLarge 1 dist 0.294
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23488LocalMapping::Run cost time 143
+LocalMapping-->>  bLarge 1 dist 0.26
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23489LocalMapping::Run cost time 166
+LocalMapping-->>  bLarge 1 dist 0.296
+LocalMapping-->>  mpAtlas->KeyFramesInMap()105 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23500LocalMapping::Run cost time 153
+LocalMapping-->>  bLarge 1 dist 0.282
+LocalMapping-->>  mpAtlas->KeyFramesInMap()106 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23501LocalMapping::Run cost time 155
+LocalMapping-->>  bLarge 1 dist 0.26394572854042053
+LocalMapping-->>  mpAtlas->KeyFramesInMap()107 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23516LocalMapping::Run cost time 157
+LocalMapping-->>  bLarge 1 dist 0.28630471229553223
+LocalMapping-->>  mpAtlas->KeyFramesInMap()108 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23527LocalMapping::Run cost time 160
+LocalMapping-->>  bLarge 1 dist 0.269
+LocalMapping-->>  mpAtlas->KeyFramesInMap()109 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23544LocalMapping::Run cost time 146
+LocalMapping-->>  bLarge 1 dist 0.22460494935512543
+LocalMapping-->>  mpAtlas->KeyFramesInMap()109 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23545LocalMapping::Run cost time 176
+LocalMapping-->>  bLarge 1 dist 0.21039135754108429
+LocalMapping-->>  mpAtlas->KeyFramesInMap()110 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23552LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.228
+LocalMapping-->>  mpAtlas->KeyFramesInMap()111 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23561LocalMapping::Run cost time 179
+LocalMapping-->>  bLarge 1 dist 0.23
+LocalMapping-->>  mpAtlas->KeyFramesInMap()112 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> ScaleRefinement
+LocalMapping-->> 23569LocalMapping::Run cost time 187
+LocalMapping-->>  bLarge 1 dist 0.23907959461212158
+LocalMapping-->>  mpAtlas->KeyFramesInMap()113 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> ScaleRefinement
+LocalMapping-->> 23572LocalMapping::Run cost time 166
+LocalMapping-->>  bLarge 1 dist 0.2454262375831604
+LocalMapping-->>  mpAtlas->KeyFramesInMap()113 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23580LocalMapping::Run cost time 184
+LocalMapping-->>  bLarge 1 dist 0.241
+LocalMapping-->>  mpAtlas->KeyFramesInMap()114 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23589LocalMapping::Run cost time 253
+LocalMapping-->>  bLarge 1 dist 0.301
+LocalMapping-->>  mpAtlas->KeyFramesInMap()114 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23602LocalMapping::Run cost time 181
+LocalMapping-->>  bLarge 1 dist 0.316
+LocalMapping-->>  mpAtlas->KeyFramesInMap()115 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23609LocalMapping::Run cost time 153
+LocalMapping-->>  bLarge 1 dist 0.26136171817779541
+LocalMapping-->>  mpAtlas->KeyFramesInMap()116 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23623LocalMapping::Run cost time 163
+LocalMapping-->>  bLarge 1 dist 0.249
+LocalMapping-->>  mpAtlas->KeyFramesInMap()117 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23636LocalMapping::Run cost time 170
+LocalMapping-->>  bLarge 1 dist 0.239
+LocalMapping-->>  mpAtlas->KeyFramesInMap()118 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23646LocalMapping::Run cost time 159
+LocalMapping-->>  bLarge 1 dist 0.235
+LocalMapping-->>  mpAtlas->KeyFramesInMap()119 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23660LocalMapping::Run cost time 175
+LocalMapping-->>  bLarge 1 dist 0.21748080849647522
+LocalMapping-->>  mpAtlas->KeyFramesInMap()119 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23668LocalMapping::Run cost time 174
+LocalMapping-->>  bLarge 1 dist 0.168
+LocalMapping-->>  mpAtlas->KeyFramesInMap()120 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23676LocalMapping::Run cost time 167
+LocalMapping-->>  bLarge 1 dist 0.131
+LocalMapping-->>  mpAtlas->KeyFramesInMap()121 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23685LocalMapping::Run cost time 176
+LocalMapping-->>  bLarge 1 dist 0.14433684945106506
+LocalMapping-->>  mpAtlas->KeyFramesInMap()122 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23699LocalMapping::Run cost time 160
+LocalMapping-->>  bLarge 1 dist 0.171
+LocalMapping-->>  mpAtlas->KeyFramesInMap()123 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23709LocalMapping::Run cost time 174
+LocalMapping-->>  bLarge 1 dist 0.18277028203010559
+LocalMapping-->>  mpAtlas->KeyFramesInMap()124 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23714LocalMapping::Run cost time 171
+LocalMapping-->>  bLarge 1 dist 0.203
+LocalMapping-->>  mpAtlas->KeyFramesInMap()125 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23725LocalMapping::Run cost time 244
+LocalMapping-->>  bLarge 1 dist 0.271
+LocalMapping-->>  mpAtlas->KeyFramesInMap()126 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23726LocalMapping::Run cost time 440
+LocalMapping-->>  bLarge 1 dist 0.52
+LocalMapping-->>  mpAtlas->KeyFramesInMap()127 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23738LocalMapping::Run cost time 386
+LocalMapping-->>  bLarge 1 dist 0.701
+LocalMapping-->>  mpAtlas->KeyFramesInMap()128 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23756LocalMapping::Run cost time 195
+LocalMapping-->>  bLarge 1 dist 0.546
+LocalMapping-->>  mpAtlas->KeyFramesInMap()129 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23772LocalMapping::Run cost time 245
+LocalMapping-->>  bLarge 1 dist 0.411
+LocalMapping-->>  mpAtlas->KeyFramesInMap()130 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23784LocalMapping::Run cost time 211
+LocalMapping-->>  bLarge 1 dist 0.38360553979873657
+LocalMapping-->>  mpAtlas->KeyFramesInMap()130 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23786LocalMapping::Run cost time 243
+LocalMapping-->>  bLarge 1 dist 0.29246130585670471
+LocalMapping-->>  mpAtlas->KeyFramesInMap()131 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23788LocalMapping::Run cost time 511
+LocalMapping-->>  bLarge 1 dist 0.244
+LocalMapping-->>  mpAtlas->KeyFramesInMap()132 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23790LocalMapping::Run cost time 728
+LocalMapping-->>  bLarge 1 dist 0.338
+LocalMapping-->>  mpAtlas->KeyFramesInMap()131 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23791LocalMapping::Run cost time 566
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->>  bLarge 1 dist 0.304
+LocalMapping-->>  mpAtlas->KeyFramesInMap()0 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> 23792LocalMapping::Run cost time 2272
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 23894LocalMapping::Run cost time 27
+LocalMapping-->> 23895LocalMapping::Run cost time 23
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23896LocalMapping::Run cost time 33
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23943LocalMapping::Run cost time 79
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 23988LocalMapping::Run cost time 84
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24036LocalMapping::Run cost time 80
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24088LocalMapping::Run cost time 84
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 24248LocalMapping::Run cost time 23
+LocalMapping-->> 24249LocalMapping::Run cost time 39
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24260LocalMapping::Run cost time 177
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24276LocalMapping::Run cost time 65
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24327LocalMapping::Run cost time 67
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24374LocalMapping::Run cost time 36
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24440LocalMapping::Run cost time 33
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24517LocalMapping::Run cost time 50
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24576LocalMapping::Run cost time 51
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 24640LocalMapping::Run cost time 62
+LocalMapping-->>  mpAtlas->KeyFramesInMap()11 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> scale too small
+LocalMapping-->> 24701LocalMapping::Run cost time 123
+LocalMapping-->>  mpAtlas->KeyFramesInMap()12 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24744LocalMapping::Run cost time 215
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 24878LocalMapping::Run cost time 15
+LocalMapping-->> 24879LocalMapping::Run cost time 15
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24888LocalMapping::Run cost time 35
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 24983LocalMapping::Run cost time 15
+LocalMapping-->> 24984LocalMapping::Run cost time 20
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 24997LocalMapping::Run cost time 104
+LocalMapping-->> LM: Active map reset recieved
+LocalMapping-->> LM: Active map reset, waiting...
+LocalMapping-->> LM: Reseting current map in Local Mapping...
+LocalMapping-->> LM: End reseting Local Mapping...
+LocalMapping-->> LM: Reset free the mutex
+LocalMapping-->> 25022LocalMapping::Run cost time 2
+LocalMapping-->> LM: Active map reset, Done!!!
+LocalMapping-->> 25148LocalMapping::Run cost time 20
+LocalMapping-->> 25149LocalMapping::Run cost time 17
+LocalMapping-->>  mpAtlas->KeyFramesInMap()3 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25150LocalMapping::Run cost time 38
+LocalMapping-->>  mpAtlas->KeyFramesInMap()4 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25210LocalMapping::Run cost time 51
+LocalMapping-->>  mpAtlas->KeyFramesInMap()5 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25274LocalMapping::Run cost time 59
+LocalMapping-->>  mpAtlas->KeyFramesInMap()6 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25339LocalMapping::Run cost time 47
+LocalMapping-->>  mpAtlas->KeyFramesInMap()7 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25396LocalMapping::Run cost time 61
+LocalMapping-->>  mpAtlas->KeyFramesInMap()8 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25456LocalMapping::Run cost time 97
+LocalMapping-->>  mpAtlas->KeyFramesInMap()9 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25509LocalMapping::Run cost time 173
+LocalMapping-->>  mpAtlas->KeyFramesInMap()10 imu 0 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25528LocalMapping::Run cost time 319
+LocalMapping-->>  bLarge 0 dist 0.216
+LocalMapping-->>  mpAtlas->KeyFramesInMap()11 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25533LocalMapping::Run cost time 175
+LocalMapping-->>  bLarge 1 dist 0.406
+LocalMapping-->>  mpAtlas->KeyFramesInMap()12 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25555LocalMapping::Run cost time 106
+LocalMapping-->>  bLarge 1 dist 0.242
+LocalMapping-->>  mpAtlas->KeyFramesInMap()13 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25557LocalMapping::Run cost time 128
+LocalMapping-->>  bLarge 1 dist 0.161
+LocalMapping-->>  mpAtlas->KeyFramesInMap()14 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25560LocalMapping::Run cost time 125
+LocalMapping-->>  bLarge 1 dist 0.157
+LocalMapping-->>  mpAtlas->KeyFramesInMap()15 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25564LocalMapping::Run cost time 154
+LocalMapping-->>  bLarge 1 dist 0.179
+LocalMapping-->>  mpAtlas->KeyFramesInMap()16 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25568LocalMapping::Run cost time 170
+LocalMapping-->>  bLarge 1 dist 0.24058294296264648
+LocalMapping-->>  mpAtlas->KeyFramesInMap()17 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25576LocalMapping::Run cost time 227
+LocalMapping-->>  bLarge 1 dist 0.28043043613433838
+LocalMapping-->>  mpAtlas->KeyFramesInMap()18 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25586LocalMapping::Run cost time 195
+LocalMapping-->>  bLarge 1 dist 0.305
+LocalMapping-->>  mpAtlas->KeyFramesInMap()19 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25587LocalMapping::Run cost time 204
+LocalMapping-->>  bLarge 1 dist 0.341
+LocalMapping-->>  mpAtlas->KeyFramesInMap()20 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25600LocalMapping::Run cost time 248
+LocalMapping-->>  bLarge 1 dist 0.411
+LocalMapping-->>  mpAtlas->KeyFramesInMap()21 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25601LocalMapping::Run cost time 168
+LocalMapping-->>  bLarge 1 dist 0.4
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25609LocalMapping::Run cost time 206
+LocalMapping-->>  bLarge 1 dist 0.40893536806106567
+LocalMapping-->>  mpAtlas->KeyFramesInMap()22 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25626LocalMapping::Run cost time 247
+LocalMapping-->>  bLarge 1 dist 0.516
+LocalMapping-->>  mpAtlas->KeyFramesInMap()23 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> start VIBA 1
+LocalMapping-->> end VIBA 1
+LocalMapping-->> 25645LocalMapping::Run cost time 554
+LocalMapping-->>  bLarge 1 dist 0.415
+LocalMapping-->>  mpAtlas->KeyFramesInMap()25 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25657LocalMapping::Run cost time 218
+LocalMapping-->>  bLarge 1 dist 0.234
+LocalMapping-->>  mpAtlas->KeyFramesInMap()26 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25665LocalMapping::Run cost time 217
+LocalMapping-->>  bLarge 1 dist 0.31261968612670898
+LocalMapping-->>  mpAtlas->KeyFramesInMap()27 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25672LocalMapping::Run cost time 216
+LocalMapping-->>  bLarge 1 dist 0.30035400390625
+LocalMapping-->>  mpAtlas->KeyFramesInMap()28 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25686LocalMapping::Run cost time 209
+LocalMapping-->>  bLarge 1 dist 0.31637206673622131
+LocalMapping-->>  mpAtlas->KeyFramesInMap()29 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25697LocalMapping::Run cost time 218
+LocalMapping-->>  bLarge 1 dist 0.347
+LocalMapping-->>  mpAtlas->KeyFramesInMap()30 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25711LocalMapping::Run cost time 231
+LocalMapping-->>  bLarge 1 dist 0.365
+LocalMapping-->>  mpAtlas->KeyFramesInMap()31 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25717LocalMapping::Run cost time 226
+LocalMapping-->>  bLarge 1 dist 0.361
+LocalMapping-->>  mpAtlas->KeyFramesInMap()31 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25724LocalMapping::Run cost time 315
+LocalMapping-->>  bLarge 1 dist 0.369
+LocalMapping-->>  mpAtlas->KeyFramesInMap()32 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25736LocalMapping::Run cost time 240
+LocalMapping-->>  bLarge 1 dist 0.326
+LocalMapping-->>  mpAtlas->KeyFramesInMap()33 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25737LocalMapping::Run cost time 216
+LocalMapping-->>  bLarge 1 dist 0.268
+LocalMapping-->>  mpAtlas->KeyFramesInMap()34 imu 1 mbMonocular 1 mbInertial 1
+Tracking-->> TRACK: Track with motion model !mbOnlyTrackingLocalMapping-->> 
+LocalMapping-->>  bLarge 1 dist 0.36
+LocalMapping-->>  mpAtlas->KeyFramesInMap()35 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25757LocalMapping::Run cost time 388
+LocalMapping-->>  bLarge 1 dist 0.45636394619941711
+LocalMapping-->>  mpAtlas->KeyFramesInMap()36 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25758LocalMapping::Run cost time 268
+LocalMapping-->>  bLarge 1 dist 0.44690978527069092
+LocalMapping-->>  mpAtlas->KeyFramesInMap()37 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25766LocalMapping::Run cost time 396
+LocalMapping-->>  bLarge 1 dist 0.521
+LocalMapping-->>  mpAtlas->KeyFramesInMap()38 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25771LocalMapping::Run cost time 381
+LocalMapping-->>  bLarge 1 dist 0.68429291248321533
+LocalMapping-->>  mpAtlas->KeyFramesInMap()39 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25776LocalMapping::Run cost time 382
+LocalMapping-->>  bLarge 1 dist 0.719
+LocalMapping-->>  mpAtlas->KeyFramesInMap()40 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25779LocalMapping::Run cost time 300
+LocalMapping-->>  bLarge 1 dist 0.654
+LocalMapping-->>  mpAtlas->KeyFramesInMap()41 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25812LocalMapping::Run cost time 261
+LocalMapping-->>  bLarge 1 dist 0.48524326086044312
+LocalMapping-->>  mpAtlas->KeyFramesInMap()41 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25814LocalMapping::Run cost time 301
+LocalMapping-->>  bLarge 1 dist 0.397
+LocalMapping-->>  mpAtlas->KeyFramesInMap()42 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25824LocalMapping::Run cost time 380
+LocalMapping-->>  bLarge 1 dist 0.409
+LocalMapping-->>  mpAtlas->KeyFramesInMap()43 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25831LocalMapping::Run cost time 291
+LocalMapping-->>  bLarge 1 dist 0.286
+LocalMapping-->>  mpAtlas->KeyFramesInMap()44 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25836LocalMapping::Run cost time 284
+LocalMapping-->>  bLarge 1 dist 0.166
+LocalMapping-->>  mpAtlas->KeyFramesInMap()45 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25840LocalMapping::Run cost time 296
+LocalMapping-->>  bLarge 1 dist 0.23
+LocalMapping-->>  mpAtlas->KeyFramesInMap()46 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25857LocalMapping::Run cost time 280
+LocalMapping-->>  bLarge 1 dist 0.288
+LocalMapping-->>  mpAtlas->KeyFramesInMap()47 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25861LocalMapping::Run cost time 280
+LocalMapping-->>  bLarge 1 dist 0.292
+LocalMapping-->>  mpAtlas->KeyFramesInMap()48 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25872LocalMapping::Run cost time 263
+LocalMapping-->>  bLarge 1 dist 0.284
+LocalMapping-->>  mpAtlas->KeyFramesInMap()49 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25873LocalMapping::Run cost time 232
+LocalMapping-->>  bLarge 1 dist 0.285
+LocalMapping-->>  mpAtlas->KeyFramesInMap()50 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25888LocalMapping::Run cost time 234
+LocalMapping-->>  bLarge 1 dist 0.293
+LocalMapping-->>  mpAtlas->KeyFramesInMap()51 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25889LocalMapping::Run cost time 255
+LocalMapping-->>  bLarge 1 dist 0.339
+LocalMapping-->>  mpAtlas->KeyFramesInMap()52 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25907LocalMapping::Run cost time 284
+LocalMapping-->>  bLarge 1 dist 0.42165172100067139
+LocalMapping-->>  mpAtlas->KeyFramesInMap()52 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25909LocalMapping::Run cost time 320
+LocalMapping-->>  bLarge 1 dist 0.501
+LocalMapping-->>  mpAtlas->KeyFramesInMap()53 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25917LocalMapping::Run cost time 235
+LocalMapping-->>  bLarge 1 dist 0.443
+LocalMapping-->>  mpAtlas->KeyFramesInMap()54 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> start VIBA 2
+LocalMapping-->> end VIBA 2
+LocalMapping-->> Tracking-->> TRACK: Track with motion model !mbOnlyTracking
+LocalMapping-->>  bLarge 1 dist 0.425
+LocalMapping-->>  mpAtlas->KeyFramesInMap()57 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25924LocalMapping::Run cost time 218
+LocalMapping-->>  bLarge 1 dist 0.317
+LocalMapping-->>  mpAtlas->KeyFramesInMap()58 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 25977LocalMapping::Run cost time 143
+LocalMapping-->>  bLarge 1 dist 0.295
+LocalMapping-->>  mpAtlas->KeyFramesInMap()58 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26028LocalMapping::Run cost time 144
+LocalMapping-->>  bLarge 1 dist 0.167
+LocalMapping-->>  mpAtlas->KeyFramesInMap()59 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26049LocalMapping::Run cost time 149
+LocalMapping-->>  bLarge 1 dist 0.12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()60 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26062LocalMapping::Run cost time 133
+LocalMapping-->>  bLarge 1 dist 0.104
+LocalMapping-->>  mpAtlas->KeyFramesInMap()61 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26071LocalMapping::Run cost time 155
+LocalMapping-->>  bLarge 1 dist 0.129
+LocalMapping-->>  mpAtlas->KeyFramesInMap()61 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26103LocalMapping::Run cost time 179
+LocalMapping-->>  bLarge 1 dist 0.157
+LocalMapping-->>  mpAtlas->KeyFramesInMap()61 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26110LocalMapping::Run cost time 165
+LocalMapping-->>  bLarge 1 dist 0.146
+LocalMapping-->>  mpAtlas->KeyFramesInMap()61 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26118LocalMapping::Run cost time 181
+LocalMapping-->>  bLarge 1 dist 0.167
+LocalMapping-->>  mpAtlas->KeyFramesInMap()62 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26149LocalMapping::Run cost time 212
+LocalMapping-->>  bLarge 1 dist 0.186
+LocalMapping-->>  mpAtlas->KeyFramesInMap()61 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26154LocalMapping::Run cost time 176
+LocalMapping-->>  bLarge 1 dist 0.167
+LocalMapping-->>  mpAtlas->KeyFramesInMap()62 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26160LocalMapping::Run cost time 198
+LocalMapping-->>  bLarge 1 dist 0.174
+LocalMapping-->>  mpAtlas->KeyFramesInMap()62 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26178LocalMapping::Run cost time 212
+LocalMapping-->>  bLarge 1 dist 0.193216472864151
+LocalMapping-->>  mpAtlas->KeyFramesInMap()63 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26188LocalMapping::Run cost time 228
+LocalMapping-->>  bLarge 1 dist 0.18470871448516846
+LocalMapping-->>  mpAtlas->KeyFramesInMap()64 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26199LocalMapping::Run cost time 205
+LocalMapping-->>  bLarge 1 dist 0.184
+LocalMapping-->>  mpAtlas->KeyFramesInMap()63 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26211LocalMapping::Run cost time 264
+LocalMapping-->>  bLarge 1 dist 0.22531959414482117
+LocalMapping-->>  mpAtlas->KeyFramesInMap()63 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26223LocalMapping::Run cost time 213
+LocalMapping-->>  bLarge 1 dist 0.219
+LocalMapping-->>  mpAtlas->KeyFramesInMap()64 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26235LocalMapping::Run cost time 188
+LocalMapping-->>  bLarge 1 dist 0.157
+LocalMapping-->>  mpAtlas->KeyFramesInMap()65 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26238LocalMapping::Run cost time 184
+LocalMapping-->>  bLarge 1 dist 0.13440591096878052
+LocalMapping-->>  mpAtlas->KeyFramesInMap()65 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26242LocalMapping::Run cost time 171
+LocalMapping-->>  bLarge 1 dist 0.20651707053184509
+LocalMapping-->>  mpAtlas->KeyFramesInMap()66 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26284LocalMapping::Run cost time 260
+LocalMapping-->>  bLarge 1 dist 0.305
+LocalMapping-->>  mpAtlas->KeyFramesInMap()66 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26311LocalMapping::Run cost time 194
+LocalMapping-->>  bLarge 1 dist 0.30156272649765015
+LocalMapping-->>  mpAtlas->KeyFramesInMap()67 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26411LocalMapping::Run cost time 237
+LocalMapping-->>  bLarge 1 dist 0.206
+LocalMapping-->>  mpAtlas->KeyFramesInMap()66 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26495LocalMapping::Run cost time 203
+LocalMapping-->>  bLarge 1 dist 0.117
+LocalMapping-->>  mpAtlas->KeyFramesInMap()67 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26511LocalMapping::Run cost time 233
+LocalMapping-->>  bLarge 1 dist 0.11125554144382477
+LocalMapping-->>  mpAtlas->KeyFramesInMap()68 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26515LocalMapping::Run cost time 378
+LocalMapping-->>  bLarge 1 dist 0.219
+LocalMapping-->>  mpAtlas->KeyFramesInMap()68 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26523LocalMapping::Run cost time 250
+LocalMapping-->>  bLarge 1 dist 0.23359960317611694
+LocalMapping-->>  mpAtlas->KeyFramesInMap()68 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26525LocalMapping::Run cost time 267
+LocalMapping-->>  bLarge 1 dist 0.213
+LocalMapping-->>  mpAtlas->KeyFramesInMap()69 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26534LocalMapping::Run cost time 327
+LocalMapping-->>  bLarge 1 dist 0.306
+LocalMapping-->>  mpAtlas->KeyFramesInMap()70 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26546LocalMapping::Run cost time 286
+LocalMapping-->>  bLarge 1 dist 0.311
+LocalMapping-->>  mpAtlas->KeyFramesInMap()70 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26547LocalMapping::Run cost time 385
+LocalMapping-->>  bLarge 1 dist 0.3307989239692688
+LocalMapping-->>  mpAtlas->KeyFramesInMap()70 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26551LocalMapping::Run cost time 286
+LocalMapping-->>  bLarge 1 dist 0.34827446937561035
+LocalMapping-->>  mpAtlas->KeyFramesInMap()71 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26555LocalMapping::Run cost time 369
+LocalMapping-->>  bLarge 1 dist 0.39398017525672913
+LocalMapping-->>  mpAtlas->KeyFramesInMap()72 imu Tracking-->> TRACK: Track with motion model !mbOnlyTracking1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26565LocalMapping::Run cost time 339
+LocalMapping-->>  bLarge 1 dist 0.458
+LocalMapping-->>  mpAtlas->KeyFramesInMap()72 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> ScaleRefinement
+LocalMapping-->> 26567LocalMapping::Run cost time 337
+LocalMapping-->>  bLarge 1 dist 0.436
+LocalMapping-->>  mpAtlas->KeyFramesInMap()73 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26572LocalMapping::Run cost time 310
+LocalMapping-->>  bLarge 1 dist 0.399
+LocalMapping-->>  mpAtlas->KeyFramesInMap()73 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26585LocalMapping::Run cost time 250
+LocalMapping-->>  bLarge 1 dist 0.337
+LocalMapping-->>  mpAtlas->KeyFramesInMap()74 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26619LocalMapping::Run cost time 278
+LocalMapping-->>  bLarge 1 dist 0.227
+LocalMapping-->>  mpAtlas->KeyFramesInMap()74 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26632LocalMapping::Run cost time 275
+LocalMapping-->>  bLarge Tracking-->>  bOK->12 : (11 dist ) (1) mState 2
+LocalMapping-->>  mpAtlas->KeyFramesInMap()75 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26697LocalMapping::Run cost time 218
+LocalMapping-->>  bLarge 1 dist 0.211
+LocalMapping-->>  mpAtlas->KeyFramesInMap()75 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26772LocalMapping::Run cost time 248
+LocalMapping-->>  bLarge 1 dist 0.198
+LocalMapping-->>  mpAtlas->KeyFramesInMap()76 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26773LocalMapping::Run cost time 248
+LocalMapping-->>  bLarge 1 dist 0.191
+LocalMapping-->>  mpAtlas->KeyFramesInMap()76 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26806LocalMapping::Run cost time 263
+LocalMapping-->>  bLarge 1 dist 0.268
+LocalMapping-->>  mpAtlas->KeyFramesInMap()76 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26817LocalMapping::Run cost time 273
+LocalMapping-->>  bLarge 1 dist 0.328
+LocalMapping-->>  mpAtlas->KeyFramesInMap()76 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26825LocalMapping::Run cost time 258
+LocalMapping-->>  bLarge 1 dist 0.365
+LocalMapping-->>  mpAtlas->KeyFramesInMap()76 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26839LocalMapping::Run cost time 226
+LocalMapping-->>  bLarge 1 dist 0.324
+LocalMapping-->>  mpAtlas->KeyFramesInMap()77 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26846LocalMapping::Run cost time 242
+LocalMapping-->>  bLarge 1 dist 0.283
+LocalMapping-->>  mpAtlas->KeyFramesInMap()77 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26847LocalMapping::Run cost time 240
+LocalMapping-->>  bLarge 1 dist 0.29452455043792725
+LocalMapping-->>  mpAtlas->KeyFramesInMap()77 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26853LocalMapping::Run cost time 215
+LocalMapping-->>  bLarge 1 dist 0.29659229516983032
+LocalMapping-->>  mpAtlas->KeyFramesInMap()78 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26862LocalMapping::Run cost time 223
+LocalMapping-->>  bLarge 1 dist 0.272
+LocalMapping-->>  mpAtlas->KeyFramesInMap()79 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26869LocalMapping::Run cost time 230
+LocalMapping-->>  bLarge 1 dist 0.241
+LocalMapping-->>  mpAtlas->KeyFramesInMap()79 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26883LocalMapping::Run cost time 247
+LocalMapping-->>  bLarge 1 dist 0.2408614456653595
+LocalMapping-->>  mpAtlas->KeyFramesInMap()80 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26894LocalMapping::Run cost time 238
+LocalMapping-->>  bLarge 1 dist 0.22901318967342377
+LocalMapping-->>  mpAtlas->KeyFramesInMap()81 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26899LocalMapping::Run cost time 221
+LocalMapping-->>  bLarge 1 dist 0.18043425679206848
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26907LocalMapping::Run cost time 243
+LocalMapping-->>  bLarge 1 dist 0.17
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26909LocalMapping::Run cost time 263
+LocalMapping-->>  bLarge 1 dist 0.184
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26923LocalMapping::Run cost time 253
+LocalMapping-->>  bLarge 1 dist 0.215
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26951LocalMapping::Run cost time 234
+LocalMapping-->>  bLarge 1 dist 0.231
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26957LocalMapping::Run cost time 232
+LocalMapping-->>  bLarge 1 dist 0.229
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26963LocalMapping::Run cost time 225
+LocalMapping-->>  bLarge 1 dist 0.21934464573860168
+LocalMapping-->>  mpAtlas->KeyFramesInMap()82 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26970LocalMapping::Run cost time 224
+LocalMapping-->>  bLarge 1 dist 0.2030283659696579
+LocalMapping-->>  mpAtlas->KeyFramesInMap()83 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26980LocalMapping::Run cost time 231
+LocalMapping-->>  bLarge 1 dist 0.202
+LocalMapping-->>  mpAtlas->KeyFramesInMap()84 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26988LocalMapping::Run cost time 217
+LocalMapping-->>  bLarge 1 dist 0.16
+LocalMapping-->>  mpAtlas->KeyFramesInMap()84 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 26996LocalMapping::Run cost time 220
+LocalMapping-->>  bLarge 1 dist 0.08858267217874527
+LocalMapping-->>  mpAtlas->KeyFramesInMap()85 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27004LocalMapping::Run cost time 238
+LocalMapping-->>  bLarge 1 dist 0.0607
+LocalMapping-->>  mpAtlas->KeyFramesInMap()86 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27012LocalMapping::Run cost time 242
+LocalMapping-->>  bLarge 1 dist 0.12
+LocalMapping-->>  mpAtlas->KeyFramesInMap()86 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27028LocalMapping::Run cost time 248
+LocalMapping-->>  bLarge 1 dist 0.191
+LocalMapping-->>  mpAtlas->KeyFramesInMap()87 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27046LocalMapping::Run cost time 259
+LocalMapping-->>  bLarge 1 dist 0.232
+LocalMapping-->>  mpAtlas->KeyFramesInMap()87 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> ScaleRefinement
+LocalMapping-->> 27121LocalMapping::Run cost time 260
+LocalMapping-->>  bLarge 1 dist 0.22930750250816345
+LocalMapping-->>  mpAtlas->KeyFramesInMap()87 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27134LocalMapping::Run cost time 253
+LocalMapping-->>  bLarge 1 dist 0.267
+LocalMapping-->>  mpAtlas->KeyFramesInMap()87 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27215LocalMapping::Run cost time 254
+LocalMapping-->>  bLarge 1 dist 0.279
+LocalMapping-->>  mpAtlas->KeyFramesInMap()87 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27229LocalMapping::Run cost time 283
+LocalMapping-->>  bLarge 1 dist 0.268
+LocalMapping-->>  mpAtlas->KeyFramesInMap()88 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27234LocalMapping::Run cost time 319
+LocalMapping-->>  bLarge 1 dist 0.26861459016799927
+LocalMapping-->>  mpAtlas->KeyFramesInMap()88 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27247LocalMapping::Run cost time 298
+LocalMapping-->>  bLarge 1 dist 0.214
+LocalMapping-->>  mpAtlas->KeyFramesInMap()88 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27251LocalMapping::Run cost time 360
+LocalMapping-->>  bLarge 1 dist 0.175
+LocalMapping-->>  mpAtlas->KeyFramesInMap()88 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27266LocalMapping::Run cost time 319
+LocalMapping-->>  bLarge 1 dist 0.15758129954338074
+LocalMapping-->>  mpAtlas->KeyFramesInMap()88 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27270LocalMapping::Run cost time 346
+LocalMapping-->>  bLarge 1 dist 0.204
+LocalMapping-->>  mpAtlas->KeyFramesInMap()88 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27273LocalMapping::Run cost time 283
+LocalMapping-->>  bLarge 1 dist 0.227
+LocalMapping-->>  mpAtlas->KeyFramesInMap()88 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27275LocalMapping::Run cost time 239
+LocalMapping-->>  bLarge 1 dist 0.218
+LocalMapping-->>  mpAtlas->KeyFramesInMap()89 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27278LocalMapping::Run cost time 254
+LocalMapping-->>  bLarge 1 dist 0.302
+LocalMapping-->>  mpAtlas->KeyFramesInMap()90 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27295LocalMapping::Run cost time 259
+LocalMapping-->>  bLarge 1 dist 0.39371401071548462
+LocalMapping-->>  mpAtlas->KeyFramesInMap()90 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27310LocalMapping::Run cost time 271
+LocalMapping-->>  bLarge 1 dist 0.443
+LocalMapping-->>  mpAtlas->KeyFramesInMap()91 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27317LocalMapping::Run cost time 259
+LocalMapping-->>  bLarge 1 dist 0.466
+LocalMapping-->>  mpAtlas->KeyFramesInMap()92 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27331LocalMapping::Run cost time 250
+LocalMapping-->>  bLarge 1 dist 0.395
+LocalMapping-->>  mpAtlas->KeyFramesInMap()93 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27353LocalMapping::Run cost time 289
+LocalMapping-->>  bLarge 1 dist 0.289
+LocalMapping-->>  mpAtlas->KeyFramesInMap()94 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27364LocalMapping::Run cost time 302
+LocalMapping-->>  bLarge 1 dist 0.194
+LocalMapping-->>  mpAtlas->KeyFramesInMap()95 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27379LocalMapping::Run cost time 365
+LocalMapping-->>  bLarge 1 dist 0.172
+LocalMapping-->>  mpAtlas->KeyFramesInMap()96 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27390LocalMapping::Run cost time 310
+LocalMapping-->>  bLarge 1 dist 0.197
+LocalMapping-->>  mpAtlas->KeyFramesInMap()96 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27402LocalMapping::Run cost time 281
+LocalMapping-->>  bLarge 1 dist 0.159
+LocalMapping-->>  mpAtlas->KeyFramesInMap()96 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27409LocalMapping::Run cost time 289
+LocalMapping-->>  bLarge 1 dist 0.159
+LocalMapping-->>  mpAtlas->KeyFramesInMap()96 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27414LocalMapping::Run cost time 264
+LocalMapping-->>  bLarge 1 dist 0.21018321812152863
+LocalMapping-->>  mpAtlas->KeyFramesInMap()97 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27425LocalMapping::Run cost time 311
+LocalMapping-->>  bLarge 1 dist 0.284
+LocalMapping-->>  mpAtlas->KeyFramesInMap()97 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27436LocalMapping::Run cost time 276
+LocalMapping-->>  bLarge 1 dist 0.29204326868057251
+LocalMapping-->>  mpAtlas->KeyFramesInMap()98 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27446LocalMapping::Run cost time 287
+LocalMapping-->>  bLarge 1 dist 0.24664674699306488
+LocalMapping-->>  mpAtlas->KeyFramesInMap()99 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27482LocalMapping::Run cost time 308
+LocalMapping-->>  bLarge 1 dist 0.235
+LocalMapping-->>  mpAtlas->KeyFramesInMap()100 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27526LocalMapping::Run cost time 315
+LocalMapping-->>  bLarge 1 dist 0.196
+LocalMapping-->>  mpAtlas->KeyFramesInMap()101 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27542LocalMapping::Run cost time 328
+LocalMapping-->>  bLarge 1 dist 0.166
+LocalMapping-->>  mpAtlas->KeyFramesInMap()101 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> ScaleRefinement
+LocalMapping-->> 27547LocalMapping::Run cost time 346
+LocalMapping-->>  bLarge 1 dist 0.126
+LocalMapping-->>  mpAtlas->KeyFramesInMap()101 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> ScaleRefinement
+LocalMapping-->> 27564LocalMapping::Run cost time 454
+LocalMapping-->>  bLarge 1 dist 0.22081534564495087
+LocalMapping-->>  mpAtlas->KeyFramesInMap()102 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27578LocalMapping::Run cost time 428
+LocalMapping-->>  bLarge 1 dist 0.498
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27602LocalMapping::Run cost time 330
+LocalMapping-->>  bLarge 1 dist 0.556
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27660LocalMapping::Run cost time 511
+LocalMapping-->>  bLarge 1 dist 0.431
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27670LocalMapping::Run cost time 400
+LocalMapping-->>  bLarge 1 dist 0.335
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27673LocalMapping::Run cost time 398
+LocalMapping-->>  bLarge 1 dist 0.22579105198383331
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27688LocalMapping::Run cost time 339
+LocalMapping-->>  bLarge 1 dist 0.122
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27691LocalMapping::Run cost time 346
+LocalMapping-->>  bLarge 1 dist 0.107
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27692LocalMapping::Run cost time 350
+LocalMapping-->>  bLarge 1 dist 0.16814839839935303
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27707LocalMapping::Run cost time 306
+LocalMapping-->>  bLarge 1 dist 0.235
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27722LocalMapping::Run cost time 304
+LocalMapping-->>  bLarge 1 dist 0.315
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27736LocalMapping::Run cost time 320
+LocalMapping-->>  bLarge 1 dist 0.493
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27796LocalMapping::Run cost time 313
+LocalMapping-->>  bLarge 1 dist 0.539
+LocalMapping-->>  mpAtlas->KeyFramesInMap()105 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27806LocalMapping::Run cost time 341
+LocalMapping-->>  bLarge 1 dist 0.46134990453720093
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27807LocalMapping::Run cost time 317
+LocalMapping-->>  bLarge 1 dist 0.475
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27821LocalMapping::Run cost time 314
+LocalMapping-->>  bLarge 1 dist 0.495
+LocalMapping-->>  mpAtlas->KeyFramesInMap()105 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27831LocalMapping::Run cost time 322
+LocalMapping-->>  bLarge 1 dist 0.523
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27839LocalMapping::Run cost time 290
+LocalMapping-->>  bLarge 1 dist 0.515
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27843LocalMapping::Run cost time 288
+LocalMapping-->>  bLarge 1 dist 0.49458950757980347
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27847LocalMapping::Run cost time 280
+LocalMapping-->>  bLarge 1 dist 0.509
+LocalMapping-->>  mpAtlas->KeyFramesInMap()103 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27863LocalMapping::Run cost time 335
+LocalMapping-->>  bLarge 1 dist 0.562
+LocalMapping-->>  mpAtlas->KeyFramesInMap()104 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27873LocalMapping::Run cost time 267
+LocalMapping-->>  bLarge 1 dist 0.49415755271911621
+LocalMapping-->>  mpAtlas->KeyFramesInMap()105 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27883LocalMapping::Run cost time 246
+LocalMapping-->>  bLarge 1 dist 0.40144282579421997
+LocalMapping-->>  mpAtlas->KeyFramesInMap()106 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27965LocalMapping::Run cost time 236
+LocalMapping-->>  bLarge 1 dist 0.295
+LocalMapping-->>  mpAtlas->KeyFramesInMap()107 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27973LocalMapping::Run cost time 222
+LocalMapping-->>  bLarge 1 dist 0.149
+LocalMapping-->>  mpAtlas->KeyFramesInMap()107 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 27978LocalMapping::Run cost time 232
+LocalMapping-->>  bLarge 1 dist 0.119
+LocalMapping-->>  mpAtlas->KeyFramesInMap()108 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28001LocalMapping::Run cost time 228
+LocalMapping-->>  bLarge 1 dist 0.115
+LocalMapping-->>  mpAtlas->KeyFramesInMap()109 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28041LocalMapping::Run cost time 219
+LocalMapping-->>  bLarge 1 dist 0.113
+LocalMapping-->>  mpAtlas->KeyFramesInMap()110 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28049LocalMapping::Run cost time 230
+LocalMapping-->>  bLarge 1 dist 0.103
+LocalMapping-->>  mpAtlas->KeyFramesInMap()110 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28058LocalMapping::Run cost time 216
+LocalMapping-->>  bLarge 1 dist 0.10248441994190216
+LocalMapping-->>  mpAtlas->KeyFramesInMap()110 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28071LocalMapping::Run cost time 243
+LocalMapping-->>  bLarge 1 dist 0.107
+LocalMapping-->>  mpAtlas->KeyFramesInMap()111 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28086LocalMapping::Run cost time 216
+LocalMapping-->>  bLarge 1 dist 0.0907
+LocalMapping-->>  mpAtlas->KeyFramesInMap()111 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28089LocalMapping::Run cost time 200
+LocalMapping-->>  bLarge 1 dist 0.0788
+LocalMapping-->>  mpAtlas->KeyFramesInMap()112 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28099LocalMapping::Run cost time 176
+LocalMapping-->>  bLarge 1 dist 0.0721
+LocalMapping-->>  mpAtlas->KeyFramesInMap()113 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28153LocalMapping::Run cost time 178
+LocalMapping-->>  bLarge 1 dist 0.0676
+LocalMapping-->>  mpAtlas->KeyFramesInMap()114 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28160LocalMapping::Run cost time 211
+LocalMapping-->>  bLarge 1 dist 0.090765208005905151
+LocalMapping-->>  mpAtlas->KeyFramesInMap()115 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28161LocalMapping::Run cost time 179
+LocalMapping-->>  bLarge 1 dist 0.113
+LocalMapping-->>  mpAtlas->KeyFramesInMap()116 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28165LocalMapping::Run cost time 172
+LocalMapping-->>  bLarge 0 dist 0.101
+LocalMapping-->>  mpAtlas->KeyFramesInMap()117 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28171LocalMapping::Run cost time 104
+LocalMapping-->>  bLarge 1 dist 0.0525
+LocalMapping-->>  mpAtlas->KeyFramesInMap()118 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28172LocalMapping::Run cost time 173
+LocalMapping-->>  bLarge 1 dist 0.0268
+LocalMapping-->>  mpAtlas->KeyFramesInMap()119 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28181LocalMapping::Run cost time 158
+LocalMapping-->>  bLarge 1 dist 0.0284
+LocalMapping-->>  mpAtlas->KeyFramesInMap()120 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28193LocalMapping::Run cost time 167
+LocalMapping-->>  bLarge 1 dist 0.0235
+LocalMapping-->>  mpAtlas->KeyFramesInMap()121 imu 1 mbMonocular 1 mbInertial 1
+LocalMapping-->> 28204LocalMapping::Run cost time 141

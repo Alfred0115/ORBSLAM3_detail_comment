@@ -38,4 +38,4 @@ mkdir build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 make -j6
-
+cp lib/libORB_SLAM3.so                  ~/run_lib

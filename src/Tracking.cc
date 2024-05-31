@@ -2689,10 +2689,10 @@ void Tracking::Track()
         {
             float x = mlRelativeFramePoses.back().translation()[0] ;
             float y = mlRelativeFramePoses.back().translation()[1];
-            if(fabs(mlRelativeFramePoses.back().translation()[0]) <= 0.01)
-                x = 0.001;
-            if(fabs(mlRelativeFramePoses.back().translation()[1]) <= 0.01)
-                y = 0.001;
+            // if(fabs(mlRelativeFramePoses.back().translation()[0]) <= 0.01)
+            //     x = 0.001;
+            // if(fabs(mlRelativeFramePoses.back().translation()[1]) <= 0.01)
+            //     y = 0.001;
               cout <<"Tracking-->> "<<"robot_pose , "<< std::setprecision(3)
             <<x<<" , "
             <<y<<" , "

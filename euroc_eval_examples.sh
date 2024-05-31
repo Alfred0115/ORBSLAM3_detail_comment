@@ -1,5 +1,5 @@
 #!/bin/bash
-pathDatasetEuroc='/home/li/Datasets/EuRoC' #Example, it is necesary to change it by the dataset path
+pathDatasetEuroc='/home/li/Datasets/EuRoc/' #Example, it is necesary to change it by the dataset path
 
 # # Single Session Example (Pure visual)
 # echo "Launching MH01 with Stereo sensor"
@@ -20,10 +20,10 @@ pathDatasetEuroc='/home/li/Datasets/EuRoC' #Example, it is necesary to change it
 
 # Single Session Example (Visual-Inertial)
 echo "Launching V102 with Monocular-Inertial sensor"
-./Examples/Monocular-Inertial/mono_inertial_euroc ./Vocabulary/ORBvoc.txt ./Examples/Monocular-Inertial/EuRoC.yaml "$pathDatasetEuroc"/MH_02_easy ./Examples/Monocular-Inertial/EuRoC_TimeStamps/MH02.txt dataset-MH02_monoi
+./Examples/Monocular-Inertial/mono_inertial_euroc ./Vocabulary/ORBvoc.txt ./Examples/Monocular-Inertial/EuRoC.yaml "$pathDatasetEuroc"/MH_02_easy ./Examples/Monocular-Inertial/EuRoC_TimeStamps/MH02.txt dataset-MH02_monoi >z_log/ll.log
 echo "------------------------------------"
 echo "Evaluation of V102 trajectory with Monocular-Inertial sensor"
-python evaluation/evaluate_ate_scale.py "$pathDatasetEuroc"/V102/mav0/state_groundtruth_estimate0/data.csv f_dataset-V102_monoi.txt --plot V102_monoi.pdf
+python evaluation/evaluate_ate_scale.py "$pathDatasetEuroc"MH_02_easy/mav0/state_groundtruth_estimate0/data.csv f_dataset-MH02_monoi.txt --plot dataset-MH02_monoi.pdf
 
 
 # # MultiSession Monocular Examples
