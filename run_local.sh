@@ -33,6 +33,7 @@ pathDatasetEuroc='/home/li/Datasets/EuRoc/' #Example, it is necesary to change i
 #https://blog.csdn.net/Welf688/article/details/124029171
 #./Examples/RGB-D/rgbd_tum Vocabulary/ORBvoc.txt Examples/RGB-D/TUM1.yaml /rgbd_dataset_freiburg1_desk rgbd_dataset_freiburg1_desk/associations.txt
 #python associate.py /home/li/Datasets/EuRoc/rgbd_dataset_freiburg1_floor/rgb.txt /home/li/Datasets/EuRoc/rgbd_dataset_freiburg1_floor/depth.txt >/home/li/Datasets/EuRoc/rgbd_dataset_freiburg1_floor/associations.txt
+#python associate.py /home/li/Datasets/EuRoc/rgbd_dataset_freiburg1_floor/associations.txt /home/li/Datasets/EuRoc/rgbd_dataset_freiburg1_floor/groundtruth.txt >/home/li/Datasets/EuRoc/rgbd_dataset_freiburg1_floor/associate_with_groundtruth
 echo "Launching  with RGBD sensor"
 ./Examples/RGB-D/rgbd_tum ./Vocabulary/ORBvoc.txt ./Examples/RGB-D/TUM1.yaml "$pathDatasetEuroc"rgbd_dataset_freiburg1_floor  "$pathDatasetEuroc"rgbd_dataset_freiburg1_floor/associations.txt >z_log/ll_rgbd.log
 echo "------------------------------------"
