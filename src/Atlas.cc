@@ -324,11 +324,20 @@ bool Atlas::isImuInitialized()
 void Atlas::PreSave()
 {
     // 1. 更新mnLastInitKFidMap
+    // mpCurrentMap是当前的地图 Map *Atlas::mpCurrentMap
     if (mpCurrentMap)
     {
+         // mnLastInitKFidMap 为当前地图创建时第1个关键帧的id，它是在上一个地图最大关键帧id的基础上增加1
+        // mspMaps 保存了每一个地图
+        // 如果地图集不为空且 前地图创建时第1个关键帧的id小于当前地图的最大关键帧
+        // 言外之意就是当前地图的关键帧的数量大于1 更新mnLastInitKFidMap为下一个关键帧的索引
         if (!mspMaps.empty() && mnLastInitKFidMap < mpCurrentMap->GetMaxKFid())
             mnLastInitKFidMap = mpCurrentMap->GetMaxKFid() + 1; // The init KF is the next of current maximum
     }
+        // 我们要先明白几个变量的含义：
+        // 1.mpCurrentMap是当前的地图 Map *Atlas::mpCurrentMap
+        // 2.mnLastInitKFidMap为当前地图创建时第1个关键帧的id，它是在上一个地图最大关键帧id的基础上增加1
+        // 3.mspMaps保存了所有地图：set<Map *> Atlas::mspMaps
 
     // 比较map id
     struct compFunctor
@@ -353,6 +362,9 @@ void Atlas::PreSave()
         // 如果地图为空，则跳过
         if (pMi->GetAllKeyFrames().size() == 0)
         {
+            //         如果地图是不好的我们处理下一张地图。
+
+            // 如果地图关键帧为空的话，我们去将这个地图设置为不好的。
             // Empty map, erase before of save it.
             SetMapBad(pMi);
             continue;

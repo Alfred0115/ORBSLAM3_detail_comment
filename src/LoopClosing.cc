@@ -273,7 +273,7 @@ void LoopClosing::Run()
                         Sophus::SE3d Twc = mpCurrentKF->GetPoseInverse().cast<double>();
                         g2o::Sim3 g2oTwc(Twc.unit_quaternion(),Twc.translation(),1.0);
 
-                        // mg2oLoopScw是通过回环检测的Sim3计算出的回环矫正后的当前关键帧的初始位姿, Twc是当前关键帧回环矫正前的位姿.
+                        // mg2oLoopScw 是通过回环检测的Sim3计算出的回环矫正后的当前关键帧的初始位姿, Twc是当前关键帧回环矫正前的位姿.
                         // g2oSww_new 可以理解为correction
                         g2o::Sim3 g2oSww_new = g2oTwc*mg2oLoopScw;
 

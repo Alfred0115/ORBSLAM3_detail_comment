@@ -1013,6 +1013,7 @@ void KeyFrame::PreSave(set<KeyFrame *> &spKF, set<MapPoint *> &spMP, set<Geometr
         else // If the element is null his value is -1 because all the id are positives
             mvBackupMapPointsId.push_back(-1);
     }
+    // 2.预保存本质图
     // Save the id of each connected KF with it weight
     mBackupConnectedKeyFrameIdWeights.clear();
     for (std::map<KeyFrame *, int>::const_iterator it = mConnectedKeyFrameWeights.begin(), end = mConnectedKeyFrameWeights.end(); it != end; ++it)
@@ -1020,7 +1021,7 @@ void KeyFrame::PreSave(set<KeyFrame *> &spKF, set<MapPoint *> &spMP, set<Geometr
         if (spKF.find(it->first) != spKF.end())
             mBackupConnectedKeyFrameIdWeights[it->first->mnId] = it->second;
     }
-
+    //  3.预保存父母节点的ID
     // Save the parent id
     mBackupParentId = -1;
     if (mpParent && spKF.find(mpParent) != spKF.end())

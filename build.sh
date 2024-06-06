@@ -37,5 +37,6 @@ echo "Configuring and building ORB_SLAM3 ..."
 mkdir build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j6
-cp lib/libORB_SLAM3.so                  ~/run_lib
+make -j4
+cd ..
+cp -r  lib/*.so                  ~/run_lib

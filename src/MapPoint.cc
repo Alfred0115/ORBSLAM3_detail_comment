@@ -754,6 +754,13 @@ void MapPoint::UpdateMap(Map* pMap)
 }
 
 /**
+ *   
+*   1.备份替换的地图点：如果这个地图点被替换了，我们在地图点集合spMP中寻找这个地图点所对应的ID赋值给mBackupReplacedId。
+    2.备份预测：mObservations存放所有地图点的预测（被哪一个关键帧观测到 + 在该帧特征点的索引），因此遍历该地图点可以看到
+        的所有关键帧。 如果这个关键帧存在（没有在优化节点被优化）：备份地图点的观测到mBackupObservationsId1、
+        mBackupObservationsId2变量中。 （map<unsigned long, int> MapPoint::mBackupObservationsId1）
+        如果这个关键帧不存在，删除掉关键帧对地图点的观测。
+    3.备份第一次观测到该地图点的关键帧的ID：mBackupRefKFId。
  * @brief 预保存
  * @param spKF 地图中所有关键帧
  * @param spMP 地图中所有三维点

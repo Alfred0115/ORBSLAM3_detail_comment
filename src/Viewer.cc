@@ -219,6 +219,9 @@ void Viewer::Run()
     float trackedImageScale = mpTracker->GetImageScale();
 
     cout << "Starting the Viewer" << endl;
+    bool write_vedio_flag = true;
+    cv::VideoWriter writer_vedio;
+    int loop_index = 0;
     while(1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -313,7 +316,10 @@ void Viewer::Run()
         if(menuShowKeyFrames || menuShowGraph || menuShowInertialGraph || menuShowOptLba)
             mpMapDrawer->DrawKeyFrames(menuShowKeyFrames,menuShowGraph, menuShowInertialGraph, menuShowOptLba);
         if(menuShowPoints)
+        {
+            // std::cout<<"****************************************here"<<std::endl;
             mpMapDrawer->DrawMapPoints();
+        }
 
         pangolin::FinishFrame();
 
@@ -334,8 +340,23 @@ void Viewer::Run()
             int height = toShow.rows * mImageViewerScale;
             cv::resize(toShow, toShow, cv::Size(width, height));
         }
-
+         
         cv::imshow("ORB-SLAM3: Current Frame",toShow);
+        std::stringstream ss;
+        ss<< "./output/im_";
+        ss<<loop_index;
+        ss<<".png";
+        cv::imwrite(ss.str(), toShow);
+        if(write_vedio_flag)
+        {
+            write_vedio_flag = false;
+            writer_vedio.open("./output/record.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30, cv::Size(toShow.cols, toShow.rows));
+             if(!writer_vedio.isOpened()){
+                cout<<"打开视频文件失败，请确认是否为合法输入"<<endl;
+             }
+    
+        }
+        writer_vedio.write(toShow);
         cv::waitKey(mT);
 
         if(menuReset)
@@ -378,8 +399,9 @@ void Viewer::Run()
 
         if(CheckFinish())
             break;
+    loop_index ++;
     }
-
+   
     SetFinish();
 }
 

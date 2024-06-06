@@ -2685,7 +2685,6 @@ void Tracking::Track()
             mlFrameTimes.push_back(mlFrameTimes.back());
             mlbLost.push_back(mState==LOST);
         }
-        if(fabs(mlRelativeFramePoses.back().translation()[0]) <= 100 && fabs(mlRelativeFramePoses.back().translation()[1]) <= 100)
         {
             float x = mlRelativeFramePoses.back().translation()[0] ;
             float y = mlRelativeFramePoses.back().translation()[1];

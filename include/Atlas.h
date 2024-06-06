@@ -147,6 +147,15 @@ protected:
 
     std::set<Map*> mspMaps;
     std::set<Map*> mspBadMaps;
+    //Atlas 类有一个成员变量 mvpBackupMaps ，它是一个 std::vector<Map*> 类型的对象。
+    //当 Atlas 对象被序列化时，Boost 序列化库会对 mvpBackupMaps 进行序列化。
+    //由于 mvpBackupMaps 是一个 std::vector<Map*>，Boost 序列化库会对
+    // std::vector 中的每一个 Map* 进行序列化。对于每一个 Map*，
+    //Boost 序列化库会查找并调用 Map 类的序列化函数。
+    //在 Map 类的序列化函数中，又有一些成员变量需要被序列化，
+    //比如 mvpBackupKeyFrames 和 mvpBackupMapPoints 等。
+    //如果这些成员变量的类型也定义了序列化函数，那么 Boost 序列化库会继续递归地对这些成员变量进行序列化。
+    //原文链接：https://blog.csdn.net/yzhhhh5068/article/details/139049465
     // Its necessary change the container from set to vector because libboost 1.58 and Ubuntu 16.04 have an error with this cointainer
     std::vector<Map*> mvpBackupMaps;
 

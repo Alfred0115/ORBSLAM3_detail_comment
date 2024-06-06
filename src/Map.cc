@@ -394,6 +394,19 @@ void Map::SetLastMapChange(int currentChangeId)
 }
 
 /** 预保存，也就是把想保存的信息保存到备份的变量中
+ *    在这里我们预保存每张地图。
+
+        1.遍历此张地图的所有地图点，先剔除一下无效观测：当观测到地图点的关键帧不存在 或 
+            观测到地图点的地图不是当前地图 或 观测到地图点的关键帧是被优化掉的关键帧时，
+            我们将这个地图点在相应帧的观测删除。也就是说这里去除这个地图点在别的地图的观测以及在坏掉的关键帧的观测。
+
+        2.第二步保存这张最开始的帧的id 保存到变量mvBackupKeyFrameOriginsId中。
+
+        3.第三步再次遍历这个地图的所有地图点，将所有地图点保存到mvpBackupMapPoints中。        
+
+        4.第四步预保存地图点。
+
+        5.第五步预保存关键帧。
  * @param spCams 相机
  */
 void Map::PreSave(std::set<GeometricCamera *> &spCams)
@@ -409,6 +422,10 @@ void Map::PreSave(std::set<GeometricCamera *> &spCams)
         {
             nMPWithoutObs++;
         }
+         // 能够观测到当前地图点的所有关键帧及该地图点在KF中的索引
+        // it->first 观测到地图点的关键帧
+        // 观测到地图点的关键帧不存在 或 观测到地图点的地图不是当前地图 或 观测到地图点的关键帧是被优化掉的关键帧
+        // 也就是说 这里去除这个地图点在别的地图的观测以及在坏掉的关键帧的观测
         map<KeyFrame *, std::tuple<int, int>> mpObs = pMPi->GetObservations();
         for (map<KeyFrame *, std::tuple<int, int>>::iterator it = mpObs.begin(), end = mpObs.end(); it != end; ++it)
         {

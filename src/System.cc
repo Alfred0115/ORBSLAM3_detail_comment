@@ -130,7 +130,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     if(mStrLoadAtlasFromFile.empty())
     {
         //Load ORB Vocabulary
-        cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
+        cout << endl << "mStrLoadAtlasFromFile.empty() Loading ORB Vocabulary. This could take a while..." << endl;
 
         // 建立一个新的ORB字典
         mpVocabulary = new ORBVocabulary();
@@ -177,8 +177,8 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
         // Load the file with an earlier session
         //clock_t start = clock();
         cout << "System-->> "<<"Initialization of Atlas from file: " << mStrLoadAtlasFromFile << endl;
-        bool isRead = LoadAtlas(FileType::BINARY_FILE);
-
+        // bool isRead = LoadAtlas(FileType::BINARY_FILE);
+        bool isRead = LoadAtlas(FileType::TEXT_FILE);
         if(!isRead)
         {
             cout << "System-->> "<<"Error to load the file, please try with other session file or vocabulary file" << endl;
@@ -607,7 +607,8 @@ void System::Shutdown()
     {
         std::cout << "System-->> "<<"开始保存地图" << std::endl;
         Verbose::PrintMess("Atlas saving to file " + mStrSaveAtlasToFile, Verbose::VERBOSITY_NORMAL);
-        SaveAtlas(FileType::BINARY_FILE);
+        // SaveAtlas(FileType::BINARY_FILE);
+        SaveAtlas(FileType::TEXT_FILE);
     }
 
     /*if(mpViewer)
@@ -1482,7 +1483,10 @@ void System::SaveAtlas(int type)
 
         // 3. 保存词典的校验结果及名字
         string strVocabularyChecksum = CalculateCheckSum(mStrVocabularyFilePath,TEXT_FILE);
+        
+        // 找到了 mStrVocabularyFilePath 中最后一个目录分隔符（/ 或者 \）的位置，并将其索引保存在 found 变量中。这个操作通常用于从文件路径中提取文件名。
         std::size_t found = mStrVocabularyFilePath.find_last_of("/\\");
+        // 这行代码利用之前找到的目录分隔符的位置 found，从 mStrVocabularyFilePath 中提取文件名部分，并将提取的文件名存储在 strVocabularyName 变量中。
         string strVocabularyName = mStrVocabularyFilePath.substr(found+1);
 
         if(type == TEXT_FILE) // File text
@@ -1495,7 +1499,9 @@ void System::SaveAtlas(int type)
             oa << strVocabularyName;
             oa << strVocabularyChecksum;
             oa << mpAtlas;
-            cout << "System-->> "<<"End to write the save text file" << endl;
+            cout << "System-->> "<<"End to write the save text file"  
+            <<strVocabularyName<<" "<<strVocabularyChecksum<< " "<<mpAtlas
+            << endl;
         }
         else if(type == BINARY_FILE) // File binary
         {
@@ -1506,7 +1512,9 @@ void System::SaveAtlas(int type)
             oa << strVocabularyName;
             oa << strVocabularyChecksum;
             oa << mpAtlas;
-            cout << "System-->> "<<"End to write save binary file" << endl;
+            cout << "System-->> "<<"End to write save binary file" 
+             <<strVocabularyName<<" "<<strVocabularyChecksum<< " "<<mpAtlas
+             << endl;
         }
     }
 }
@@ -1538,12 +1546,14 @@ bool System::LoadAtlas(int type)
         ia >> strFileVoc;
         ia >> strVocChecksum;
         ia >> mpAtlas;
-        cout << "System-->> "<<"End to load the save text file " << endl;
+        cout << "System-->> "<<"End to load the save text file "  
+        <<strFileVoc<<" "<<strVocChecksum<< " "<<mpAtlas
+        << endl;
         isRead = true;
     }
     else if(type == BINARY_FILE) // File binary
     {
-        cout << "System-->> "<<"Starting to read the save binary file"  << endl;
+        cout << "System-->> "<<"BINARY_FILE Starting to read the save binary file"  << endl;
         std::ifstream ifs(pathLoadFileName, std::ios::binary);
         if(!ifs.good())
         {
@@ -1554,7 +1564,8 @@ bool System::LoadAtlas(int type)
         ia >> strFileVoc;
         ia >> strVocChecksum;
         ia >> mpAtlas;
-        cout << "System-->> "<<"End to load the save binary file" << endl;
+        cout << "System-->> "<<"End to load the save binary file"
+        <<strFileVoc<<" "<<strVocChecksum<< " "<<mpAtlas<< endl;
         isRead = true;
     }
     else
