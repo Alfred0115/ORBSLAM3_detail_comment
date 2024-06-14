@@ -143,17 +143,17 @@ protected:
 
     bool mbMonocular;
     bool mbInertial;
-
+ 
     void ResetIfRequested();
-    bool mbResetRequested;
+    bool mbResetRequested;//请求当前线程复位的标志。true，表示一直请求复位，但复位还未完成；表示复位完成为false
     bool mbResetRequestedActiveMap;
     Map* mpMapToReset;
     std::mutex mMutexReset;
 
     bool CheckFinish();
     void SetFinish();
-    bool mbFinishRequested;
-    bool mbFinished;
+    bool mbFinishRequested;// 请求终止当前线程的标志。注意只是请求，不一定终止。终止要看 mbFinished
+    bool mbFinished;// 判断最终LocalMapping::Run() 是否完成的标志。
     std::mutex mMutexFinish;
 
     Atlas* mpAtlas;
@@ -169,14 +169,14 @@ protected:
 
     std::mutex mMutexNewKFs;
 
-    bool mbAbortBA;
+    bool mbAbortBA;//是否流产BA优化的标志位
 
-    bool mbStopped;
-    bool mbStopRequested;
-    bool mbNotStop;
+    bool mbStopped;// 为true表示可以并终止localmapping 线程
+    bool mbStopRequested;//外部线程调用，为true，表示外部线程请求停止 local mapping
+    bool mbNotStop;//true，表示不要停止 localmapping 线程，因为要插入关键帧了。需要和 mbStopped 结合使用
     std::mutex mMutexStop;
 
-    bool mbAcceptKeyFrames;
+    bool mbAcceptKeyFrames;// true，允许接受关键帧。tracking 和local mapping 之间的关键帧调度
     std::mutex mMutexAccept;
 
     void InitializeIMU(float priorG = 1e2, float priorA = 1e6, bool bFirst = false);

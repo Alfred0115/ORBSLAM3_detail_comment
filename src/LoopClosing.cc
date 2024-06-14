@@ -255,7 +255,7 @@ void LoopClosing::Run()
                 }
 
                 // Step 4 如果(没有检测到融合)检测到回环, 则回环矫正
-                if(mbLoopDetected)
+                if(mbLoopDetected)//form NewDetectCommonRegions() 
                 {
                     // 标记时间戳
                     bool bGoodLoop = true;
@@ -416,7 +416,7 @@ bool LoopClosing::NewDetectCommonRegions()
     // 2.双目模式下且当前地图关键帧数少于5则不考虑
     if(mpTracker->mSensor == System::STEREO && mpLastMap->GetAllKeyFrames().size() < 5) //12
     {
-        // cout <<"LoopClosing-->> "<< "LoopClousure: Stereo KF inserted without check: " << mpCurrentKF->mnId << endl;
+        cout <<"LoopClosing-->> "<< "LoopClousure: Stereo KF inserted without check: " << mpCurrentKF->mnId << endl;
         mpKeyFrameDB->add(mpCurrentKF);
         mpCurrentKF->SetErase();
         return false;
@@ -425,7 +425,7 @@ bool LoopClosing::NewDetectCommonRegions()
     // 3.当前地图关键帧少于12则不进行检测
     if(mpLastMap->GetAllKeyFrames().size() < 12)
     {
-        // cout <<"LoopClosing-->> "<< "LoopClousure: Stereo KF inserted without check, map is small: " << mpCurrentKF->mnId << endl;
+        cout <<"LoopClosing-->> "<< "LoopClousure: Stereo KF inserted without check, map is small: " << mpCurrentKF->mnId << endl;
         mpKeyFrameDB->add(mpCurrentKF);
         mpCurrentKF->SetErase();
         return false;
@@ -566,18 +566,18 @@ bool LoopClosing::NewDetectCommonRegions()
 
         }
     }  
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_EndEstSim3_1 = std::chrono::steady_clock::now();
+    #ifdef REGISTER_TIMES
+            std::chrono::steady_clock::time_point time_EndEstSim3_1 = std::chrono::steady_clock::now();
 
-        double timeEstSim3 = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndEstSim3_1 - time_StartEstSim3_1).count();
-#endif
+            double timeEstSim3 = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndEstSim3_1 - time_StartEstSim3_1).count();
+    #endif
     // Step 3.3 若校验成功则把当前帧添加进数据库,且返回true表示找到共同区域
     // 注意初始化时mbMergeDetected=mbLoopDetected=false
     if(mbMergeDetected || mbLoopDetected)
     {
-#ifdef REGISTER_TIMES
-        vdEstSim3_ms.push_back(timeEstSim3);
-#endif
+        #ifdef REGISTER_TIMES
+                vdEstSim3_ms.push_back(timeEstSim3);
+        #endif
         mpKeyFrameDB->add(mpCurrentKF);
         return true;
     }
@@ -592,22 +592,22 @@ bool LoopClosing::NewDetectCommonRegions()
     if(!bMergeDetectedInKF || !bLoopDetectedInKF)
     {
         // Search in BoW
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_StartQuery = std::chrono::steady_clock::now();
-#endif
+        #ifdef REGISTER_TIMES
+                std::chrono::steady_clock::time_point time_StartQuery = std::chrono::steady_clock::now();
+        #endif
         // 分别找到3个最好的候选帧, 回环候选帧放在vpLoopBowCand中,融合候选帧放在vpMergeBowCand中
         mpKeyFrameDB->DetectNBestCandidates(mpCurrentKF, vpLoopBowCand, vpMergeBowCand,3);
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_EndQuery = std::chrono::steady_clock::now();
+        #ifdef REGISTER_TIMES
+                std::chrono::steady_clock::time_point time_EndQuery = std::chrono::steady_clock::now();
 
-        double timeDataQuery = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndQuery - time_StartQuery).count();
-        vdDataQuery_ms.push_back(timeDataQuery);
-#endif
+                double timeDataQuery = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndQuery - time_StartQuery).count();
+                vdDataQuery_ms.push_back(timeDataQuery);
+        #endif
     }
 
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_StartEstSim3_2 = std::chrono::steady_clock::now();
-#endif
+    #ifdef REGISTER_TIMES
+            std::chrono::steady_clock::time_point time_StartEstSim3_2 = std::chrono::steady_clock::now();
+    #endif
     // Check the BoW candidates if the geometric candidate list is empty
     //Loop candidates
     // Step 4.1 若当前关键帧没有被检测到回环,并且候选帧数量不为0,则对回环候选帧进行论文中第8页的2-5步
@@ -625,12 +625,12 @@ bool LoopClosing::NewDetectCommonRegions()
         mbMergeDetected = DetectCommonRegionsFromBoW(vpMergeBowCand, mpMergeMatchedKF, mpMergeLastCurrentKF, mg2oMergeSlw, mnMergeNumCoincidences, mvpMergeMPs, mvpMergeMatchedMPs);
     }
 
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_EndEstSim3_2 = std::chrono::steady_clock::now();
+    #ifdef REGISTER_TIMES
+            std::chrono::steady_clock::time_point time_EndEstSim3_2 = std::chrono::steady_clock::now();
 
-        timeEstSim3 += std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndEstSim3_2 - time_StartEstSim3_2).count();
-        vdEstSim3_ms.push_back(timeEstSim3);
-#endif
+            timeEstSim3 += std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndEstSim3_2 - time_StartEstSim3_2).count();
+            vdEstSim3_ms.push_back(timeEstSim3);
+    #endif
     // Step 5 根据结果确定有没有检测到共同区域
     // 把当前帧添加到关键帧数据库中
     mpKeyFrameDB->add(mpCurrentKF);
@@ -676,7 +676,7 @@ bool LoopClosing::DetectAndReffineSim3FromLastKF(KeyFrame* pCurrentKF, KeyFrame*
     if(nNumProjMatches >= nProjMatches)
     {
         //Verbose::PrintMess("LoopClosing-->> Sim3 reffine: There are " + to_string(nNumProjMatches) + " initial matches ", Verbose::VERBOSITY_DEBUG);
-        // 3.1 求得gScm 为OptimizeSim3接口准备数据
+        // 3.1 求得 gScm 为OptimizeSim3接口准备数据
         Sophus::SE3d mTwm = pMatchedKF->GetPoseInverse().cast<double>();
         g2o::Sim3 gSwm(mTwm.unit_quaternion(),mTwm.translation(),1.0);
         g2o::Sim3 gScm = gScw * gSwm;
@@ -690,13 +690,13 @@ bool LoopClosing::DetectAndReffineSim3FromLastKF(KeyFrame* pCurrentKF, KeyFrame*
         // 3.2 优化gScm，mp固定
         int numOptMatches = Optimizer::OptimizeSim3(mpCurrentKF, pMatchedKF, vpMatchedMPs, gScm, 10, bFixedScale, mHessian7x7, true);
 
-        //Verbose::PrintMess("LoopClosing-->> Sim3 reffine: There are " + to_string(numOptMatches) + " matches after of the optimization ", Verbose::VERBOSITY_DEBUG);
+        Verbose::PrintMess("LoopClosing-->> Sim3 reffine: There are " + to_string(numOptMatches) + " matches after of the optimization ", Verbose::VERBOSITY_DEBUG);
         // 若匹配的数量大于一定的数目
         if(numOptMatches > nProjOptMatches)
         {
-            //!bug, 以下gScw_estimation应该通过上述sim3优化后的位姿来更新。以下mScw应该改为 gscm * gswm^-1
+            //!bug, 以下gScw_estimation应该通过上述 sim3 优化后的位姿来更新。以下 mScw 应该改为 gscm * gswm^-1
             g2o::Sim3 gScw_estimation(gScw.rotation(), gScw.translation(),1.0);
-
+            Verbose::PrintMess("LoopClosing-->> Sim3 reffine: There are //gScw_estimation !bug, !bug, 以下gScw_estimation应该通过上述 sim3 优化后的位姿来更新", Verbose::VERBOSITY_DEBUG);
             vector<MapPoint*> vpMatchedMP;
             vpMatchedMP.resize(mpCurrentKF->GetMapPointMatches().size(), static_cast<MapPoint*>(NULL));
 
@@ -1320,7 +1320,7 @@ void LoopClosing::CorrectLoop()
     mvpCurrentConnectedKFs = mpCurrentKF->GetVectorCovisibleKeyFrames();
     mvpCurrentConnectedKFs.push_back(mpCurrentKF);
 
-    //std::cout <<"LoopClosing-->> "<< "Loop: number of connected KFs -> " + to_string(mvpCurrentConnectedKFs.size()) << std::endl;
+    std::cout <<"LoopClosing-->> "<< "Loop: number of connected KFs -> " + to_string(mvpCurrentConnectedKFs.size()) << std::endl;
     // CorrectedSim3：存放闭环g2o优化后当前关键帧的共视关键帧的世界坐标系下Sim3 变换
     // NonCorrectedSim3：存放没有矫正的当前关键帧的共视关键帧的世界坐标系下Sim3 变换
     KeyFrameAndPose CorrectedSim3, NonCorrectedSim3;
@@ -1338,25 +1338,25 @@ void LoopClosing::CorrectLoop()
 
     Map* pLoopMap = mpCurrentKF->GetMap();
 
-#ifdef REGISTER_TIMES
-    /*KeyFrame* pKF = mpCurrentKF;
-    int numKFinLoop = 0;
-    while(pKF && pKF->mnId > mpLoopMatchedKF->mnId)
-    {
-        pKF = pKF->GetParent();
-        numKFinLoop += 1;
-    }
-    vnLoopKFs.push_back(numKFinLoop);*/
+    #ifdef REGISTER_TIMES
+        /*KeyFrame* pKF = mpCurrentKF;
+        int numKFinLoop = 0;
+        while(pKF && pKF->mnId > mpLoopMatchedKF->mnId)
+        {
+            pKF = pKF->GetParent();
+            numKFinLoop += 1;
+        }
+        vnLoopKFs.push_back(numKFinLoop);*/
 
-    std::chrono::steady_clock::time_point time_StartFusion = std::chrono::steady_clock::now();
-#endif
+        std::chrono::steady_clock::time_point time_StartFusion = std::chrono::steady_clock::now();
+    #endif
     // 对地图点操作
     {
         // Get Map Mutex
         unique_lock<mutex> lock(pLoopMap->mMutexMapUpdate);
 
         const bool bImuInit = pLoopMap->isImuInitialized();
-        // 3.1：通过mg2oLoopScw（认为是准的）来进行位姿传播，得到当前关键帧的共视关键帧的世界坐标系下Sim3 位姿（还没有修正）
+        // 3.1：通过 mg2oLoopScw （认为是准的）来进行位姿传播，得到当前关键帧的共视关键帧的世界坐标系下Sim3 位姿（还没有修正）
         // 遍历"当前关键帧组""
         for(vector<KeyFrame*>::iterator vit=mvpCurrentConnectedKFs.begin(), vend=mvpCurrentConnectedKFs.end(); vit!=vend; vit++)
         {
@@ -1525,12 +1525,12 @@ void LoopClosing::CorrectLoop()
     if(mpTracker->mSensor==System::IMU_MONOCULAR && !mpCurrentKF->GetMap()->GetIniertialBA2())
         bFixedScale=false;
 
-#ifdef REGISTER_TIMES
-        std::chrono::steady_clock::time_point time_EndFusion = std::chrono::steady_clock::now();
+    #ifdef REGISTER_TIMES
+            std::chrono::steady_clock::time_point time_EndFusion = std::chrono::steady_clock::now();
 
-        double timeFusion = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndFusion - time_StartFusion).count();
-        vdLoopFusion_ms.push_back(timeFusion);
-#endif
+            double timeFusion = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndFusion - time_StartFusion).count();
+            vdLoopFusion_ms.push_back(timeFusion);
+    #endif
     //cout <<"LoopClosing-->> "<< "Optimize essential graph" << endl;
     if(pLoopMap->IsInertial() && pLoopMap->isImuInitialized())
     {
@@ -1542,12 +1542,12 @@ void LoopClosing::CorrectLoop()
         // Step 7. 进行EssentialGraph优化，LoopConnections是形成闭环后新生成的连接关系，不包括步骤7中当前帧与闭环匹配帧之间的连接关系
         Optimizer::OptimizeEssentialGraph(pLoopMap, mpLoopMatchedKF, mpCurrentKF, NonCorrectedSim3, CorrectedSim3, LoopConnections, bFixedScale);
     }
-#ifdef REGISTER_TIMES
-    std::chrono::steady_clock::time_point time_EndOpt = std::chrono::steady_clock::now();
+    #ifdef REGISTER_TIMES
+        std::chrono::steady_clock::time_point time_EndOpt = std::chrono::steady_clock::now();
 
-    double timeOptEss = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndOpt - time_EndFusion).count();
-    vdLoopOptEss_ms.push_back(timeOptEss);
-#endif
+        double timeOptEss = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(time_EndOpt - time_EndFusion).count();
+        vdLoopOptEss_ms.push_back(timeOptEss);
+    #endif
 
     mpAtlas->InformNewBigChange();
 

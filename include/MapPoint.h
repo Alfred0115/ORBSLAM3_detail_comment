@@ -174,7 +174,7 @@ public:
     float mTrackDepthR;
     float mTrackProjXR;
     float mTrackProjYR;
-    bool mbTrackInView, mbTrackInViewR;
+    bool mbTrackInView, mbTrackInViewR;//mbTrackInView是决定一个地图点是否进行重投影的标志
     int mnTrackScaleLevel, mnTrackScaleLevelR;
     float mTrackViewCos, mTrackViewCosR;
     long unsigned int mnTrackReferenceForFrame;

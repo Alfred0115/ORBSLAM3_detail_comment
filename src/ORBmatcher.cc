@@ -82,7 +82,8 @@ namespace ORB_SLAM3
                                             nPredictedLevel-1,nPredictedLevel);     // 搜索的图层范围
 
                 // 没找到候选的,就放弃对当前点的匹配
-                if(!vIndices.empty()){
+                if(!vIndices.empty())
+                {
                     const cv::Mat MPdescriptor = pMP->GetDescriptor();
 
                     // 最优的次优的描述子距离和index

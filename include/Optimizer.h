@@ -77,6 +77,29 @@ public:
 
 
     // if bFixScale is true, optimize SE3 (stereo,rgbd), Sim3 otherwise (mono) (NEW)
+    /**
+ * @brief 形成闭环时固定（不优化）地图点进行Sim3位姿优化
+ * 1. Vertex:
+ *     - g2o::VertexSim3Expmap()，两个关键帧的位姿
+ *     - g2o::VertexSBAPointXYZ()，两个关键帧共有的MapPoints
+ * 2. Edge:
+ *     - g2o::EdgeSim3ProjectXYZ()，BaseBinaryEdge
+ *         + Vertex：关键帧的Sim3，MapPoint的Pw
+ *         + measurement：MapPoint在关键帧中的二维位置(u,v)
+ *         + InfoMatrix: invSigma2(与特征点所在的尺度有关)
+ *     - g2o::EdgeInverseSim3ProjectXYZ()，BaseBinaryEdge
+ *         + Vertex：关键帧的Sim3，MapPoint的Pw
+ *         + measurement：MapPoint在关键帧中的二维位置(u,v)
+ *         + InfoMatrix: invSigma2(与特征点所在的尺度有关)
+ * 
+ * @param[in] pKF1              当前帧
+ * @param[in] pKF2              闭环候选帧
+ * @param[in] vpMatches1        两个关键帧之间的匹配关系
+ * @param[in] g2oS12            两个关键帧间的Sim3变换，方向是从2到1       
+ * @param[in] th2               卡方检验是否为误差边用到的阈值
+ * @param[in] bFixScale         是否优化尺度，单目进行尺度优化，双目/RGB-D不进行尺度优化
+ * @return int                  优化之后匹配点中内点的个数
+ */
     static int OptimizeSim3(KeyFrame* pKF1, KeyFrame* pKF2, std::vector<MapPoint *> &vpMatches1,
                             g2o::Sim3 &g2oS12, const float th2, const bool bFixScale,
                             Eigen::Matrix<double,7,7> &mAcumHessian, const bool bAllPoints=false);

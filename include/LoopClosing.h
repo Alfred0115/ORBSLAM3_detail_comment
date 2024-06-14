@@ -47,6 +47,12 @@ class LoopClosing
 public:
 
     typedef pair<set<KeyFrame*>,int> ConsistentGroup;    
+    /*
+    typedef: 这里是在定义一个类型别名，将 std::map 的模板实例化后的类型赋予了 KeyFrameAndPose。
+   在这里，指定了键的类型为 KeyFrame*，值的类型为 g2o::Sim3，使用了默认的比较函数 std::less<KeyFrame*> 来进行键的比较，
+   同时使用 Eigen::aligned_allocator 作为分配器。
+   需要注意的是，因为 std::map 中的元素是 std::pair 类型，所以这里使用了 std::pair<KeyFrame* const, g2o::Sim3> 来定义元素的类型。
+    */
     typedef map<KeyFrame*,g2o::Sim3,std::less<KeyFrame*>,
         Eigen::aligned_allocator<std::pair<KeyFrame* const, g2o::Sim3> > > KeyFrameAndPose;
 

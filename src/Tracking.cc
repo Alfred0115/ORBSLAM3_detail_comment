@@ -2386,7 +2386,8 @@ void Tracking::Track()
         }
         
         // 将最新的关键帧作为当前帧的参考关键帧
-        // mpReferenceKF先是上一时刻的参考关键帧，如果当前为新关键帧则变成当前关键帧，如果不是新的关键帧则先为上一帧的参考关键帧，而后经过更新局部关键帧重新确定
+        // mpReferenceKF先是上一时刻的参考关键帧，如果当前为新关键帧则变成当前关键帧，
+        //如果不是新的关键帧则先为上一帧的参考关键帧，而后经过更新局部关键帧重新确定
         if(!mCurrentFrame.mpReferenceKF)
             mCurrentFrame.mpReferenceKF = mpReferenceKF;
 
@@ -3536,7 +3537,7 @@ bool Tracking::TrackLocalMap()
             if(mCurrentFrame.mvbOutlier[i])
                 aux2++;
         }
-
+    std::cout <<"Tracking-->> "<<"查看内外点数目，调试用 mCurrentFrame.N "<<mCurrentFrame.N<<" aux1 "<<aux1<<" aux2 "<<aux2<<std::endl;
     // 在这个函数之前，在 Relocalization、TrackReferenceKeyFrame、TrackWithMotionModel 中都有位姿优化
     // Step 3：前面新增了更多的匹配关系，BA优化得到更准确的位姿
     int inliers;
@@ -3545,7 +3546,7 @@ bool Tracking::TrackLocalMap()
         Optimizer::PoseOptimization(&mCurrentFrame);
     else
     {
-        // 初始化，重定位，重新开启一个地图都会使mnLastRelocFrameId变化
+        // 初始化，重定位，重新开启一个地图都会使 mnLastRelocFrameId 变化
         if(mCurrentFrame.mnId<=mnLastRelocFrameId+mnFramesToResetIMU)
         {
             Verbose::PrintMess("Tracking-->> TLM: PoseOptimization ", Verbose::VERBOSITY_DEBUG);
@@ -3579,8 +3580,7 @@ bool Tracking::TrackLocalMap()
             if(mCurrentFrame.mvbOutlier[i])
                 aux2++;
         }
-
-    mnMatchesInliers = 0;
+      mnMatchesInliers = 0;
 
     // Update MapPoints Statistics
     // Step 4：更新当前帧的地图点被观测程度，并统计跟踪局部地图后匹配数目
@@ -3611,6 +3611,9 @@ bool Tracking::TrackLocalMap()
                 mCurrentFrame.mvpMapPoints[i] = static_cast<MapPoint*>(NULL);
         }
     }
+    std::cout <<"Tracking-->> "<<"after查看内外点数目，调试用 mCurrentFrame.N "<<mCurrentFrame.N
+            <<" aux1 "<<aux1<<" aux2 "<<aux2<<" mnMatchesInliers "<<mnMatchesInliers<<std::endl;
+
 
     // Decide if the tracking was succesful
     // More restrictive if there was a relocalization recently
@@ -4239,7 +4242,7 @@ void Tracking::UpdateLocalKeyFrames()
     mvpLocalKeyFrames.clear();
     // 先申请3倍内存，不够后面再加
     mvpLocalKeyFrames.reserve(3*keyframeCounter.size());
-
+   
     // All keyframes that observe a map point are included in the local map. Also check which keyframe shares most points
     // Step 2.1 类型1：能观测到当前帧地图点的关键帧作为局部关键帧 （将邻居拉拢入伙）（一级共视关键帧）
     for(map<KeyFrame*,int>::const_iterator it=keyframeCounter.begin(), itEnd=keyframeCounter.end(); it!=itEnd; it++)
@@ -4263,7 +4266,8 @@ void Tracking::UpdateLocalKeyFrames()
         // 表示它已经是当前帧的局部关键帧了，可以防止重复添加局部关键帧
         pKF->mnTrackReferenceForFrame = mCurrentFrame.mnId;
     }
-
+    int step_2_1 = mvpLocalKeyFrames.size();
+    //  std::cout<<"keyframeCounter.size() "<<keyframeCounter.size()<<" mvpLocalKeyFrames size "<<mvpLocalKeyFrames.size()<<std::endl;
     // Include also some not-already-included keyframes that are neighbors to already-included keyframes
     // Step 2.2 遍历一级共视关键帧，寻找更多的局部关键帧 
     for(vector<KeyFrame*>::const_iterator itKF=mvpLocalKeyFrames.begin(), itEndKF=mvpLocalKeyFrames.end(); itKF!=itEndKF; itKF++)
@@ -4294,7 +4298,7 @@ void Tracking::UpdateLocalKeyFrames()
                 }
             }
         }
-
+         int step_2_2 = mvpLocalKeyFrames.size();
         // 类型3:将一级共视关键帧的子关键帧作为局部关键帧（将邻居的孩子们拉拢入伙）
         const set<KeyFrame*> spChilds = pKF->GetChilds();
         for(set<KeyFrame*>::const_iterator sit=spChilds.begin(), send=spChilds.end(); sit!=send; sit++)
@@ -4310,7 +4314,7 @@ void Tracking::UpdateLocalKeyFrames()
                 }
             }
         }
-
+        int step_2_3_child = mvpLocalKeyFrames.size();
         // 类型3:将一级共视关键帧的父关键帧（将邻居的父母们拉拢入伙）
         KeyFrame* pParent = pKF->GetParent();
         if(pParent)
@@ -4323,8 +4327,9 @@ void Tracking::UpdateLocalKeyFrames()
                 break;
             }
         }
+        
     }
-
+    int step_2_3_parent = mvpLocalKeyFrames.size();
     // Add 10 last temporal KFs (mainly for IMU)
     // IMU模式下增加了临时的关键帧
     if((mSensor == System::IMU_MONOCULAR || mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD) &&mvpLocalKeyFrames.size()<80)
@@ -4343,7 +4348,15 @@ void Tracking::UpdateLocalKeyFrames()
             }
         }
     }
-
+    int step_imu_added = mvpLocalKeyFrames.size();
+    std::cout<<"keyframeCounter.size() "<<keyframeCounter.size()
+                // <<" mvpLocalKeyFrames size "<<mvpLocalKeyFrames.size()
+                // <<" 一级共视关键帧step_2_1 "<< step_2_1
+                // <<" 二级共视关键帧step_2_2 "<< step_2_2
+                // <<" step_2_3_child "<< step_2_3_child
+                <<" step_2_3_parent "<< step_2_3_parent
+                <<" mvpLocalKeyFrames step_imu_added "<< step_imu_added
+                <<std::endl;
     // Step 3：更新当前帧的参考关键帧，与自己共视程度最高的关键帧作为参考关键帧
     if(pKFmax)
     {

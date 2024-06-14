@@ -873,6 +873,8 @@ int Optimizer::PoseOptimization(Frame *pFrame)
 
     // Step 3：添加一元边（因为此函数只优化当前位姿）
     {
+    // 锁定地图点。因为系统是多线程，所以在取数据时要加锁才能保证线程安全。
+    // 另一方面，需要使用地图点来构造顶点和边,因此不希望在构造的过程中部分地图点被改写造成不一致甚至是段错误
     unique_lock<mutex> lock(MapPoint::mGlobalMutex);
 
     // 遍历当前地图中的所有地图点
@@ -909,6 +911,7 @@ int Optimizer::PoseOptimization(Frame *pFrame)
 
                     // 设置相机内参
                     e->pCamera = pFrame->mpCamera;
+                    // 地图点的空间位置,作为迭代的初始值
                     e->Xw = pMP->GetWorldPos().cast<double>();
 
                     optimizer.addEdge(e);//将此边加入优化器
@@ -2159,6 +2162,8 @@ void Optimizer::OptimizeEssentialGraph(KeyFrame* pCurKF, vector<KeyFrame*> &vpFi
 int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &vpMatches1, g2o::Sim3 &g2oS12, const float th2,
                             const bool bFixScale, Eigen::Matrix<double,7,7> &mAcumHessian, const bool bAllPoints)
 {
+    //(01)： 初始化g2o优化器，使用L-M迭代；获得当前关键帧pKF1与闭环候选帧pKF2相机内参与位姿。
+    //设置待优化的Sim3位姿作为顶点。根据传感器类型决定是否固定尺度，如果为双目或者深度相机则固定尺度。
     g2o::SparseOptimizer optimizer;
     g2o::BlockSolverX::LinearSolverType * linearSolver;
 
@@ -2175,29 +2180,30 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
     const Eigen::Matrix3f R2w = pKF2->GetRotation();
     const Eigen::Vector3f t2w = pKF2->GetTranslation();
 
-    // Set Sim3 vertex
+    // Set Sim3 vertex 顶点
     ORB_SLAM3::VertexSim3Expmap * vSim3 = new ORB_SLAM3::VertexSim3Expmap();
-    vSim3->_fix_scale=bFixScale;
+    vSim3->_fix_scale=bFixScale;   // 根据传感器类型决定是否固定尺度
     vSim3->setEstimate(g2oS12);
     vSim3->setId(0);
-    vSim3->setFixed(false);
+    vSim3->setFixed(false); // Sim3 需要优化
     vSim3->pCamera1 = pKF1->mpCamera;
     vSim3->pCamera2 = pKF2->mpCamera;
     optimizer.addVertex(vSim3);
 
-    // Set MapPoint vertices
+    // Set MapPoint vertices    边 // Step 3: 设置匹配的地图点作为顶点
     const int N = vpMatches1.size();
     const vector<MapPoint*> vpMapPoints1 = pKF1->GetMapPointMatches();
-    vector<ORB_SLAM3::EdgeSim3ProjectXYZ*> vpEdges12;
-    vector<ORB_SLAM3::EdgeInverseSim3ProjectXYZ*> vpEdges21;
-    vector<size_t> vnIndexEdge;
+    //EdgeSE3ProjectXYZ   仅仅是把欧式变换SE3更替成了Sim变换
+    vector<ORB_SLAM3::EdgeSim3ProjectXYZ*> vpEdges12;//pKF2对应的地图点到pKF1的投影边
+    vector<ORB_SLAM3::EdgeInverseSim3ProjectXYZ*> vpEdges21; //pKF1对应的地图点到pKF2的投影边
+    vector<size_t> vnIndexEdge;  //边的索引
     vector<bool> vbIsInKF2;
 
     vnIndexEdge.reserve(2*N);
     vpEdges12.reserve(2*N);
     vpEdges21.reserve(2*N);
     vbIsInKF2.reserve(2*N);
-
+// 核函数的阈值
     const float deltaHuber = sqrt(th2);
 
     int nCorrespondences = 0;
@@ -2207,7 +2213,8 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
     int nMatchWithoutMP = 0;
 
     vector<int> vIdsOnlyInKF2;
-
+    //(02)： 对当前帧pKF1的所有关键点进行遍历，如果其未与闭环候选帧pKF2的关键点匹配，则跳出循环。
+    //否则获得各自关键点对应的地图点pMP1，pMP2。如果地图点pMP1，pMP2未同时存在，或有任意一个地图点未坏点，则continue。
     for(int i=0; i<N; i++)
     {
         if(!vpMatches1[i])
@@ -2215,25 +2222,30 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
 
         MapPoint* pMP1 = vpMapPoints1[i];
         MapPoint* pMP2 = vpMatches1[i];
-
+        // 保证顶点的id能够错开
         const int id1 = 2*i+1;
         const int id2 = 2*(i+1);
-
+        // i2 是 pMP2 在pKF2中对应的索引
         const int i2 = get<0>(pMP2->GetIndexInKeyFrame(pKF2));
 
         Eigen::Vector3f P3D1c;
         Eigen::Vector3f P3D2c;
-
+        //(03)： 为地图点pMP1创建一个VertexSBAPointXYZ类型顶点vPoint1，并且设置vPoint1->setFixed(true)，
+        //也就是地图点不作优化。
+        //同理，为地图点vPoint2也创建一个VertexSBAPointXYZ类型顶点vPoint2，
+        //并且设置vPoint2->setFixed(true)，地图点不作优化。
         if(pMP1 && pMP2)
         {
             if(!pMP1->isBad() && !pMP2->isBad())
             {
+                //顶点
                 g2o::VertexSBAPointXYZ* vPoint1 = new g2o::VertexSBAPointXYZ();
                 Eigen::Vector3f P3D1w = pMP1->GetWorldPos();
+                // 地图点转换到各自相机坐标系下的三维点
                 P3D1c = R1w*P3D1w + t1w;
                 vPoint1->setEstimate(P3D1c.cast<double>());
                 vPoint1->setId(id1);
-                vPoint1->setFixed(true);
+                vPoint1->setFixed(true); // 地图点不优化
                 optimizer.addVertex(vPoint1);
 
                 g2o::VertexSBAPointXYZ* vPoint2 = new g2o::VertexSBAPointXYZ();
@@ -2281,29 +2293,37 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
             Verbose::PrintMess("Sim3: Z coordinate is negative", Verbose::VERBOSITY_DEBUG);
             continue;
         }
-
+        // 对匹配关系进行计数
         nCorrespondences++;
-
-        // Set edge x1 = S12*X2
+        //(04)： ①添加边x1 = S12∗ *∗X2，设置了两个顶点，分别为vPoint2与 vSim3 ，
+        //该边计算的误差为→地图点pMP2通过Sim变换正向投影到pKF1与pKF1的匹配点计算误差。
+        //②添加边x2 = S21∗ *∗X1，设置了两个顶点，分别为vPoint1与vSim3，
+        //该边计算的误差为→地图点pMP1通过Sim变换的逆进行反向投影到pKF2与pKF2的匹配点计算误差。
+       
+        // Set edge x1 = S12*X2 // 地图点pMP1对应的观测特征点
         Eigen::Matrix<double,2,1> obs1;
         const cv::KeyPoint &kpUn1 = pKF1->mvKeysUn[i];
         obs1 << kpUn1.pt.x, kpUn1.pt.y;
-
+        // Step 4.1 闭环候选帧地图点投影到当前关键帧的边 -- 正向投影
         ORB_SLAM3::EdgeSim3ProjectXYZ* e12 = new ORB_SLAM3::EdgeSim3ProjectXYZ();
-
+        // vertex(id2)对应的是pKF2 VertexSBAPointXYZ 类型的三维点
         e12->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(id2)));
+        // ? 为什么这里添加的节点的id为0？
+        // 回答：因为vertex(0)对应的是 VertexSim3Expmap 类型的待优化Sim3，其id 为 0
         e12->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(0)));
         e12->setMeasurement(obs1);
+        // 信息矩阵和这个特征点的可靠程度（在图像金字塔中的图层）有关
         const float &invSigmaSquare1 = pKF1->mvInvLevelSigma2[kpUn1.octave];
         e12->setInformation(Eigen::Matrix2d::Identity()*invSigmaSquare1);
-
+        // 使用鲁棒核函数
         g2o::RobustKernelHuber* rk1 = new g2o::RobustKernelHuber;
         e12->setRobustKernel(rk1);
         rk1->setDelta(deltaHuber);
         optimizer.addEdge(e12);
 
+         
         // Set edge x2 = S21*X1
-        Eigen::Matrix<double,2,1> obs2;
+        Eigen::Matrix<double,2,1> obs2; // 地图点pMP2对应的观测特征点
         cv::KeyPoint kpUn2;
         bool inKF2;
         if(i2 >= 0)
@@ -2326,9 +2346,9 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
             inKF2 = false;
             nOutKF2++;
         }
-
+        // Step 4.2 当前关键帧地图点投影到闭环候选帧的边 -- 反向投影
         ORB_SLAM3::EdgeInverseSim3ProjectXYZ* e21 = new ORB_SLAM3::EdgeInverseSim3ProjectXYZ();
-
+         // vertex(id1)对应的是pKF1 VertexSBAPointXYZ 类型的三维点，内部误差公式也不同
         e21->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(id1)));
         e21->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(0)));
         e21->setMeasurement(obs2);
@@ -2348,10 +2368,16 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
     }
 
     // Optimize!
+    //(04)：g2o开始优化，先迭代5次。根据卡方检验删除向或反向投影任意一个超过误差阈值就删掉该边。
+    //如果有误差较大的边被剔除那么说明回环质量并不是非常好,还要多迭代几次;反之就少迭代几次，
+    //如果经过上面的剔除后剩下的匹配关系已经非常少了,那么就放弃优化。内点数直接设置为0。
     optimizer.initializeOptimization();
     optimizer.optimize(5);
 
+    // Step 6：用卡方检验剔除误差大的边
     // Check inliers
+    //(05)：再次g2o优化剔除后剩下的边，统计第二次优化之后,这些匹配点中是内点的个数，
+    //用优化后的结果来更新Sim3位姿。
     int nBad=0;
     int nBadOutKF2 = 0;
     for(size_t i=0; i<vpEdges12.size();i++)
@@ -2363,13 +2389,14 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
 
         if(e12->chi2()>th2 || e21->chi2()>th2)
         {
+            // 正向或反向投影任意一个超过误差阈值就删掉该边
             size_t idx = vnIndexEdge[i];
             vpMatches1[idx]=static_cast<MapPoint*>(NULL);
             optimizer.removeEdge(e12);
             optimizer.removeEdge(e21);
             vpEdges12[i]=static_cast<ORB_SLAM3::EdgeSim3ProjectXYZ*>(NULL);
             vpEdges21[i]=static_cast<ORB_SLAM3::EdgeInverseSim3ProjectXYZ*>(NULL);
-            nBad++;
+            nBad++;// 累计删掉的边 数目
 
             if(!vbIsInKF2[i])
             {
@@ -2382,20 +2409,22 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
         e12->setRobustKernel(0);
         e21->setRobustKernel(0);
     }
-
+     // 如果有误差较大的边被剔除那么说明回环质量并不是非常好,还要多迭代几次;反之就少迭代几次
     int nMoreIterations;
     if(nBad>0)
         nMoreIterations=10;
     else
         nMoreIterations=5;
-
+     // 如果经过上面的剔除后剩下的匹配关系已经非常少了,那么就放弃优化。内点数直接设置为0
     if(nCorrespondences-nBad<10)
         return 0;
 
     // Optimize again only with inliers
+    // Step 7：再次g2o优化剔除后剩下的边
     optimizer.initializeOptimization();
     optimizer.optimize(nMoreIterations);
 
+    // 统计第二次优化之后,这些匹配点中是内点的个数
     int nIn = 0;
     mAcumHessian = Eigen::MatrixXd::Zero(7, 7);
     for(size_t i=0; i<vpEdges12.size();i++)
@@ -2418,6 +2447,7 @@ int Optimizer::OptimizeSim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
     }
 
     // Recover optimized Sim3
+    // Step 8：用优化后的结果来更新Sim3位姿。
     g2o::VertexSim3Expmap* vSim3_recov = static_cast<g2o::VertexSim3Expmap*>(optimizer.vertex(0));
     g2oS12= vSim3_recov->estimate();
 
