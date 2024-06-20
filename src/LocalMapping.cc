@@ -621,7 +621,8 @@ void LocalMapping::CreateNewMapPoints()
         // 当惯性模式下，并且经过三次初始化，且为刚丢失状态
         bool bCoarse = mbInertial && mpTracker->mState==Tracking::RECENTLY_LOST && mpCurrentKeyFrame->GetMap()->GetIniertialBA2();
 
-        // 通过极线约束的方式找到匹配点（且该点还没有成为MP，注意非单目已经生成的MP这里直接跳过不做匹配，所以最后并不会覆盖掉特征点对应的MP）
+        // 通过极线约束的方式找到匹配点（且该点还没有成为MP，注意非单目已经生成的MP这里直接跳过不做匹配，
+        //所以最后并不会覆盖掉特征点对应的MP）
         matcher.SearchForTriangulation(mpCurrentKeyFrame,pKF2,vMatchedIndices,false,bCoarse);
 
         // 取出与mpCurrentKeyFrame共视关键帧的内外参信息

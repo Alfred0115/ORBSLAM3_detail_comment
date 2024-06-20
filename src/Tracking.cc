@@ -2916,7 +2916,11 @@ void Tracking::MonocularInitialization()
         // 对 mInitialFrame,mCurrentFrame 进行特征点匹配
         // mvbPrevMatched为参考帧的特征点坐标，初始化存储的是mInitialFrame中特征点坐标，匹配后存储的是匹配好的当前帧的特征点坐标
         // mvIniMatches 保存参考帧F1中特征点是否匹配上，index保存是F1对应特征点索引，值保存的是匹配好的F2特征点索引
-        int nmatches = matcher.SearchForInitialization(mInitialFrame,mCurrentFrame,mvbPrevMatched,mvIniMatches,100);
+        int nmatches = matcher.SearchForInitialization(mInitialFrame,
+                                                        mCurrentFrame,  //初始化时的参考帧和当前帧
+                                                        mvbPrevMatched, //在初始化参考帧中提取得到的特征点
+                                                        mvIniMatches,   //保存匹配关系
+                                                        100);           //搜索窗口大小
 
         // Check if there are enough correspondences
         // Step 4 验证匹配结果，如果初始化的两帧之间的匹配点太少，重新初始化
@@ -2958,6 +2962,15 @@ void Tracking::MonocularInitialization()
 }
 
 /**
+ * 1 将初始关键帧,当前关键帧的描述子转为BoW
+    2 将关键帧插入到地图
+    3 用初始化得到的3D点来生成地图点MapPoints
+    4 全局BA优化，同时优化所有位姿和三维点
+    5 取场景的中值深度，用于尺度归一化 
+    6 将两帧之间的变换归一化到平均深度1的尺度下
+    7 把3D点的尺度也归一化到1
+    8 将关键帧插入局部地图，更新归一化后的位姿、局部地图点
+
  * @brief 单目相机成功初始化后用三角化得到的点生成MapPoints
  * 
  */

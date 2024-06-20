@@ -605,6 +605,7 @@ void EdgeInertial::computeError()
     const Eigen::Vector3d dV = mpInt->GetDeltaVelocity(b1).cast<double>();
     const Eigen::Vector3d dP = mpInt->GetDeltaPosition(b1).cast<double>();
 
+    //ΔR,ΔV,ΔP分别表示旋转, 速度, 位置的预积分量(在代码中用dR，dV和dP表示)，其中w代表世界坐标系，b代表imu惯性坐标系，c代表相机坐标系。
     const Eigen::Vector3d er = LogSO3(dR.transpose()*VP1->estimate().Rwb.transpose()*VP2->estimate().Rwb);
     const Eigen::Vector3d ev = VP1->estimate().Rwb.transpose()*(VV2->estimate() - VV1->estimate() - g*dt) - dV;
     const Eigen::Vector3d ep = VP1->estimate().Rwb.transpose()*(VP2->estimate().twb - VP1->estimate().twb

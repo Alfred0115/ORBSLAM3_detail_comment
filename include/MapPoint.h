@@ -163,9 +163,9 @@ public:
 public:
     long unsigned int mnId;
     static long unsigned int nNextId;
-    long int mnFirstKFid;
-    long int mnFirstFrame;
-    int nObs;
+    long int mnFirstKFid; //第一次观测/生成它的关键帧 id
+    long int mnFirstFrame;//创建该地图点的帧ID(因为关键帧也是帧啊)
+    int nObs;// 被观测次数
 
     // Variables used by the tracking
     float mTrackProjX;
@@ -225,11 +225,11 @@ protected:
      cv::Mat mDescriptor;
 
      // Reference KeyFrame
-     KeyFrame* mpRefKF;
+     KeyFrame* mpRefKF; // 生成该地图点的关键帧
      long unsigned int mBackupRefKFId;
 
      // Tracking counters
-     int mnVisible;
+     int mnVisible; //在帧中的可视次数
      int mnFound;
 
      // Bad flag (we do not currently erase MapPoint from memory)
@@ -239,10 +239,10 @@ protected:
      long long int mBackupReplacedId;
 
      // Scale invariance distances
-     float mfMinDistance;
-     float mfMaxDistance;
+     float mfMinDistance; //当前地图点在某帧下,可信赖的被找到时其到关键帧光心距离的下界
+     float mfMaxDistance;//上界
 
-     Map* mpMap;
+     Map* mpMap;//地图点所属地图 
 
      // Mutex
      std::mutex mMutexPos;

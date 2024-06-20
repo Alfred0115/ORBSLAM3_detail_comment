@@ -125,6 +125,9 @@ public:
     const VertexSE3Expmap* v1 = static_cast<const VertexSE3Expmap*>(_vertices[1]);
     const VertexSBAPointXYZ* v2 = static_cast<const VertexSBAPointXYZ*>(_vertices[0]);
     Vector2d obs(_measurement);
+    //就是把世界坐标系下的地图点，变换 v1(关键帧) 的相机坐标系下。
+    //然后再通过 cam_project 投影到像素坐标系上，最后在计算误差，
+    //即误差 = 关键点像素坐标(观测)- 地图点投影到关键点附近像素坐标(投影)。
     _error = obs-cam_project(v1->estimate().map(v2->estimate()));
   }
 

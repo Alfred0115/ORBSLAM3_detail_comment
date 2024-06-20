@@ -44,6 +44,7 @@ public:
     {
         const g2o::VertexSE3Expmap *v1 = static_cast<const g2o::VertexSE3Expmap *>(_vertices[0]);
         Eigen::Vector2d obs(_measurement);
+        //重投影误差=图像2d观测值 - 3d点经估计的相机位姿和相机内参K投影到图像平面的2d点值
         _error = obs - pCamera->project(v1->estimate().map(Xw));
     }
 

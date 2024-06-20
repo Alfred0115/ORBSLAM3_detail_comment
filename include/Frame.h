@@ -166,11 +166,11 @@ public:
 
 private:
     //Sophus/Eigen migration
-    Sophus::SE3<float> mTcw;
-    Eigen::Matrix<float,3,3> mRwc;
-    Eigen::Matrix<float,3,1> mOw;
-    Eigen::Matrix<float,3,3> mRcw;
-    Eigen::Matrix<float,3,1> mtcw;
+    Sophus::SE3<float> mTcw;        //  mTcw→相机姿态 世界坐标系到相机坐标坐标系的变换矩阵,是我们常规理解中的相机位姿
+    Eigen::Matrix<float,3,3> mRwc;  //mRwc(相机坐标系到世界坐标系的旋转矩阵)
+    Eigen::Matrix<float,3,1> mOw;   // 根据mTcw可以计算出mOw(当前相机光心在世界坐标系下坐标)
+    Eigen::Matrix<float,3,3> mRcw;  //mRcw(世界坐标系到相机坐标系的旋转矩阵)
+    Eigen::Matrix<float,3,1> mtcw;  //mtcw(世界坐标系到相机坐标系的平移向量)
     bool mbHasPose;
 
     //Rcw_ not necessary as Sophus has a method for extracting the rotation matrix: Tcw_.rotationMatrix()
@@ -235,7 +235,9 @@ public:
     std::vector<float> mvDepth;
 
     // Bag of Words Vector structures.
-    DBoW2::BowVector mBowVec;
+    DBoW2::BowVector mBowVec;//其可以存储多个元素，每个元素包含了两个值: 叶子节点 id，其对应的权重
+    // 其可以存储多个元素，每个元素包含了两个值: 第一个值为叶子节点(word)所属节点 id(注意，并非父节点id)，
+    //其与参数levelsup相关；第二个值为特征点，或者说 BRIEF 描述子的索引。
     DBoW2::FeatureVector mFeatVec;
 
     // ORB descriptor, each row associated to a keypoint.

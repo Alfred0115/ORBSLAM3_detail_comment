@@ -109,7 +109,11 @@ bool VertexSE3Expmap::write(std::ostream& os) const {
     return os.good();
   }
 
-
+// 参数D(2)：测量值(ORB特征点)的维度，有x,y轴像素坐标，所以为2
+// 参数E(Vector2d)：测量值的数据类型。
+// 参数VertexXi(VertexSBAPointXYZ)：边连接第一个顶点的类型。
+// 参数VertexXj(VertexSE3Expmap)：边连接第二个顶点的类型。
+// 注意：VertexX、VertexXj 是继承自BaseVertex等基础类的类！不是顶点的数据类。
 EdgeSE3ProjectXYZ::EdgeSE3ProjectXYZ() : BaseBinaryEdge<2, Vector2d, VertexSBAPointXYZ, VertexSE3Expmap>() {
 }
 

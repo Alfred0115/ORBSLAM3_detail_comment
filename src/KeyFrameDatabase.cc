@@ -823,9 +823,19 @@ void KeyFrameDatabase::DetectNBestCandidates(KeyFrame *pKF, vector<KeyFrame *> &
         it++;
     }
 }
-
+/*
+ * @brief 在重定位中找到与该帧相似的候选关键帧组
+ * Step 1. 找出和当前帧具有公共单词的所有关键帧
+ * Step 2. 只和具有共同单词较多的关键帧进行相似度计算
+ * Step 3. 将与关键帧相连（权值最高）的前十个关键帧归为一组，计算累计得分
+ * Step 4. 只返回累计得分较高的组中分数最高的关键帧
+ * @param F 需要重定位的帧
+ * @return  相似的候选关键帧数组
+ */
 vector<KeyFrame *> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F, Map *pMap)
 {
+    // (01): 对当前帧 F 的所有Bow向量(单词id以及对应的权重) 进行遍历，先获得单个Bow向量的 id，
+    // 通过 mvInvertedFile 获得该 id 的所有关键帧。最终找出和当前帧具有公共单词的所有关键帧，存放于 lKFsSharingWords 变量之中。
     list<KeyFrame *> lKFsSharingWords;
 
     // Search all keyframes that share a word with current frame
@@ -851,7 +861,8 @@ vector<KeyFrame *> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F, Ma
     }
     if (lKFsSharingWords.empty())
         return vector<KeyFrame *>();
-
+    //(02): 统计 lKFsSharingWords 中 键帧中与当前帧F具有共同单词最多的单
+    //词数 maxCommonWords，然后乘以 0.8 作为最小公共单词数的阈值一 minCommonWords 。
     // Only compare against those keyframes that share enough words
     int maxCommonWords = 0;
     for (list<KeyFrame *>::iterator lit = lKFsSharingWords.begin(), lend = lKFsSharingWords.end(); lit != lend; lit++)
@@ -861,7 +872,8 @@ vector<KeyFrame *> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F, Ma
     }
 
     int minCommonWords = maxCommonWords * 0.8f;
-
+    //(03): 遍历 lKFsSharingWords 中的关键帧，挑选出共有单词数大于阈值一 
+    //minCommonWords，及其和当前帧单词匹配得分存入lScoreAndMatch。两个 Bow 的相似度越高则得分越高。
     list<pair<float, KeyFrame *>> lScoreAndMatch;
 
     int nscores = 0;
@@ -885,7 +897,10 @@ vector<KeyFrame *> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F, Ma
 
     list<pair<float, KeyFrame *>> lAccScoreAndMatch;
     float bestAccScore = 0;
-
+    //(04): 计算lScoreAndMatch中每个关键帧的共视关键帧组的总得分，得到最高组得分 bestAccScore ，
+    // 并以此决定阈值二，单单计算当前帧和某一关键帧的相似性是不够的，这里将与关键帧共视程度最高的前十个关
+    // 键帧归为一组，计算累计得分。其中核心函数为 pKFi->GetBestCovisibilityKeyFrames(10); 
+    // 记录所有组中最高的得分为 bestAccScore。
     // Lets now accumulate score by covisibility
     for (list<pair<float, KeyFrame *>>::iterator it = lScoreAndMatch.begin(), itend = lScoreAndMatch.end(); it != itend; it++)
     {
@@ -912,7 +927,8 @@ vector<KeyFrame *> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F, Ma
         if (accScore > bestAccScore)
             bestAccScore = accScore;
     }
-
+    // (05): 以0.75f*bestAccScore为第二个阈值 minScoreToRetain，
+    // 得到所有组中总得分大于阈值minScoreToRetain的，组内得分最高的关键帧，作为候选关键帧组 vpRelocCandidates。
     // Return all those keyframes with a score higher than 0.75*bestScore
     float minScoreToRetain = 0.75f * bestAccScore;
     set<KeyFrame *> spAlreadyAddedKF;
