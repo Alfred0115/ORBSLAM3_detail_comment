@@ -74,7 +74,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
 
     g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(solver_ptr);
     optimizer.setAlgorithm(solver);
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
 
     if(pbStopFlag)
         optimizer.setForceStopFlag(pbStopFlag);
@@ -275,7 +275,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
     }
 
     // Optimize!
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
     optimizer.initializeOptimization();
     optimizer.optimize(nIterations);
     Verbose::PrintMess("BA: End of the optimization", Verbose::VERBOSITY_NORMAL);
@@ -406,7 +406,7 @@ void Optimizer::FullInertialBA(Map *pMap, int its, const bool bFixLocal, const l
     g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(solver_ptr);
     solver->setUserLambdaInit(1e-5);
     optimizer.setAlgorithm(solver);
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
 
     if(pbStopFlag)
         optimizer.setForceStopFlag(pbStopFlag);
@@ -1293,7 +1293,7 @@ void Optimizer::LocalBundleAdjustment(KeyFrame *pKF, bool* pbStopFlag, Map* pMap
         solver->setUserLambdaInit(100.0);
 
     optimizer.setAlgorithm(solver);
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
 
     if(pbStopFlag)
         optimizer.setForceStopFlag(pbStopFlag);
@@ -3419,7 +3419,7 @@ void Optimizer::InertialOptimization(Map *pMap, Eigen::Matrix3d &Rwg, double &sc
     // Compute error for different scales
     std::set<g2o::HyperGraph::Edge*> setEdges = optimizer.edges();
 
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
     optimizer.initializeOptimization();
     optimizer.optimize(its);
 
@@ -3588,7 +3588,7 @@ void Optimizer::InertialOptimization(Map *pMap, Eigen::Vector3d &bg, Eigen::Vect
     }
 
     // Compute error for different scales
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
     optimizer.initializeOptimization();
     optimizer.optimize(its);
 
@@ -3724,7 +3724,7 @@ void Optimizer::InertialOptimization(Map *pMap, Eigen::Matrix3d &Rwg, double &sc
     }
 
     // Compute error for different scales
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
     optimizer.initializeOptimization();
     optimizer.computeActiveErrors();
     float err = optimizer.activeRobustChi2();
@@ -3752,7 +3752,7 @@ void Optimizer::LocalBundleAdjustment(KeyFrame* pMainKF,vector<KeyFrame*> vpAdju
     g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(solver_ptr);
     optimizer.setAlgorithm(solver);
 
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
 
     if(pbStopFlag)
         optimizer.setForceStopFlag(pbStopFlag);
@@ -4339,7 +4339,7 @@ void Optimizer::MergeInertialBA(KeyFrame* pCurrKF, KeyFrame* pMergeKF, bool *pbS
     solver->setUserLambdaInit(1e3);
 
     optimizer.setAlgorithm(solver);
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
 
     // Set Local KeyFrame vertices
     N=vpOptimizableKFs.size();
@@ -4739,7 +4739,7 @@ int Optimizer::PoseInertialOptimizationLastKeyFrame(Frame *pFrame, bool bRecInit
     g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(linearSolver);
 
     g2o::OptimizationAlgorithmGaussNewton* solver = new g2o::OptimizationAlgorithmGaussNewton(solver_ptr);
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
     optimizer.setAlgorithm(solver);
 
     int nInitialMonoCorrespondences=0;
@@ -5126,7 +5126,7 @@ int Optimizer::PoseInertialOptimizationLastFrame(Frame *pFrame, bool bRecInit)
 
     g2o::OptimizationAlgorithmGaussNewton* solver = new g2o::OptimizationAlgorithmGaussNewton(solver_ptr);
     optimizer.setAlgorithm(solver);
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
 
     int nInitialMonoCorrespondences=0;
     int nInitialStereoCorrespondences=0;
@@ -5543,7 +5543,7 @@ void Optimizer::OptimizeEssentialGraph4DoF(Map* pMap, KeyFrame* pLoopKF, KeyFram
 
     // Setup optimizer
     g2o::SparseOptimizer optimizer;
-    optimizer.setVerbose(false);
+    optimizer.setVerbose(true);
     g2o::BlockSolverX::LinearSolverType * linearSolver =
             new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>();
     g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(linearSolver);

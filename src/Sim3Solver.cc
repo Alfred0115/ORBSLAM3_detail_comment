@@ -145,13 +145,21 @@ void Sim3Solver::SetRansacParameters(double probability, int minInliers, int max
 
     mnIterations = 0;
 }
-
+/**
+ * @brief Ransac求解mvX3Dc1和mvX3Dc2之间Sim3，函数返回mvX3Dc2到mvX3Dc1的Sim3变换
+ * 
+ * @param[in] nIterations           设置的最大迭代次数
+ * @param[in] bNoMore               为true表示穷尽迭代还没有找到好的结果，说明求解失败
+ * @param[in] vbInliers             标记是否是内点
+ * @param[in] nInliers              内点数目
+ * @return cv::Mat                  计算得到的Sim3矩阵
+ */
 Eigen::Matrix4f Sim3Solver::iterate(int nIterations, bool &bNoMore, vector<bool> &vbInliers, int &nInliers)
 {
-    bNoMore = false;
-    vbInliers = vector<bool>(mN1,false);
-    nInliers=0;
-
+    bNoMore = false;                        // 现在还没有达到最好的效果
+    vbInliers = vector<bool>(mN1,false);    // 的确和最初传递给这个解算器的地图点向量是保持一致
+    nInliers=0;                              // 存储迭代过程中得到的内点个数
+    // Step 1 如果匹配点比要求的最少内点数还少，不满足Sim3 求解条件，返回空
     if(N<mRansacMinInliers)
     {
         bNoMore = true;
@@ -162,8 +170,14 @@ Eigen::Matrix4f Sim3Solver::iterate(int nIterations, bool &bNoMore, vector<bool>
 
     Eigen::Matrix3f P3Dc1i;
     Eigen::Matrix3f P3Dc2i;
-
+    // nCurrentIterations：     当前迭代的次数
+    // nIterations：            理论迭代次数
+    // mnIterations：           总迭代次数
+    // mRansacMaxIts：          最大迭代次数
     int nCurrentIterations = 0;
+     // Step 2 随机选择三个点，用于求解后面的Sim3
+    // 条件1: 已经进行的总迭代次数还没有超过限制的最大总迭代次数
+    // 条件2: 当前迭代次数还没有超过理论迭代次数
     while(mnIterations<mRansacMaxIts && nCurrentIterations<nIterations)
     {
         nCurrentIterations++;
@@ -171,7 +185,7 @@ Eigen::Matrix4f Sim3Solver::iterate(int nIterations, bool &bNoMore, vector<bool>
 
         vAvailableIndices = mvAllIndices;
 
-        // Get min set of points
+        // Get min set of points // 记录所有有效（可以采样）的候选三维点索引
         for(short i = 0; i < 3; ++i)
         {
             int randi = DUtils::Random::RandomInt(0, vAvailableIndices.size()-1);
@@ -184,11 +198,13 @@ Eigen::Matrix4f Sim3Solver::iterate(int nIterations, bool &bNoMore, vector<bool>
             vAvailableIndices[randi] = vAvailableIndices.back();
             vAvailableIndices.pop_back();
         }
-
+        // Step 2.2 根据随机取的两组匹配的3D点，计算P3Dc2i 到 P3Dc1i 的Sim3变换
         ComputeSim3(P3Dc1i,P3Dc2i);
 
+        // Step 2.3 对计算的Sim3变换，通过投影误差进行inlier检测
         CheckInliers();
 
+         // Step 2.4 记录并更新最多的内点数目及对应的参数
         if(mnInliersi>=mnBestInliers)
         {
             mvbBestInliers = mvbInliersi;
@@ -198,17 +214,19 @@ Eigen::Matrix4f Sim3Solver::iterate(int nIterations, bool &bNoMore, vector<bool>
             mBestTranslation = mt12i;
             mBestScale = ms12i;
 
-            if(mnInliersi>mRansacMinInliers)
+            if(mnInliersi>mRansacMinInliers)    // 只要计算得到一次合格的Sim变换，就直接返回
             {
+                // 返回值,告知得到的内点数目
                 nInliers = mnInliersi;
                 for(int i=0; i<N; i++)
                     if(mvbInliersi[i])
+                        // 标记为内点
                         vbInliers[mvnIndices1[i]] = true;
                 return mBestT12;
-            }
-        }
-    }
-
+            } // 如果当前次迭代已经合格了,直接返回
+        }// 更新最多的内点数目
+    }// 迭代循环
+     // Step 3 如果已经达到了最大迭代次数了还没得到满足条件的Sim3，说明失败了，放弃，返回
     if(mnIterations>=mRansacMaxIts)
         bNoMore=true;
 
@@ -307,7 +325,7 @@ void Sim3Solver::ComputeCentroid(Eigen::Matrix3f &P, Eigen::Matrix3f &Pr, Eigen:
     Pr.col(i) = P.col(i) - C;
 }
 
-
+//https://blog.csdn.net/weixin_43013761/article/details/126762711
 void Sim3Solver::ComputeSim3(Eigen::Matrix3f &P1, Eigen::Matrix3f &P2)
 {
     // Custom implementation of:
@@ -324,7 +342,8 @@ void Sim3Solver::ComputeSim3(Eigen::Matrix3f &P1, Eigen::Matrix3f &P2)
     ComputeCentroid(P2,Pr2,O2);
 
     // Step 2: Compute M matrix
-
+    // Step 2: 计算论文中三维点数目n>3的 M 矩阵。这里只使用了3个点
+    // Pr2 对应论文中 r_l,i'，Pr1 对应论文中 r_r,i',计算的是P2到P1的Sim3，论文中是left 到 right的Sim3
     Eigen::Matrix3f M = Pr2 * Pr1.transpose();
 
     // Step 3: Compute N matrix
@@ -348,7 +367,7 @@ void Sim3Solver::ComputeSim3(Eigen::Matrix3f &P1, Eigen::Matrix3f &P2)
          N13, N23, N33, N34,
          N14, N24, N34, N44;
 
-
+    // Step 4: 特征值分解求最大特征值对应的特征向量，就是我们要求的旋转四元数
     // Step 4: Eigenvector of the highest eigenvalue
     Eigen::EigenSolver<Eigen::Matrix4f> eigSolver;
     eigSolver.compute(N);
@@ -362,22 +381,31 @@ void Sim3Solver::ComputeSim3(Eigen::Matrix3f &P1, Eigen::Matrix3f &P2)
     Eigen::Vector3f vec = evec.block<3,1>(1,maxIndex); //extract imaginary part of the quaternion (sin*axis)
 
     // Rotation angle. sin is the norm of the imaginary part, cos is the real part
+    // 四元数虚部模长 norm(vec)=sin(theta/2), 四元数实部 evec.at<float>(0,0)=q0=cos(theta/2)
+    // 这一步的ang实际是theta/2，theta 是旋转向量中旋转角度
+    // ? 这里也可以用 arccos(q0)=angle/2 得到旋转角吧
     double ang=atan2(vec.norm(),evec(0,maxIndex));
 
+    // vec/norm(vec)归一化得到归一化后的旋转向量,然后乘上角度得到包含了旋转轴和旋转角信息的旋转向量vec
     vec = 2*ang*vec/vec.norm(); //Angle-axis representation. quaternion angle is the half
     mR12i = Sophus::SO3f::exp(vec).matrix();
 
     // Step 5: Rotate set 2
+     // 利用刚计算出来的旋转将三维点旋转到同一个坐标系，P3对应论文里的 r_l,i', Pr1 对应论文里的r_r,i'
     Eigen::Matrix3f P3 = mR12i*Pr2;
 
     // Step 6: Scale
-
+    // Step 6: 计算尺度因子 Scale
     if(!mbFixScale)
     {
+        // 论文中有2个求尺度方法。一个是p632右中的位置，考虑了尺度的对称性
+        // 代码里实际使用的是另一种方法，这个公式对应着论文中p632左中位置的那个
+        // Pr1 对应论文里的r_r,i',P3对应论文里的 r_l,i',(经过坐标系转换的Pr2), n=3, 剩下的就和论文中都一样了
         double cvnom = Converter::toCvMat(Pr1).dot(Converter::toCvMat(P3));
         double nom = (Pr1.array() * P3.array()).sum();
         if (abs(nom-cvnom)>1e-3)
             std::cout << "sim3 solver: " << abs(nom-cvnom) << std::endl << nom << std::endl;
+        // 准备计算分母
         Eigen::Array<float,3,3> aux_P3;
         aux_P3 = P3.array() * P3.array();
         double den = aux_P3.sum();
@@ -388,6 +416,7 @@ void Sim3Solver::ComputeSim3(Eigen::Matrix3f &P1, Eigen::Matrix3f &P2)
         ms12i = 1.0f;
 
     // Step 7: Translation
+     // 论文中平移公式
     mt12i = O1 - ms12i * mR12i * O2;
 
     // Step 8: Transformation
@@ -405,6 +434,9 @@ void Sim3Solver::ComputeSim3(Eigen::Matrix3f &P1, Eigen::Matrix3f &P2)
     Eigen::Matrix3f sRinv = (1.0/ms12i)*mR12i.transpose();
 
     // sRinv.copyTo(mT21i.rowRange(0,3).colRange(0,3));
+    // Step 8: 计算双向变换矩阵，目的是在后面的检查的过程中能够进行双向的投影操作
+
+    // Step 8.1 用尺度，旋转，平移构建变换矩阵 T12
     mT21i.block<3,3>(0,0) = sRinv;
 
     Eigen::Vector3f tinv = -sRinv * mt12i;
