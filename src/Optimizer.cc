@@ -141,7 +141,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
         vPoint->setEstimate(pMP->GetWorldPos().cast<double>());
         const int id = pMP->mnId+maxKFid+1;
         vPoint->setId(id);
-        vPoint->setMarginalized(true);
+        vPoint->setMarginalized(true);//目的是希望不再计算这一帧 的位姿或者与其相关的路标点，但是希望保留该帧对窗口内其他帧的约束关系。
         optimizer.addVertex(vPoint);
 
        const map<KeyFrame*,tuple<int,int>> observations = pMP->GetObservations();
